@@ -1,0 +1,134 @@
+\begin{thebibliography}{31}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{\discretionary{}{}{}https://doi.org/#1}\else
+  \providecommand{\doi}[1]{\discretionary{}{}{}\urlstyle{rm}\url{https://doi.org/#1}}\fi
+
+\bibitem[{Alex~Pothen et~al.(2022)Alex~Pothen, Crain, and Ulrich}]{alex_pothen_pose_2022}
+Alex~Pothen, A., Crain, A., and Ulrich, S., \enquote{Pose {Tracking} {Control} for {Spacecraft} {Proximity} {Operations} {Using} the {Udwadia}–{Kalaba} {Framework},} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~45, No.~2, 2022, pp. 296--309.
+\newblock \doi{10.2514/1.G005169}, \urlprefix\url{https://doi.org/10.2514/1.G005169}, publisher: American Institute of Aeronautics and Astronautics \_eprint: https://doi.org/10.2514/1.G005169.
+
+\bibitem[{Sun et~al.(2024)Sun, Wu, and Zhang}]{sun_attitude_2024}
+Sun, H.-J., Wu, Y.-Y., and Zhang, J., \enquote{Attitude synchronization control for multiple spacecraft: {A} preassigned finite-time scheme,} \emph{Advances in Space Research}, Vol.~73, No.~12, 2024, pp. 6094--6110.
+\newblock \doi{10.1016/j.asr.2024.02.001}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0273117724001303}.
+
+\bibitem[{Xu et~al.(2024)Xu, Zelazo, and Wu}]{xu_distributed_2024}
+Xu, C., Zelazo, D., and Wu, B., \enquote{Distributed prescribed-time coordinated control of spacecraft formation flying under input saturation,} \emph{Advances in Space Research}, Vol.~74, No.~5, 2024, pp. 2302--2315.
+\newblock \doi{10.1016/j.asr.2024.05.077}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S027311772400543X}.
+
+\bibitem[{Hong and Jiang(2006)}]{hong_finite-time_2006}
+Hong, Y., and Jiang, Z.-P., \enquote{Finite-{Time} {Stabilization} of {Nonlinear} {Systems} {With} {Parametric} and {Dynamic} {Uncertainties},} \emph{IEEE Transactions on Automatic Control}, Vol.~51, No.~12, 2006, pp. 1950--1956.
+\newblock \doi{10.1109/TAC.2006.886515}, \urlprefix\url{https://ieeexplore.ieee.org/document/4026648/}.
+
+\bibitem[{Zhou(2020)}]{zhou_finite-time_2020}
+Zhou, B., \enquote{Finite-time stability analysis and stabilization by bounded linear time-varying feedback,} \emph{Automatica}, Vol. 121, 2020, p. 109191.
+\newblock \doi{10.1016/j.automatica.2020.109191}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109820303897}.
+
+\bibitem[{Polyakov(2012)}]{polyakov_nonlinear_2012}
+Polyakov, A., \enquote{Nonlinear {Feedback} {Design} for {Fixed}-{Time} {Stabilization} of {Linear} {Control} {Systems},} \emph{IEEE Transactions on Automatic Control}, Vol.~57, No.~8, 2012, pp. 2106--2110.
+\newblock \doi{10.1109/TAC.2011.2179869}, \urlprefix\url{https://ieeexplore.ieee.org/document/6104367/}.
+
+\bibitem[{Polyakov et~al.(2015)Polyakov, Efimov, and Perruquetti}]{polyakov_finite-time_2015}
+Polyakov, A., Efimov, D., and Perruquetti, W., \enquote{Finite-time and fixed-time stabilization: {Implicit} {Lyapunov} function approach,} \emph{Automatica}, Vol.~51, 2015, pp. 332--340.
+\newblock \doi{10.1016/j.automatica.2014.10.082}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109814004634}.
+
+\bibitem[{Sánchez-Torres et~al.(2015)Sánchez-Torres, Sanchez, and Loukianov}]{sanchez-torres_predefined-time_2015}
+Sánchez-Torres, J.~D., Sanchez, E.~N., and Loukianov, A.~G., \enquote{Predefined-time stability of dynamical systems with sliding modes,} \emph{2015 {American} {Control} {Conference} ({ACC})}, 2015, pp. 5842--5846.
+\newblock \doi{10.1109/ACC.2015.7172255}, \urlprefix\url{https://ieeexplore.ieee.org/document/7172255}, iSSN: 2378-5861.
+
+\bibitem[{Sánchez-Torres et~al.(2018)Sánchez-Torres, Gómez-Gutiérrez, López, and Loukianov}]{sanchez-torres_class_2018}
+Sánchez-Torres, J.~D., Gómez-Gutiérrez, D., López, E., and Loukianov, A.~G., \enquote{A class of predefined-time stable dynamical systems,} \emph{IMA Journal of Mathematical Control and Information}, Vol.~35, No. Supplement\_1, 2018, pp. i1--i29.
+\newblock \doi{10.1093/imamci/dnx004}, \urlprefix\url{https://doi.org/10.1093/imamci/dnx004}.
+
+\bibitem[{Anguiano-Gijón et~al.(2019)Anguiano-Gijón, Muñoz-Vázquez, Sánchez-Torres, Romero-Galván, and Martínez-Reyes}]{anguiano-gijon_predefined-time_2019}
+Anguiano-Gijón, C.~A., Muñoz-Vázquez, A.~J., Sánchez-Torres, J.~D., Romero-Galván, G., and Martínez-Reyes, F., \enquote{On predefined-time synchronisation of chaotic systems,} \emph{Chaos, Solitons \& Fractals}, Vol. 122, 2019, pp. 172--178.
+\newblock \doi{10.1016/j.chaos.2019.03.015}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0960077919300864}.
+
+\bibitem[{Ye et~al.(2022)Ye, Zou, and Sun}]{ye_predefined-time_2022}
+Ye, D., Zou, A.-M., and Sun, Z., \enquote{Predefined-{Time} {Predefined}-{Bounded} {Attitude} {Tracking} {Control} for {Rigid} {Spacecraft},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~58, No.~1, 2022, pp. 464--472.
+\newblock \doi{10.1109/TAES.2021.3103258}, \urlprefix\url{https://ieeexplore.ieee.org/abstract/document/9512481}.
+
+\bibitem[{Muñoz-Vázquez et~al.(2019)Muñoz-Vázquez, Sánchez-Torres, Gutiérrez-Alcalá, Jiménez-Rodríguez, and Loukianov}]{munoz-vazquez_predefined-time_2019}
+Muñoz-Vázquez, A.~J., Sánchez-Torres, J.~D., Gutiérrez-Alcalá, S., Jiménez-Rodríguez, E., and Loukianov, A.~G., \enquote{Predefined-time robust contour tracking of robotic manipulators,} \emph{Journal of the Franklin Institute}, Vol. 356, No.~5, 2019, pp. 2709--2722.
+\newblock \doi{10.1016/j.jfranklin.2019.01.041}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0016003219300973}.
+
+\bibitem[{Meng et~al.(2025)Meng, Zhu, Cui, and Qiao}]{meng_predefined-time_2025}
+Meng, Y., Zhu, Y., Cui, Y., and Qiao, J., \enquote{Predefined-{Time} {Enhanced} {Antidisturbance} {Attitude} {Control} for {Rigid}-{Liquid} {Coupled} {Launch} {Vehicles},} \emph{Journal of Guidance Control and Dynamics}, Vol.~48, No.~4, 2025, pp. 870--884.
+\newblock \doi{10.2514/1.G008397}, num Pages: 15 Place: Reston Publisher: Amer Inst Aeronautics Astronautics Web of Science ID: WOS:001403479000001.
+
+\bibitem[{Xiao et~al.(2025{\natexlab{a}})Xiao, Wang, Ye, and Sun}]{xiao_predefined-time_2025}
+Xiao, Y., Wang, Y., Ye, D., and Sun, Z., \enquote{Predefined-time robust attitude tracking control of flexible spacecraft with continuous and nonsingular performance,} \emph{Aerospace Science and Technology}, Vol. 159, 2025{\natexlab{a}}, p. 110000.
+\newblock \doi{10.1016/j.ast.2025.110000}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S1270963825000720}.
+
+\bibitem[{Xu et~al.(2022)Xu, Wu, and Wang}]{xu_distributed_2022}
+Xu, C., Wu, B., and Wang, D., \enquote{Distributed {Prescribed}-{Time} {Attitude} {Coordination} for {Multiple} {Spacecraft} {With} {Actuator} {Saturation} {Under} {Directed} {Graph},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~58, No.~4, 2022, pp. 2660--2672.
+\newblock \doi{10.1109/TAES.2021.3135484}, \urlprefix\url{https://ieeexplore.ieee.org/document/9650527/}.
+
+\bibitem[{Song et~al.(2017)Song, Wang, Holloway, and Krstic}]{song_time-varying_2017}
+Song, Y., Wang, Y., Holloway, J., and Krstic, M., \enquote{Time-varying feedback for regulation of normal-form nonlinear systems in prescribed finite time,} \emph{AUTOMATICA}, Vol.~83, 2017, pp. 243--251.
+\newblock \doi{10.1016/j.automatica.2017.06.008}, \urlprefix\url{https://linkinghub.elsevier.com/retrieve/pii/S000510981730290X}, num Pages: 9 Place: Oxford Publisher: Pergamon-Elsevier Science Ltd Web of Science ID: WOS:000408288800028.
+
+\bibitem[{Wang et~al.(2019)Wang, Song, Hill, and Krstic}]{wang_prescribed-time_2019}
+Wang, Y., Song, Y., Hill, D.~J., and Krstic, M., \enquote{Prescribed-{Time} {Consensus} and {Containment} {Control} of {Networked} {Multiagent} {Systems},} \emph{IEEE Transactions on Cybernetics}, Vol.~49, No.~4, 2019, pp. 1138--1147.
+\newblock \doi{10.1109/TCYB.2017.2788874}, \urlprefix\url{https://ieeexplore.ieee.org/document/8272410}.
+
+\bibitem[{Cao et~al.(2022)Cao, Cao, and Song}]{cao_practical_2022}
+Cao, Y., Cao, J., and Song, Y., \enquote{Practical prescribed time tracking control over infinite time interval involving mismatched uncertainties and non-vanishing disturbances,} \emph{Automatica}, Vol. 136, 2022, p. 110050.
+\newblock \doi{10.1016/j.automatica.2021.110050}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109821005781}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Zhou, and Duan}]{zhang_global_2024}
+Zhang, K.-K., Zhou, B., and Duan, G.-R., \enquote{Global prescribed-time output feedback control of a class of uncertain nonlinear systems by linear time-varying feedback,} \emph{Automatica}, Vol. 165, 2024, p. 111680.
+\newblock \doi{10.1016/j.automatica.2024.111680}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109824001742}.
+
+\bibitem[{Zhao et~al.(2024)Zhao, Zheng, Yi, Wang, and Zuo}]{zhao_exponential_2024}
+Zhao, S., Zheng, J., Yi, F., Wang, X., and Zuo, Z., \enquote{Exponential {Predefined} {Time} {Trajectory} {Tracking} {Control} for {Fixed}-{Wing} {UAV} {With} {Input} {Saturation},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~60, No.~5, 2024, pp. 6406--6419.
+\newblock \doi{10.1109/TAES.2024.3402656}, \urlprefix\url{https://ieeexplore.ieee.org/document/10534850/}.
+
+\bibitem[{Xiao et~al.(2025{\natexlab{b}})Xiao, Yang, Ye, and Zhao}]{xiao_scaling-transformation-based_2025}
+Xiao, Y., Yang, Y., Ye, D., and Zhao, Y., \enquote{Scaling-{Transformation}-{Based} {Attitude} {Tracking} {Control} for {Rigid} {Spacecraft} {With} {Prescribed} {Time} and {Prescribed} {Bound},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~61, No.~1, 2025{\natexlab{b}}, pp. 433--442.
+\newblock \doi{10.1109/TAES.2024.3451454}, \urlprefix\url{https://ieeexplore.ieee.org/document/10659135}.
+
+\bibitem[{Zhou et~al.(2022)Zhou, Michiels, and Chen}]{zhou_fixed-time_2022}
+Zhou, B., Michiels, W., and Chen, J., \enquote{Fixed-{Time} {Stabilization} of {Linear} {Delay} {Systems} by {Smooth} {Periodic} {Delayed} {Feedback},} \emph{IEEE Transactions on Automatic Control}, Vol.~67, No.~2, 2022, pp. 557--573.
+\newblock \doi{10.1109/TAC.2021.3051262}, \urlprefix\url{https://ieeexplore.ieee.org/document/9321518}.
+
+\bibitem[{Ding et~al.(2024)Ding, Zhou, Zhang, and Michiels}]{ding_strong_2024}
+Ding, Y., Zhou, B., Zhang, K.-K., and Michiels, W., \enquote{Strong {Prescribed}-{Time} {Stabilization} of {Uncertain} {Nonlinear} {Systems} by {Periodic} {Delayed} {Feedback},} \emph{IEEE Transactions on Automatic Control}, Vol.~69, No.~6, 2024, pp. 4072--4079.
+\newblock \doi{10.1109/TAC.2023.3347703}, \urlprefix\url{https://ieeexplore.ieee.org/document/10375772}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Ding, Zhang, and Duan}]{zhou_prescribed_2024}
+Zhou, B., Ding, Y., Zhang, K.-K., and Duan, G.-R., \enquote{Prescribed time control based on the periodic delayed sliding modesurface without singularities,} \emph{SCIENCE CHINA Information Sciences}, Vol.~67, No.~7, 2024.
+\newblock \doi{10.1007/s11432-023-4052-4}, \urlprefix\url{https://www.sciengine.com/10.1007/s11432-023-4052-4}, publisher: Science China Press.
+
+\bibitem[{Kobayashi et~al.(2017)Kobayashi, Shoji, and Yamada}]{kobayashi_optimal_2017}
+Kobayashi, H., Shoji, Y., and Yamada, K., \enquote{Optimal {Attitude} {Trajectory} of {Spacecraft} with {Pyramid}-{Type} {CMGs} {Using} a {Pseudo}-{Spectral} {Method},} \emph{AEROSPACE TECHNOLOGY JAPAN, THE JAPAN SOCIETY FOR AERONAUTICAL AND SPACE SCIENCES}, Vol.~16, No.~0, 2017, pp. 55--63.
+\newblock \doi{10.2322/astj.16.55}, \urlprefix\url{https://www.jstage.jst.go.jp/article/astj/16/0/16_JSASS-D-16-00034/_article/-char/ja/}.
+
+\bibitem[{Spiller et~al.(2018)Spiller, Melton, and Curti}]{spiller_inverse_2018}
+Spiller, D., Melton, R.~G., and Curti, F., \enquote{Inverse dynamics particle swarm optimization applied to constrained minimum-time maneuvers using reaction wheels,} \emph{Aerospace Science and Technology}, Vol.~75, 2018, pp. 1--12.
+\newblock \doi{10.1016/j.ast.2017.12.038}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S1270963817308684}.
+
+\bibitem[{Celani and Lucarelli(2020)}]{celani_spacecraft_2020}
+Celani, F., and Lucarelli, D., \enquote{Spacecraft {Attitude} {Motion} {Planning} {Using} {Gradient}-{Based} {Optimization},} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~43, No.~1, 2020, pp. 140--145.
+\newblock \doi{10.2514/1.G004531}, \urlprefix\url{https://arc.aiaa.org/doi/10.2514/1.G004531}, publisher: American Institute of Aeronautics and Astronautics.
+
+\bibitem[{Tao et~al.(2025)Tao, Jin, Chengfei, Xueqin, and Xibin}]{tao_gradient-based_2025}
+Tao, H. U.~O., Jin, Y., Chengfei, Y. U.~E., Xueqin, C., and Xibin, C. a.~O., \enquote{Gradient-based attitude planning for rigid spacecraft on {SO}(3),} \emph{SCIENCE CHINA Technological Sciences}, Vol.~68, No.~5, 2025.
+\newblock \doi{10.1007/s11431-024-2883-1}, \urlprefix\url{https://www.sciengine.com/10.1007/s11431-024-2883-1}, publisher: Science China Press.
+
+\bibitem[{Chai et~al.(2020)Chai, Tsourdos, Savvaris, Chai, Xia, and Chen}]{chai_six-dof_2020}
+Chai, R., Tsourdos, A., Savvaris, A., Chai, S., Xia, Y., and Chen, C. L.~P., \enquote{Six-{DOF} {Spacecraft} {Optimal} {Trajectory} {Planning} and {Real}-{Time} {Attitude} {Control}: {A} {Deep} {Neural} {Network}-{Based} {Approach},} \emph{IEEE Transactions on Neural Networks and Learning Systems}, Vol.~31, No.~11, 2020, pp. 5005--5013.
+\newblock \doi{10.1109/TNNLS.2019.2955400}, \urlprefix\url{https://ieeexplore.ieee.org/document/8939337}.
+
+\bibitem[{Gong et~al.(2021)Gong, Yan, Zhang, and Tang}]{gong_lyapunov-based_2021}
+Gong, P., Yan, Z., Zhang, W., and Tang, J., \enquote{Lyapunov-based model predictive control trajectory tracking for an autonomous underwater vehicle with external disturbances,} \emph{Ocean Engineering}, Vol. 232, 2021, p. 109010.
+\newblock \doi{10.1016/j.oceaneng.2021.109010}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0029801821004455}.
+
+\bibitem[{Patterson and Rao(2014)}]{patterson_gpops-ii_2014}
+Patterson, M.~A., and Rao, A.~V., \enquote{{GPOPS}-{II}: {A} {MATLAB} {Software} for {Solving} {Multiple}-{Phase} {Optimal} {Control} {Problems} {Using} hp-{Adaptive} {Gaussian} {Quadrature} {Collocation} {Methods} and {Sparse} {Nonlinear} {Programming},} \emph{ACM Trans. Math. Softw.}, Vol.~41, No.~1, 2014, pp. 1:1--1:37.
+\newblock \doi{10.1145/2558904}, \urlprefix\url{https://dl.acm.org/doi/10.1145/2558904}.
+
+\end{thebibliography}
