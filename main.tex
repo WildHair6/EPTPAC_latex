@@ -840,36 +840,35 @@ the control torque strictly adheres to the saturation limits $|\tau_i(t)| \le \t
 Consider the inner-loop control law \eqref{eq:tau_law_feasibility}. Under the condition \eqref{eq:error_bounds_condition}, 
 if the safety margin $\gamma_h$ and prescribed-accuracy set $(\varepsilon_1,\varepsilon_2)$ are selected such that
 \begin{equation}
-H_{\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \gamma_h\, h_{w,i,\max},\qquad i=1,2,3
+H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \gamma_h\, h_{w,i,\max},\qquad i=1,2,3
 \label{eq:thm5_axis_condition}
 \end{equation}
 where $\bar Q$ is defined in \eqref{eq:omegae_barQ}, $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
-then the wheel angular momenta satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
+then the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
 \end{theorem}
 
 \begin{proof}
-The wheel momentum $\boldsymbol{h}_w = \boldsymbol{H} - (\boldsymbol{J}_0+\Delta\boldsymbol{J})\boldsymbol{\omega}$ can be related to the reference momentum $\boldsymbol{h}_{w,d} = \boldsymbol{H}_0 - \boldsymbol{J}_0\boldsymbol{\omega}_d$ as
+The wheel momentum $\boldsymbol{h}_w = \boldsymbol{H} - (\boldsymbol{J}_0+\Delta\boldsymbol{J})\boldsymbol{\omega}$ can be related to the reference momentum $\boldsymbol{h}_{w,d} = \boldsymbol{H}_0 - \boldsymbol{J}_0\boldsymbol{\omega}_d$ as follows.
+Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d$ and $\boldsymbol{H} = \boldsymbol{H}_0 + (\boldsymbol{H}-\boldsymbol{H}_0)$:
 \[
-\boldsymbol{h}_w = \boldsymbol{h}_{w,d} + (\boldsymbol{H} - \boldsymbol{H}_0) - 
-\boldsymbol{J}_0\boldsymbol{\omega}_e - \Delta\boldsymbol{J}\boldsymbol{\omega}
-\]
-Noting that $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{\omega}_d$, we have
-\[
-\boldsymbol{h}_w = \boldsymbol{h}_{w,d} + (\boldsymbol{H} - \boldsymbol{H}_0) - 
-(\boldsymbol{J}_0 + \Delta\boldsymbol{J})\boldsymbol{\omega}_e - \Delta\boldsymbol{J}\boldsymbol{\omega}_d
+\boldsymbol{h}_w = \boldsymbol{h}_{w,d} + (\boldsymbol{H} - \boldsymbol{H}_0)
+- \boldsymbol{J}_0\big(\boldsymbol{R}(\boldsymbol{\sigma}_e)-\boldsymbol{I}\big)\boldsymbol{\omega}_d
+- (\boldsymbol{J}_0 + \Delta\boldsymbol{J})\boldsymbol{\omega}_e
+- \Delta\boldsymbol{J}\boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d
 \]
 By the condition \eqref{eq:error_bounds_condition}, the angular-velocity error satisfies $\|\boldsymbol{\omega}_e\| \le \varepsilon_2 + \bar Q$ from \eqref{eq:wemax}.
 Together with $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ from \eqref{eq:ref_bounded}, 
-$\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$ from Assumption~\ref{ass:H_budget}, 
+$\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$ from Assumption~\ref{ass:H_budget},
+$\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4\|\boldsymbol{\sigma}_e\| \le 4\varepsilon_1$,
 and the outer-loop constraint $|h_{w,d,i}| \le (1 - \gamma_h) h_{w,i,\max}$, 
 applying the triangle inequality to each axis $i$ yields
 \begin{align}
-  |h_{w,i}| &\le |h_{w,d,i}| + \|\boldsymbol{H} - \boldsymbol{H}_0\| + (\mu_i + \nu_i)\|\boldsymbol{\omega}_e\| + \nu_i\|\boldsymbol{\omega}_d\| \nonumber \\
-  &\le |h_{w,d,i}| + H_{\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max} \nonumber \\
-  &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
+  |h_{w,i}| &\le |h_{w,d,i}| + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i)\|\boldsymbol{\omega}_e\| + \nu_i\|\boldsymbol{\omega}_d\| \nonumber \\
+  &\le |h_{w,d,i}| + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max} \nonumber \\
+  &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
 \end{align}
 
-Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momenta satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
+Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
 \end{proof}
 
 The preceding theorems provide the theoretical foundation for the inner-loop control performance. 
@@ -1042,7 +1041,7 @@ The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and 
 The simulation results are shown in Figs.~\ref{fig:tracking_performance}--\ref{fig:constraint_satisfaction}.
 As shown in Fig.~\ref{fig:tracking_performance}, the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state exactly at $t = T_f$ by construction of the outer-loop planner.
 All tracking errors remain within the prescribed-accuracy sets throughout the maneuver, as illustrated in Fig.~\ref{fig:convergence_behavior}, owing to the fact that the initial conditions $\boldsymbol{\sigma}(0) = \boldsymbol{\sigma}_d(0)$ and $\boldsymbol{\omega}(0) = \boldsymbol{\omega}_d(0)$ result in zero initial errors.
-Moreover, both control torques and wheel momenta remain strictly within their respective limits over $[0, T_f]$, as depicted in Fig.~\ref{fig:constraint_satisfaction}, thereby confirming the effectiveness of the proposed framework.
+Moreover, both control torques and wheel momentum remain strictly within their respective limits over $[0, T_f]$, as depicted in Fig.~\ref{fig:constraint_satisfaction}, thereby confirming the effectiveness of the proposed framework.
 
 \begin{figure}[htbp]
     \centering
