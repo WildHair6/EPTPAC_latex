@@ -60,6 +60,10 @@ and external disturbances.
 
 $\boldsymbol{G}(\boldsymbol{\sigma})$ & MRP kinematic matrix [--] \\
 
+$\boldsymbol{d}$ & external disturbance torque [\si{N\cdot m}] \\
+
+$\boldsymbol{f}(t)$ & computable feedforward nonlinear term [\si{N\cdot m}] \\
+
 $\boldsymbol{h}_w$ & reaction-wheel angular momentum (body frame) [\si{kg\cdot m^2/s}] \\
 $h_{w,i,\max}$ & maximum allowable wheel momentum (axis $i$) [\si{kg\cdot m^2/s}] \\
 
@@ -77,12 +81,17 @@ $\nu_i$ & row-sum coefficient of model uncertainty, $\nu_i=\sum_{j=1}^3 |(\Delta
 
 $\hat\nu_i$ & cross-axis uncertainty coefficient, $\hat\nu_i=\sum_{j\ne i}\nu_j$ [\si{kg\cdot m^2}] \\
 
+$\boldsymbol{R}(\boldsymbol{\sigma}_e)$ & direction cosine matrix associated with $\boldsymbol{\sigma}_e$ [--] \\
+
+$\boldsymbol{s}$ & sliding mode variable, $\boldsymbol{s}=\boldsymbol{\omega}_e+\boldsymbol{Q}(\boldsymbol{\sigma}_e)$ [\si{rad/s}] \\
+
 $\boldsymbol{\sigma}$ & Modified Rodrigues Parameters (MRPs) [--] \\
 $\boldsymbol{\sigma}_d$ & reference MRPs [--] \\
 $\boldsymbol{\sigma}_e$ & attitude tracking error in MRPs [--] \\
 
 $\boldsymbol{\tau}$ & control torque applied to spacecraft body [\si{N\cdot m}] \\
 $\tau_{i,\max}$ & maximum allowable torque (axis $i$) [\si{N\cdot m}] \\
+$\boldsymbol{\tau}_{\mathrm{ref}}$ & outer-loop reference control torque [\si{N\cdot m}] \\
 
 $\boldsymbol{T}_d$ & lumped perturbation term [\si{N\cdot m}] \\
 $T_{d,\max}$ & bound on $\|\boldsymbol{T}_d(t)\|$ [\si{N\cdot m}] \\
@@ -98,6 +107,7 @@ $\boldsymbol{\omega}_e$ & angular-velocity tracking error [\si{rad/s}] \\
 $\alpha_1,\,\alpha_2$ & tunable gains in prescribed-time laws [--] \\
 
 $\varepsilon_1,\,\varepsilon_2$ & prescribed accuracy tolerances (attitude/sliding variable) [--] \\
+$\varepsilon_{\mathrm{mission}}$ & mission-required accuracy tolerance [--] \\
 
 $\eta$ & exponent in prescribed-time law, $0<\eta<1$ [--] \\
 
