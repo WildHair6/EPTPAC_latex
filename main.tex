@@ -75,6 +75,8 @@ $\mu_i$ & row-sum coefficient of nominal inertia, $\mu_i=\sum_{j=1}^3 |(J_0)_{ij
 
 $\nu_i$ & row-sum coefficient of model uncertainty, $\nu_i=\sum_{j=1}^3 |(\Delta J)_{ij}|$ [\si{kg\cdot m^2}] \\
 
+$\hat\nu_i$ & cross-axis uncertainty coefficient, $\hat\nu_i=\sum_{j\ne i}\nu_j$ [\si{kg\cdot m^2}] \\
+
 $\boldsymbol{\sigma}$ & Modified Rodrigues Parameters (MRPs) [--] \\
 $\boldsymbol{\sigma}_d$ & reference MRPs [--] \\
 $\boldsymbol{\sigma}_e$ & attitude tracking error in MRPs [--] \\
@@ -771,15 +773,15 @@ the deviation term satisfies, for each $i=1,2,3$,
 \begin{align}
 |\Delta_{f,i}(t)|\le \Delta_{f,i,\max}(\varepsilon_1,\varepsilon_2) =\;&
 (\varepsilon_2+\bar Q+\omega_{d,\max})\,H_{\max}
-+\mu_i(\varepsilon_2+\bar Q)\,H_0
++(\varepsilon_2+\bar Q)\,H_0
 +4\varepsilon_1\,\omega_{d,\max}\,H_0 \nonumber \\
-&+\nu_i(\varepsilon_2+\bar Q+\omega_{d,\max})^2
+&+\hat\nu_i(\varepsilon_2+\bar Q+\omega_{d,\max})^2
 +\mu_i(\varepsilon_2+\bar Q)\,\omega_{d,\max}
 +4\mu_i\,\varepsilon_1\,\dot\omega_{d,\max}
 \label{eq:Deltaf_i_envelope_inproof}
 \end{align}
-where $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$, $H_0 = \|\boldsymbol{H}_0\| \ge 0$,
-and $H_{\max}$ is given in Assumption~\ref{ass:H_budget}.
+where $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$, $\hat\nu_i = \sum_{j\ne i}\nu_j$,
+$H_0 = \|\boldsymbol{H}_0\| \ge 0$, and $H_{\max}$ is given in Assumption~\ref{ass:H_budget}.
 
 \emph{(ii) Bound on $|\tau_{c,i}|$.}
 Since $\|\boldsymbol{s}(t)\|\le \varepsilon_2$, the control term is bounded as
@@ -842,7 +844,7 @@ H_{\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \
 \label{eq:thm5_axis_condition}
 \end{equation}
 where $\bar Q$ is defined in \eqref{eq:omegae_barQ}, $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
-then the wheel angular momentum satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
+then the wheel angular momenta satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
 \end{theorem}
 
 \begin{proof}
@@ -867,7 +869,7 @@ applying the triangle inequality to each axis $i$ yields
   &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
 \end{align}
 
-Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momentum satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
+Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momenta satisfy $|h_{w,i}(t)|\le h_{w,i,\max}$ for all $i=1,2,3$.
 \end{proof}
 
 The preceding theorems provide the theoretical foundation for the inner-loop control performance. 
@@ -1449,13 +1451,13 @@ $\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4 \|\boldsymbol{
 \begin{align}
 |\Delta_{f,i}(t)|
 \le\;& \|\boldsymbol{\omega}(t)\| \, H_{\max}
-+ \mu_i \, \|\boldsymbol{\omega}_e(t)\| \, H_0
++ \|\boldsymbol{\omega}_e(t)\| \, H_0
 + 4 \|\boldsymbol{\sigma}_e(t)\| \, \|\boldsymbol{\omega}_d(t)\| \, H_0
-+ \nu_i \, \|\boldsymbol{\omega}(t)\|^2  \nonumber \\
++ \hat{\nu}_i \, \|\boldsymbol{\omega}(t)\|^2  \nonumber \\
 &+ \mu_i \, \|\boldsymbol{\omega}_e(t)\| \, \|\boldsymbol{\omega}_d(t)\|
 + 4 \mu_i \, \|\boldsymbol{\sigma}_e(t)\| \, \|\dot{\boldsymbol{\omega}}_d(t)\|
 \end{align}
-where $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$.
+where $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$ and $\hat{\nu}_i = \sum_{j \ne i}\nu_j$.
 Since $\|\boldsymbol{\omega}(t)\| \le \|\boldsymbol{\omega}_e(t)\| + \|\boldsymbol{\omega}_d(t)\|$, taking the supremum over $[0, T_f]$ and using the bounds
 $\|\boldsymbol{\omega}_e(t)\| \le \omega_{e,\max}$,
 $\|\boldsymbol{\sigma}_e(t)\| \le \sigma_{\max}$,
@@ -1465,9 +1467,9 @@ we obtain the component-wise envelope
 \begin{align}
 \Delta_{f,i,\max} =\;&
 (\omega_{e,\max} + \omega_{d,\max}) \, H_{\max}
-+ \mu_i \, \omega_{e,\max} \, H_0
++ \omega_{e,\max} \, H_0
 + 4 \sigma_{\max} \, \omega_{d,\max} \, H_0
-+ \nu_i (\omega_{e,\max}+\omega_{d,\max})^2 \nonumber \\
++ \hat{\nu}_i (\omega_{e,\max}+\omega_{d,\max})^2 \nonumber \\
 &+ \mu_i \, \omega_{e,\max} \, \omega_{d,\max}
 + 4 \mu_i \, \sigma_{\max} \, \dot{\omega}_{d,\max}
 \qquad i = 1,2,3
