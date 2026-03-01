@@ -42,12 +42,12 @@
 This paper develops an exact prescribed-time prescribed-accuracy control (EPTPAC) framework 
 for rigid spacecraft actuated by reaction wheels, 
 addressing the conservatism of existing prescribed-time controllers and the absence of a 
-unified treatment of dual actuator saturation, namely, torque saturation and wheel angular-momentum saturation. 
+unified treatment of dual saturation, namely, torque saturation and wheel angular-momentum saturation. 
 The framework adopts a two-loop architecture: an outer-loop planner generates a 
 constraint-feasible reference trajectory arriving at the target state precisely at the user-specified 
 terminal time, and an inner-loop nonsingular controller drives tracking errors within the 
 prescribed accuracy before that time. A systematic parameter-synthesis procedure coordinates 
-both loops to guarantee feasibility under dual saturation. 
+two loops to guarantee feasibility under dual saturation. 
 Numerical simulations validate exact terminal-time convergence with prescribed accuracy and 
 full compliance with dual-saturation constraints in the presence of inertia uncertainties 
 and external disturbances.
@@ -119,10 +119,9 @@ $\gamma_u,\,\gamma_h$ & constraint-tightening margins (torque/momentum) [--] \\
 
 \section{Introduction}
 
-With the growing complexity of spacecraft missions, 
-increasingly stringent requirements are imposed on the convergence time of attitude control. 
-Numerous time-critical tasks, such as rendezvous, docking, and formation 
-reconfiguration, necessitate that the spacecraft attitude reach a target state 
+Increasingly complex spacecraft missions impose stringent requirements on convergence time of attitude control. 
+Time-critical tasks such as rendezvous, docking, and formation 
+reconfiguration necessitate that the spacecraft attitude reach a target state 
 at a precise terminal time $T_f$ dictated by orbital geometry, communication windows, 
 or multi-vehicle coordination 
 \cite{alex_pothen_pose_2022, das_predefined-time_2024, xu_distributed_2024}. 
@@ -130,10 +129,8 @@ For spacecraft actuated by reaction wheels, fulfilling this requirement is furth
 complicated by dual saturation, where torque saturation constrains the achievable angular acceleration 
 and angular-momentum saturation restricts the attainable angular velocity. 
 These two constraints are inherently coupled, as stringent terminal-time requirements 
-drive high torques that accelerate momentum accumulation, potentially exhausting 
-the wheel capacity and causing a complete loss of control authority 
-prior to maneuver completion. 
-A unified framework addressing dual saturation is therefore indispensable.
+drive high torques that accelerate momentum accumulation, 
+increasing the risk of angular-momentum saturation, which results in a complete loss of control authority prior to maneuver completion. 
 
 Driven by these demanding timing constraints, 
 finite-time control (FTC) has been extensively investigated 
@@ -150,7 +147,7 @@ These limitations have given rise to prescribed-time control (PTC)
 \cite{sanchez-torres_predefined-time_2015,song_time-varying_2017}, 
 which incorporates the convergence time directly as an explicit design parameter.
 
-Existing PTC paradigms broadly fall into two main categories. The first embeds the prescribed time 
+Existing PTC methods fall into two categories. The first embeds the prescribed time 
 into Lyapunov functions through time-dependent scaling terms 
 \cite{sanchez-torres_class_2018,xiao_predefined-time_2025, das_predefined-time_2024}. 
 This approach has been applied to spacecraft 
@@ -168,7 +165,7 @@ of terminal-time precision \cite{cao_practical_2022,xiao_scaling_2025,ye_predefi
 such as those based on periodic delayed feedback 
 \cite{zhou_fixed-time_2022,ding_strong_2024,zhou_prescribed_2024}, circumvent high-gain growth 
 but remain susceptible to disturbances and may induce adverse transients. 
-Notwithstanding these advances, two fundamental shortcomings persist when PTC is applied 
+Despite these efforts, two fundamental shortcomings persist when PTC is applied 
 to time-critical spacecraft missions under dual saturation.
 
 First, existing PTC strategies exhibit pronounced conservatism 
@@ -176,7 +173,7 @@ First, existing PTC strategies exhibit pronounced conservatism
 For instance, in \cite{xu_distributed_2024}, actual convergence occurs at $250~\mathrm{s}$ 
 despite a prescribed $T_f=500~\mathrm{s}$. In single-spacecraft missions, such premature 
 settling forces an extended idle phase at the terminal attitude, degrading overall mission 
-efficiency; in multi-spacecraft operations, it can induce workspace conflicts 
+efficiency. In multi-spacecraft operations, it can induce workspace conflicts 
 or collision hazards. Moreover, this early convergence typically originates from aggressive 
 initial control effort, which accelerates momentum accumulation in reaction wheels.
 
@@ -194,14 +191,17 @@ trajectory planning, which can explicitly enforce saturation constraints and ter
 boundary conditions 
 \cite{kobayashi_optimal_2017,spiller_inverse_2018,celani_spacecraft_2020,fan_polynomial_2024}. 
 However, such methods are inherently open-loop and therefore susceptible to disturbances 
-and model uncertainties, producing tracking drift that undermines terminal-time precision. 
+and model uncertainties, producing tracking drift that undermines both terminal time precision 
+and terminal state accuracy. 
 Incorporating closed-loop feedback 
 \cite{chai_six-dof_2020,gong_lyapunov-based_2021} mitigates this vulnerability 
-but still provides no formal guarantee on terminal-state accuracy. 
+but still provides no formal guarantee on terminal time precision. 
 Model predictive control (MPC) \cite{mammarella_attitude_2019,yang_attitude_2023} 
 similarly offers inherent constraint handling, yet it rarely incorporates 
 angular-momentum limits and ensures only asymptotic convergence rather than 
 arrival at a specified $T_f$.
+Consequently, a systematic approach that achieves exact terminal-time convergence 
+under dual saturation remains to be developed.
 
 Motivated by the above analysis, this paper proposes an exact prescribed-time 
 prescribed-accuracy control (EPTPAC) framework with a two-loop architecture. 
@@ -784,7 +784,8 @@ the deviation term satisfies, for each $i=1,2,3$,
 |\Delta_{f,i}(t)|\le \Delta_{f,i,\max}(\varepsilon_1,\varepsilon_2) =\;&
 (\varepsilon_2+\bar Q+\omega_{d,\max})\,H_{\max}
 +(\varepsilon_2+\bar Q)\,H_0
-+4\varepsilon_1\,\omega_{d,\max}\,H_0 \nonumber \\
++4\varepsilon_1\,\omega_{d,\max}\,H_0
++2\omega_{d,\max}\,H_0 \nonumber \\
 &+\hat\nu_i(\varepsilon_2+\bar Q+\omega_{d,\max})^2
 +\mu_i(\varepsilon_2+\bar Q)\,\omega_{d,\max}
 +4\mu_i\,\varepsilon_1\,\dot\omega_{d,\max}
@@ -850,7 +851,7 @@ the control torque strictly adheres to the saturation limits $|\tau_i(t)| \le \t
 Consider the inner-loop control law \eqref{eq:tau_law_feasibility}. Under the condition \eqref{eq:error_bounds_condition}, 
 if the safety margin $\gamma_h$ and prescribed-accuracy set $(\varepsilon_1,\varepsilon_2)$ are selected such that
 \begin{equation}
-H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \gamma_h\, h_{w,i,\max},\qquad i=1,2,3
+H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \gamma_h\, h_{w,i,\max},\qquad i=1,2,3
 \label{eq:thm5_axis_condition}
 \end{equation}
 where $\bar Q$ is defined in \eqref{eq:omegae_barQ}, $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
@@ -858,10 +859,10 @@ then the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=
 \end{theorem}
 
 \begin{proof}
-The wheel momentum $\boldsymbol{h}_w = \boldsymbol{H} - (\boldsymbol{J}_0+\Delta\boldsymbol{J})\boldsymbol{\omega}$ can be related to the reference momentum $\boldsymbol{h}_{w,d} = \boldsymbol{H}_0 - \boldsymbol{J}_0\boldsymbol{\omega}_d$ as follows.
-Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d$ and $\boldsymbol{H} = \boldsymbol{H}_0 + (\boldsymbol{H}-\boldsymbol{H}_0)$:
+The wheel momentum $\boldsymbol{h}_w = \boldsymbol{H} - (\boldsymbol{J}_0+\Delta\boldsymbol{J})\boldsymbol{\omega}$ can be related to the reference momentum $\boldsymbol{h}_{w,d} = \boldsymbol{H}_d(t) - \boldsymbol{J}_0\boldsymbol{\omega}_d$ as follows.
+Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d$ and writing $\boldsymbol{H} = \boldsymbol{H}_0 + (\boldsymbol{H}-\boldsymbol{H}_0)$ and $\boldsymbol{H}_d = \boldsymbol{H}_0 + (\boldsymbol{H}_d-\boldsymbol{H}_0)$:
 \[
-\boldsymbol{h}_w = \boldsymbol{h}_{w,d} + (\boldsymbol{H} - \boldsymbol{H}_0)
+\boldsymbol{h}_w = \boldsymbol{h}_{w,d} + (\boldsymbol{H} - \boldsymbol{H}_0) + (\boldsymbol{H}_0 - \boldsymbol{H}_d)
 - \boldsymbol{J}_0\big(\boldsymbol{R}(\boldsymbol{\sigma}_e)-\boldsymbol{I}\big)\boldsymbol{\omega}_d
 - (\boldsymbol{J}_0 + \Delta\boldsymbol{J})\boldsymbol{\omega}_e
 - \Delta\boldsymbol{J}\boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d
@@ -869,13 +870,14 @@ Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{
 By the condition \eqref{eq:error_bounds_condition}, the angular-velocity error satisfies $\|\boldsymbol{\omega}_e\| \le \varepsilon_2 + \bar Q$ from \eqref{eq:wemax}.
 Together with $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ from \eqref{eq:ref_bounded}, 
 $\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$ from Assumption~\ref{ass:H_budget},
+$\|\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\| \le 2H_0$ (see Appendix~\ref{app:Deltaf_bound}),
 $\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4\|\boldsymbol{\sigma}_e\| \le 4\varepsilon_1$,
 and the outer-loop constraint $|h_{w,d,i}| \le (1 - \gamma_h) h_{w,i,\max}$, 
 applying the triangle inequality to each axis $i$ yields
 \begin{align}
-  |h_{w,i}| &\le |h_{w,d,i}| + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i)\|\boldsymbol{\omega}_e\| + \nu_i\|\boldsymbol{\omega}_d\| \nonumber \\
-  &\le |h_{w,d,i}| + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max} \nonumber \\
-  &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
+  |h_{w,i}| &\le |h_{w,d,i}| + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i)\|\boldsymbol{\omega}_e\| + \nu_i\|\boldsymbol{\omega}_d\| \nonumber \\
+  &\le |h_{w,d,i}| + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max} \nonumber \\
+  &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
 \end{align}
 
 Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
@@ -908,10 +910,10 @@ A practical guideline for selecting $\gamma_u$ is to ensure $\gamma_u > T_{d,\ma
 \label{rem:gamma_h_selection}
 Similarly, the selection of the momentum margin $\gamma_h$ can be guided by condition \eqref{eq:thm5_axis_condition}.
 Within the prescribed accuracy sets, the term $(\mu_i + \nu_i)(\varepsilon_2 + \bar Q)$ remains relatively small.
-Thus, the momentum margin is primarily influenced by $H_{\max}$ and 
+Thus, the momentum margin is primarily influenced by $H_{\max}$, $2H_0$, and 
 the disturbance-induced term $\nu_i \omega_{d,\max}$.
 A practical guideline is
-$\gamma_h > (H_{\max} + \nu_i\omega_{d,\max})/h_{w,i,\max}$ for each axis $i$.
+$\gamma_h > (H_{\max} + 2H_0 + \nu_i\omega_{d,\max})/h_{w,i,\max}$ for each axis $i$.
 \end{remark}
 
 
@@ -1049,9 +1051,9 @@ Following the synthesis procedure in Section~\ref{overall_design} with $\kappa=1
 The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and $\varepsilon_{\delta_2}=5.13\times10^{-5}$ satisfy $\varepsilon_{\delta_i}<\varepsilon_i$, and the sufficient conditions in Theorems~\ref{thm:feasibility_axis_compact2}--\ref{thm:feasibility_momentum} are verified.
 
 The simulation results are shown in Figs.~\ref{fig:tracking_performance}--\ref{fig:constraint_satisfaction}.
-As shown in Fig.~\ref{fig:tracking_performance}, the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state exactly at $t = T_f$ by construction of the outer-loop planner.
-All tracking errors remain within the prescribed-accuracy sets throughout the maneuver, as illustrated in Fig.~\ref{fig:convergence_behavior}, owing to the fact that the initial conditions $\boldsymbol{\sigma}(0) = \boldsymbol{\sigma}_d(0)$ and $\boldsymbol{\omega}(0) = \boldsymbol{\omega}_d(0)$ result in zero initial errors.
-Moreover, both control torques and wheel momentum remain strictly within their respective limits over $[0, T_f]$, as depicted in Fig.~\ref{fig:constraint_satisfaction}, thereby confirming the effectiveness of the proposed framework.
+Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$ by construction.
+As shown in Fig.~\ref{fig:convergence_behavior}, all tracking errors remain within the prescribed-accuracy sets throughout the maneuver, since the initial conditions $\boldsymbol{\sigma}(0) = \boldsymbol{\sigma}_d(0)$ and $\boldsymbol{\omega}(0) = \boldsymbol{\omega}_d(0)$ yield zero initial errors.
+Fig.~\ref{fig:constraint_satisfaction} confirms that both control torques and wheel momentum remain strictly within their respective limits over $[0, T_f]$.
 
 \begin{figure}[htbp]
     \centering
@@ -1138,9 +1140,7 @@ torque and wheel momentum remain within saturation limits throughout the maneuve
     \label{fig:case1_step_constraints}
 \end{figure}
 
-In summary, Case~1 validates the fundamental performance of the EPTPAC framework, 
-demonstrating exact terminal-time convergence under dual-saturation constraints and 
-inherent robustness against transient disturbances that significantly exceed the design bound.
+In summary, Case~1 validates the baseline performance of the EPTPAC framework under dual saturation and demonstrates inherent robustness against beyond-bound transient disturbances.
 
 \subsection{Case 2: Time-Flexibility Assessment}
 
@@ -1168,8 +1168,8 @@ $\SI{140}{s}$ & $\SI{120}{s}$ & $\SI{15}{s}$ & $5.81\times10^{-5}$ & $6.87$ \\
 \end{table}
 
 The simulation responses are presented in Figs.~\ref{fig:Case2_qe_xyz}--\ref{fig:Case2_h_xyz}.
-As illustrated in Fig.~\ref{fig:Case2_qe_xyz}, the target-pointing errors $\boldsymbol{\sigma}_{e,\mathrm{tar}}$ converge at their respective terminal times, thereby confirming exact terminal-time convergence for all tested scenarios.
-Furthermore, Figs.~\ref{fig:Case2_tau_xyz} and \ref{fig:Case2_h_xyz} reveal the anticipated trade-off between maneuver agility and actuation effort: shorter $T_f$ necessitates more aggressive control actions, yet both torque and momentum remain strictly within their prescribed limits for all $T_f$ values, thus validating dual-saturation compliance across the entire time range.
+Fig.~\ref{fig:Case2_qe_xyz} shows that the target-pointing errors $\boldsymbol{\sigma}_{e,\mathrm{tar}}$ converge at their respective terminal times, confirming exact terminal-time convergence for all tested values.
+Figs.~\ref{fig:Case2_tau_xyz} and \ref{fig:Case2_h_xyz} reveal the anticipated trade-off: shorter $T_f$ necessitates more aggressive control, yet both torque and momentum remain within their limits for all $T_f$.
 
 \begin{figure}[htbp]
   \centering
@@ -1252,9 +1252,9 @@ before $T_f$, corresponding to a relative timing error below $0.06\%$.
 \end{tabular}
 \end{table}
 
-In summary, Case~2 confirms that the framework achieves exact terminal-time convergence across a 
+Case~2 confirms exact terminal-time convergence across a 
 range of $T_f$ values with minimal conservatism (temporal precision $<0.25\%$), while maintaining dual-constraint 
-feasibility through two-loop co-design.
+feasibility.
 
 \subsection{Case 3: Precision-Sweep Assessment}
 \label{sec:case3_precision_sweep}
@@ -1295,8 +1295,8 @@ It is worth noting that larger gains lead to increased control effort and amplif
     \label{fig:case3_precision_compare}
 \end{figure}
 
-In summary, Case~3 confirms that the framework provides tunable steady-state precision through the design parameter $\varepsilon_1$.
-In practice, $\varepsilon_1$ should be matched to the actual sensor resolution. Pursuing an accuracy beyond sensing capability 
+Case~3 confirms that the steady-state precision is tunable through $\varepsilon_1$.
+In practice, $\varepsilon_1$ should be matched to the actual sensor resolution; pursuing accuracy beyond the sensing capability 
 yields no practical benefit while unnecessarily increasing control gains.
 
 
@@ -1350,9 +1350,9 @@ This scenario further examines the controller robustness under dual saturation c
 \end{figure}
 
 The comparative results for the dual-saturation scenario are presented in Fig.~\ref{fig:case4_2_comparison}. As depicted in Figs.~\ref{fig:tau_dual} and \ref{fig:hw_dual}, since the controller in Ref.~\cite{xu_distributed_2022} neglects angular-momentum constraints in its design, it commands impulsive torques at the onset of the maneuver. This leads to rapid momentum accumulation, eventually driving the reaction wheels into saturation. Once saturated, the spacecraft suffers a complete loss of control authority and enters an uncontrollable drift phase. Control is only regained when the attitude error eventually reverses sign to permit restorative torque, as illustrated in Figs.~\ref{fig:err_dual} and \ref{fig:omega_dual}. 
-Beyond the massive waste of actuator capacity, this phenomenon leaves the spacecraft in a hazardous, uncontrollable state for extended periods.Consequently, the convergence is severely delayed to $410~\si{s}$, significantly exceeding the prescribed $300~\si{s}$ requirement. In stark contrast, EPTPAC strategically modulates the torque profile to prevent angular-momentum saturation, thereby enabling exact convergence precisely at $t=300~\si{s}$.
+Beyond the massive waste of actuator capacity, this phenomenon leaves the spacecraft in a hazardous, uncontrollable state for extended periods. Consequently, the convergence is severely delayed to $410~\si{s}$, significantly exceeding the prescribed $300~\si{s}$ requirement. In stark contrast, EPTPAC strategically modulates the torque profile to prevent angular-momentum saturation, thereby enabling exact convergence precisely at $t=300~\si{s}$.
 
-In summary, Case~4 underscores the critical necessity of physical realizability awareness in prescribed-time control. Case~4.1 demonstrates that without considering actuator limits, existing PTC methods exhibit either excessive conservatism or a fundamental compromise of their convergence guarantees when $T_f$ approaches the physical limit $T_{f,\min}$. Case~4.2 further reveals that unmanaged momentum accumulation exacerbates these limitations, leading to prolonged intervals of uncontrolled dynamics. By incorporating constraint-aware co-design into both the planning and control layers, the EPTPAC framework successfully circumvents these pitfalls and ensures exact terminal-time convergence regardless of the constraint complexity.
+In summary, Case~4 underscores the necessity of physical realizability in prescribed-time control. Case~4.1 shows that existing PTC methods exhibit either excessive conservatism or loss of convergence guarantees when $T_f$ approaches $T_{f,\min}$. Case~4.2 reveals that unmanaged momentum accumulation exacerbates these limitations, leading to prolonged loss of control authority. The EPTPAC framework circumvents these issues through constraint-aware co-design of both the planning and control layers.
 
 \section{Conclusion}
 \label{section:conclusion}
@@ -1418,16 +1418,18 @@ T_{f,\min}\approx
 
 \section{Bound on the Feedforward Mismatch}
 \label{app:Deltaf_bound}
-Let $\boldsymbol{H}_d(t) = \boldsymbol{J}_0\boldsymbol{\omega}_d(t) + \boldsymbol{h}_{w,d}(t)$ denote the total angular momentum of the reference trajectory.
-Since the reference is generated under disturbance-free dynamics and initialized with the same total momentum as the actual spacecraft (\(\boldsymbol{H}_d(0) = \boldsymbol{H}(0) =: \boldsymbol{H}_0\)),
-the reference total angular momentum is conserved, namely,
+Let $\boldsymbol{H}_d(t) = \boldsymbol{J}_0\boldsymbol{\omega}_d(t) + \boldsymbol{h}_{w,d}(t)$ denote the total angular momentum of the reference trajectory expressed in the reference body frame.
+Since the reference is generated under disturbance-free dynamics (i.e., $\boldsymbol{d}=\boldsymbol{0}$, $\Delta\boldsymbol{J}=\boldsymbol{0}$) and initialized with $\boldsymbol{H}_d(0) = \boldsymbol{H}(0) =: \boldsymbol{H}_0$,
+the body-frame total angular momentum satisfies $\dot{\boldsymbol{H}}_d=-\boldsymbol{\omega}_d^{\times}\boldsymbol{H}_d$,
+so its norm is conserved, $\|\boldsymbol{H}_d(t)\|=H_0$, while its direction rotates with the reference body frame.
+Consequently, the drift from $\boldsymbol{H}_0$ can be bounded by
 \[
-\boldsymbol{H}_d(t) \equiv \boldsymbol{H}_0, \quad \forall t \in [0, T_f]
+\|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\|\le 2H_0,\quad \forall t\in[0,T_f]
 \]
 
-Therefore, the reference control torque can be expressed as
+The reference control torque is therefore
 \begin{equation}
-\boldsymbol{\tau}_{\mathrm{ref}}(t) = \boldsymbol{J}_0\dot{\boldsymbol{\omega}}_d(t) + \boldsymbol{\omega}_d(t)^{\times} \boldsymbol{H}_0
+\boldsymbol{\tau}_{\mathrm{ref}}(t) = \boldsymbol{J}_0\dot{\boldsymbol{\omega}}_d(t) + \boldsymbol{\omega}_d(t)^{\times} \boldsymbol{H}_d(t)
 \end{equation}
 The feedforward mismatch is defined as $\boldsymbol{\Delta}_f(t) = -\boldsymbol{f}(t) - \boldsymbol{\tau}_{\mathrm{ref}}(t)$.
 Substituting $\boldsymbol{f}(t)$ from \eqref{eq:simplified_error_dynamics} yields
@@ -1436,32 +1438,34 @@ Substituting $\boldsymbol{f}(t)$ from \eqref{eq:simplified_error_dynamics} yield
 =&\; \boldsymbol{\omega}(t)^{\times} \big(\boldsymbol{J}_0 \boldsymbol{\omega}(t) + \boldsymbol{h}_w(t)\big)
 - \boldsymbol{J}_0 \boldsymbol{\omega}_e(t)^{\times} \boldsymbol{R}(\boldsymbol{\sigma}_e(t)) \boldsymbol{\omega}_d(t)
 + \boldsymbol{J}_0 \boldsymbol{R}(\boldsymbol{\sigma}_e(t)) \dot{\boldsymbol{\omega}}_d(t) \nonumber \\
-&\; - \boldsymbol{J}_0 \dot{\boldsymbol{\omega}}_d(t) - \boldsymbol{\omega}_d(t)^{\times} \boldsymbol{H}_0
+&\; - \boldsymbol{J}_0 \dot{\boldsymbol{\omega}}_d(t) - \boldsymbol{\omega}_d(t)^{\times} \boldsymbol{H}_d(t)
 \end{align}
 Using $\boldsymbol{J}_0\boldsymbol{\omega}+\boldsymbol{h}_w = \boldsymbol{H} - \Delta\boldsymbol{J}\boldsymbol{\omega}$,
-$\boldsymbol{H} = \boldsymbol{H}_0+(\boldsymbol{H}-\boldsymbol{H}_0)$, and $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}\boldsymbol{\omega}_d$,
+$\boldsymbol{H} = \boldsymbol{H}_0+(\boldsymbol{H}-\boldsymbol{H}_0)$, $\boldsymbol{H}_d = \boldsymbol{H}_0+(\boldsymbol{H}_d-\boldsymbol{H}_0)$, and $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}\boldsymbol{\omega}_d$,
 the expression can be grouped as
-\[
+\begin{align}
 \boldsymbol{\Delta}_f(t)
-= \boldsymbol{\omega}(t)^{\times} \big( \boldsymbol{H}(t) - \boldsymbol{H}_0 \big)
+=\;& \boldsymbol{\omega}(t)^{\times} \big( \boldsymbol{H}(t) - \boldsymbol{H}_0 \big)
 + \boldsymbol{\omega}_e(t)^{\times} \boldsymbol{H}_0
 + \big[(\boldsymbol{R}(\boldsymbol{\sigma}_e)-\boldsymbol{I})\boldsymbol{\omega}_d(t)\big]^{\times} \boldsymbol{H}_0
-- \boldsymbol{\omega}(t)^{\times} \Delta\boldsymbol{J}\,\boldsymbol{\omega}(t)
++ \boldsymbol{\omega}_d(t)^{\times}\big(\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\big) \nonumber \\
+&- \boldsymbol{\omega}(t)^{\times} \Delta\boldsymbol{J}\,\boldsymbol{\omega}(t)
 - \boldsymbol{J}_0 \boldsymbol{\omega}_e(t)^{\times} \boldsymbol{R}(\boldsymbol{\sigma}_e(t)) \boldsymbol{\omega}_d(t)
 + \boldsymbol{J}_0 \big( \boldsymbol{R}(\boldsymbol{\sigma}_e(t)) - \boldsymbol{I} \big) \dot{\boldsymbol{\omega}}_d(t)
-\]
+\end{align}
 
 From Assumption~\ref{ass:H_budget}, the momentum drift satisfies
 \begin{equation}
 \|\boldsymbol{H}(t) - \boldsymbol{H}_0\| \le H_{\max}, \qquad \forall t \in [0, T_f]
 \end{equation}
-Invoking the properties $\|\boldsymbol{a}^{\times} \boldsymbol{b}\| \le \|\boldsymbol{a}\| \|\boldsymbol{b}\|$, $\|\boldsymbol{R}(\boldsymbol{\sigma}_e)\| = 1$, and the inequalities
-$\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4 \|\boldsymbol{\sigma}_e\|$ (valid for $\|\boldsymbol{\sigma}_e\| < 1$), each axis component of $\boldsymbol{\Delta}_f(t)$ satisfies
+Invoking the properties $\|\boldsymbol{a}^{\times} \boldsymbol{b}\| \le \|\boldsymbol{a}\| \|\boldsymbol{b}\|$, $\|\boldsymbol{R}(\boldsymbol{\sigma}_e)\| = 1$, the inequalities
+$\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4 \|\boldsymbol{\sigma}_e\|$ (valid for $\|\boldsymbol{\sigma}_e\| < 1$), and $\|\boldsymbol{H}_0-\boldsymbol{H}_d(t)\|\le 2H_0$, each axis component of $\boldsymbol{\Delta}_f(t)$ satisfies
 \begin{align}
 |\Delta_{f,i}(t)|
 \le\;& \|\boldsymbol{\omega}(t)\| \, H_{\max}
 + \|\boldsymbol{\omega}_e(t)\| \, H_0
 + 4 \|\boldsymbol{\sigma}_e(t)\| \, \|\boldsymbol{\omega}_d(t)\| \, H_0
++ 2\|\boldsymbol{\omega}_d(t)\|\,H_0
 + \hat{\nu}_i \, \|\boldsymbol{\omega}(t)\|^2  \nonumber \\
 &+ \mu_i \, \|\boldsymbol{\omega}_e(t)\| \, \|\boldsymbol{\omega}_d(t)\|
 + 4 \mu_i \, \|\boldsymbol{\sigma}_e(t)\| \, \|\dot{\boldsymbol{\omega}}_d(t)\|
@@ -1478,6 +1482,7 @@ we obtain the component-wise envelope
 (\omega_{e,\max} + \omega_{d,\max}) \, H_{\max}
 + \omega_{e,\max} \, H_0
 + 4 \sigma_{\max} \, \omega_{d,\max} \, H_0
++ 2\omega_{d,\max}\,H_0
 + \hat{\nu}_i (\omega_{e,\max}+\omega_{d,\max})^2 \nonumber \\
 &+ \mu_i \, \omega_{e,\max} \, \omega_{d,\max}
 + 4 \mu_i \, \sigma_{\max} \, \dot{\omega}_{d,\max}
