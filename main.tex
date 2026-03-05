@@ -43,14 +43,14 @@ This paper develops an exact prescribed-time prescribed-accuracy control (EPTPAC
 for rigid spacecraft actuated by reaction wheels, 
 addressing the conservatism of existing prescribed-time controllers and the absence of a 
 unified treatment of dual saturation, namely, torque saturation and wheel angular-momentum saturation. 
-The framework adopts a two-loop architecture: an outer-loop planner generates a 
-constraint-feasible reference trajectory arriving at the target state precisely at the user-specified 
-terminal time, and an inner-loop nonsingular controller drives tracking errors within the 
-prescribed accuracy before that time. A systematic parameter-synthesis procedure coordinates 
-two loops to guarantee feasibility under dual saturation. 
-Numerical simulations validate exact terminal-time convergence with prescribed accuracy and 
-full compliance with dual-saturation constraints in the presence of inertia uncertainties 
-and external disturbances.
+The framework adopts a two-loop architecture. An outer-loop planner generates a 
+reference trajectory that strictly satisfies the dual-saturation limits and reaches 
+the target state exactly at the user-specified terminal time. An inner-loop 
+nonsingular controller ensures that tracking errors converge within the prescribed accuracy 
+before the terminal time in the presence of inertia uncertainties and external disturbances. 
+A systematic parameter-synthesis procedure coordinates the two loops to guarantee 
+the overall physical feasibility. Numerical simulations validate the exact terminal-time 
+convergence, prescribed tracking accuracy, and constraint compliance of the proposed method.
 \end{abstract}
 
 \section*{Nomenclature}
@@ -397,7 +397,7 @@ is illustrated in Fig.~\ref{main_work}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{fig/mainwork.pdf}
+    \includegraphics[width=0.7\linewidth]{fig/mainwork_v2.pdf}
     \caption{The EPTPAC framework}
     \label{main_work}
 \end{figure}

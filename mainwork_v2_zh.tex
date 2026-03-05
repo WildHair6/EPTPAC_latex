@@ -1,0 +1,65 @@
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage[UTF8]{ctex}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}
+\usepackage{newtxmath}
+\usetikzlibrary{arrows.meta, positioning, fit, calc}
+
+\begin{document}
+\begin{tikzpicture}[
+    block/.style={rectangle, draw, thick, rounded corners=2pt, fill=gray!5,
+                  minimum width=3.2cm, minimum height=1.8cm, align=center, font=\small},
+    arrow/.style={-Stealth, thick},
+    sig/.style={font=\small}
+]
+
+% ---- Three blocks left to right ----
+\node (planner) [block] {\textbf{\textit{外环：}}\\[2pt]带约束轨迹规划};
+\node (controller) [block, right=1.8cm of planner] 
+    {\textbf{\textit{内环：}}\\[2pt]非奇异预设时间\\预设精度控制};
+\node (spacecraft) [block, right=1.8cm of controller] 
+    {反作用飞轮\\驱动航天器};
+
+% ---- EPTPAC Framework box ----
+\node (eptpac) [draw=red!70!black, dashed, thick, rounded corners=4pt,
+    inner xsep=12pt, inner ysep=24pt, fit=(planner)(controller)] {};
+\node [red!70!black, font=\small\itshape\bfseries, above=2pt] at (eptpac.north) 
+    {EPTPAC控制框架};
+
+% ---- Signal arrows ----
+% Outer-loop inputs from LEFT
+\draw [arrow] ([xshift=-2.2cm]planner.west) -- 
+    node[sig, above, near start] {$T_f,\;\boldsymbol{u}_{\max},\;\boldsymbol{h}_{w,\max}$} 
+    (planner.west);
+
+% Inner-loop inputs from ABOVE (two separate arrows)
+\draw [arrow] ([yshift=0.8cm, xshift=-0.5cm]controller.north) -- 
+    node[sig, left] {$\varepsilon_{\mathrm{mission}}$} 
+    ([xshift=-0.5cm]controller.north);
+\draw [arrow] ([yshift=0.8cm, xshift=0.5cm]controller.north) -- 
+    node[sig, right] {$\boldsymbol{d}_{\max}$} 
+    ([xshift=0.5cm]controller.north);
+
+% Planner → Controller (horizontal)
+\draw [arrow] (planner) -- 
+    node[sig, above] {$\boldsymbol{\sigma}_d,\;\boldsymbol{\omega}_d,\;\dot{\boldsymbol{\omega}}_d$} 
+    (controller);
+
+% Controller → Spacecraft (horizontal, exits framework)
+\draw [arrow] (controller) -- node[sig, above] {$\boldsymbol{u}$} (spacecraft);
+
+% Disturbances from above into spacecraft
+\draw [arrow] ([yshift=0.8cm, xshift=-0.4cm]spacecraft.north) -- 
+    node[sig, left] {$\boldsymbol{d}$} ([xshift=-0.4cm]spacecraft.north);
+\draw [arrow] ([yshift=0.8cm, xshift=0.4cm]spacecraft.north) -- 
+    node[sig, right] {$\Delta\boldsymbol{J}$} ([xshift=0.4cm]spacecraft.north);
+
+% Feedback loop (below all blocks)
+\draw [arrow] (spacecraft.south) -- ++(0,-1.0) -| 
+    node[sig, below, pos=0.25] 
+    {$\boldsymbol{\sigma},\;\boldsymbol{\omega},\;\boldsymbol{h}_w$} 
+    (controller.south);
+
+\end{tikzpicture}
+\end{document}

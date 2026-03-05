@@ -1,0 +1,61 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[UTF8]{ctex}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}
+\usepackage{newtxmath}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    every node/.style={font=\small},
+    box/.style={rectangle, draw, thick, minimum width=4cm, minimum height=1cm, align=center},
+    decision/.style={diamond, draw, thick, aspect=2, minimum width=3.5cm, align=center, inner sep=3pt},
+    arrow/.style={-Stealth, thick}
+]
+
+% --- 步骤节点 ---
+\node (inputs) [box] {
+    \textbf{任务需求及物理约束} \\
+    $T_f, \epsilon_{\mathrm{mission}}, h_{w,\max}, \tau_{\max}, d_{\max}, H_{\max}$
+};
+
+\node (margin) [box, below=of inputs] {
+    \textbf{控制裕度设定} \\
+    $\gamma_u, \gamma_h$
+};
+
+\node (check1) [decision, below=of margin] {
+    \textbf{时域可行性检验} \\
+    $T_f \ge T_{f,\min}?$
+};
+
+\node (synthesis) [box, below=of check1, node distance=1.8cm] {
+    \textbf{内环控制参数综合设计} \\
+    $\varepsilon_1, \varepsilon_2, T_{p1}, T_{p2}, \eta, \alpha_1, \alpha_2$
+};
+
+\node (check2) [decision, below=of synthesis, node distance=1.8cm] {
+    \textbf{执行机构饱和验证} \\
+    $|\tau_i| \le \tau_{i,\max}, |h_{w,i}| \le h_{w,i,\max}?$
+};
+
+\node (outputs) [box, below=of check2, node distance=1.8cm] {
+    \textbf{最优设计参数输出} \\
+    $\gamma_u, \gamma_h, \varepsilon_1, T_{p1}, T_{p2}, \eta, \varepsilon_2, \alpha_1, \alpha_2$
+};
+
+% --- 连接箭头 ---
+\draw [arrow] (inputs) -- (margin);
+\draw [arrow] (margin) -- (check1);
+\draw [arrow] (check1) -- node[right, near start] {是} (synthesis);
+\draw [arrow] (synthesis) -- (check2);
+\draw [arrow] (check2) -- node[right, near start] {是} (outputs);
+
+% --- 反馈回路 ---
+\draw [arrow] (check1.east) -- ++(1.5,0) |- node[pos=0.25, right] {否 (调整 $T_f$)} (inputs.east);
+\draw [arrow] (check2.west) -- ++(-1.5,0) |- node[pos=0.25, left] {否 (调整 $\varepsilon_1, \varepsilon_2, T_f$)} (inputs.west);
+
+\end{tikzpicture}
+\end{document}
