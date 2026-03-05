@@ -2,22 +2,22 @@
 \usepackage[UTF8]{ctex}
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
-\setCJKmainfont{SimSun}
+\setCJKmainfont[AutoFakeBold=true]{SimSun}
 \usepackage{newtxmath}
 \usetikzlibrary{arrows.meta, positioning, fit, calc}
 
 \begin{document}
 \begin{tikzpicture}[
     block/.style={rectangle, draw, thick, rounded corners=2pt, fill=gray!5,
-                  minimum width=3.2cm, minimum height=1.8cm, align=center, font=\small},
+                  minimum width=3.2cm, minimum height=1.8cm, align=center, font=\small\bfseries},
     arrow/.style={-Stealth, thick},
     sig/.style={font=\small}
 ]
 
 % ---- Three blocks left to right ----
-\node (planner) [block] {\textbf{\textit{外环：}}\\[2pt]带约束轨迹规划};
+\node (planner) [block] {\textit{外环：}\\[2pt]考虑飞轮约束和\\终端时间的轨迹规划};
 \node (controller) [block, right=1.8cm of planner] 
-    {\textbf{\textit{内环：}}\\[2pt]非奇异预设时间\\预设精度控制};
+    {\textit{内环：}\\[2pt]非奇异预设时间\\预设精度控制};
 \node (spacecraft) [block, right=1.8cm of controller] 
     {反作用飞轮\\驱动航天器};
 
