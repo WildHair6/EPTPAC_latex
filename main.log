@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.16)  5 MAR 2026 15:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.16)  6 MAR 2026 15:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -889,216 +889,216 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
  [1
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] [2] [3] [4] [5] [6]
-<fig/mainwork_v2.pdf, id=210, 478.40431pt x 151.03526pt>
+<fig/mainwork_v2.pdf, id=211, 478.40431pt x 151.03526pt>
 File: fig/mainwork_v2.pdf Graphic file (type pdf)
 <use fig/mainwork_v2.pdf>
-Package pdftex.def Info: fig/mainwork_v2.pdf  used on input line 400.
+Package pdftex.def Info: fig/mainwork_v2.pdf  used on input line 403.
 (pdftex.def)             Requested size: 328.82707pt x 103.81804pt.
  [7 <./fig/mainwork_v2.pdf>] [8] [9] [10] [11] [12] [13] [14] [15] [16]
-<fig/overall.pdf, id=458, 411.49835pt x 508.54892pt>
+<fig/overall.pdf, id=459, 411.49835pt x 508.54892pt>
 File: fig/overall.pdf Graphic file (type pdf)
 <use fig/overall.pdf>
-Package pdftex.def Info: fig/overall.pdf  used on input line 961.
+Package pdftex.def Info: fig/overall.pdf  used on input line 964.
 (pdftex.def)             Requested size: 263.1571pt x 325.215pt.
  [17 <./fig/overall.pdf>] [18]
-<fig/Case1_Results_AttitudeComparison_tf120.0.pdf, id=511, 477.785pt x 342.27875pt>
+<fig/Case1_Results_AttitudeComparison_tf120.0.pdf, id=510, 477.785pt x 342.27875pt>
 File: fig/Case1_Results_AttitudeComparison_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AttitudeComparison_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AttitudeComparison_tf120.0.pdf  used on input line 1061.
+Package pdftex.def Info: fig/Case1_Results_AttitudeComparison_tf120.0.pdf  used on input line 1065.
 (pdftex.def)             Requested size: 225.4804pt x 161.52908pt.
-<fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf, id=512, 477.785pt x 342.27875pt>
+<fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf, id=511, 477.785pt x 342.27875pt>
 File: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf  used on input line 1065.
+Package pdftex.def Info: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf  used on input line 1069.
 (pdftex.def)             Requested size: 225.4804pt x 161.52908pt.
-<fig/Case1_Results_AttitudeError_tf120.0.pdf, id=513, 363.3575pt x 203.76125pt>
+<fig/Case1_Results_AttitudeError_tf120.0.pdf, id=512, 363.3575pt x 203.76125pt>
 File: fig/Case1_Results_AttitudeError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AttitudeError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AttitudeError_tf120.0.pdf  used on input line 1075.
+Package pdftex.def Info: fig/Case1_Results_AttitudeError_tf120.0.pdf  used on input line 1079.
 (pdftex.def)             Requested size: 150.32504pt x 84.29817pt.
-<fig/Case1_Results_AngularRateError_tf120.0.pdf, id=514, 354.32375pt x 203.76125pt>
+<fig/Case1_Results_AngularRateError_tf120.0.pdf, id=513, 354.32375pt x 203.76125pt>
 File: fig/Case1_Results_AngularRateError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AngularRateError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AngularRateError_tf120.0.pdf  used on input line 1079.
+Package pdftex.def Info: fig/Case1_Results_AngularRateError_tf120.0.pdf  used on input line 1083.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1_Results_sError_tf120.0.pdf, id=515, 354.32375pt x 203.76125pt>
+<fig/Case1_Results_sError_tf120.0.pdf, id=514, 354.32375pt x 203.76125pt>
 File: fig/Case1_Results_sError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_sError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_sError_tf120.0.pdf  used on input line 1083.
+Package pdftex.def Info: fig/Case1_Results_sError_tf120.0.pdf  used on input line 1087.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1_Results_ControlTorque_tf120.0.pdf, id=516, 455.7025pt x 331.2375pt>
+<fig/Case1_Results_ControlTorque_tf120.0.pdf, id=515, 455.7025pt x 331.2375pt>
 File: fig/Case1_Results_ControlTorque_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_ControlTorque_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_ControlTorque_tf120.0.pdf  used on input line 1093.
+Package pdftex.def Info: fig/Case1_Results_ControlTorque_tf120.0.pdf  used on input line 1097.
 (pdftex.def)             Requested size: 225.4804pt x 163.89989pt.
-<fig/Case1_Results_WheelMomentum_tf120.0.pdf, id=517, 458.71375pt x 331.2375pt>
+<fig/Case1_Results_WheelMomentum_tf120.0.pdf, id=516, 458.71375pt x 331.2375pt>
 File: fig/Case1_Results_WheelMomentum_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_WheelMomentum_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_WheelMomentum_tf120.0.pdf  used on input line 1097.
+Package pdftex.def Info: fig/Case1_Results_WheelMomentum_tf120.0.pdf  used on input line 1101.
 (pdftex.def)             Requested size: 225.4804pt x 162.81827pt.
-<fig/Case1p_Results_AttitudeError_tf120.0.pdf, id=520, 354.32375pt x 203.76125pt>
+<fig/Case1p_Results_AttitudeError_tf120.0.pdf, id=519, 354.32375pt x 203.76125pt>
 File: fig/Case1p_Results_AttitudeError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1p_Results_AttitudeError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_AttitudeError_tf120.0.pdf  used on input line 1114.
+Package pdftex.def Info: fig/Case1p_Results_AttitudeError_tf120.0.pdf  used on input line 1118.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1p_Results_AngularRateError_tf120.0.pdf, id=521, 354.32375pt x 203.76125pt>
+<fig/Case1p_Results_AngularRateError_tf120.0.pdf, id=520, 354.32375pt x 203.76125pt>
 File: fig/Case1p_Results_AngularRateError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1p_Results_AngularRateError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_AngularRateError_tf120.0.pdf  used on input line 1118.
+Package pdftex.def Info: fig/Case1p_Results_AngularRateError_tf120.0.pdf  used on input line 1122.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1p_Results_sError_tf120.0.pdf, id=522, 356.33125pt x 203.76125pt>
+<fig/Case1p_Results_sError_tf120.0.pdf, id=521, 356.33125pt x 203.76125pt>
 File: fig/Case1p_Results_sError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1p_Results_sError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_sError_tf120.0.pdf  used on input line 1122.
+Package pdftex.def Info: fig/Case1p_Results_sError_tf120.0.pdf  used on input line 1126.
 (pdftex.def)             Requested size: 150.32504pt x 85.95845pt.
-<fig/Case1p_Results_ControlTorque_tf120.0.pdf, id=523, 455.7025pt x 331.2375pt>
+<fig/Case1p_Results_ControlTorque_tf120.0.pdf, id=522, 455.7025pt x 331.2375pt>
 File: fig/Case1p_Results_ControlTorque_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1p_Results_ControlTorque_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_ControlTorque_tf120.0.pdf  used on input line 1132.
+Package pdftex.def Info: fig/Case1p_Results_ControlTorque_tf120.0.pdf  used on input line 1136.
 (pdftex.def)             Requested size: 225.4804pt x 163.89989pt.
-<fig/Case1p_Results_WheelMomentum_tf120.0.pdf, id=524, 458.71375pt x 331.2375pt>
+<fig/Case1p_Results_WheelMomentum_tf120.0.pdf, id=523, 458.71375pt x 331.2375pt>
 File: fig/Case1p_Results_WheelMomentum_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1p_Results_WheelMomentum_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_WheelMomentum_tf120.0.pdf  used on input line 1136.
+Package pdftex.def Info: fig/Case1p_Results_WheelMomentum_tf120.0.pdf  used on input line 1140.
 (pdftex.def)             Requested size: 225.4804pt x 162.81827pt.
  [19 <./fig/Case1_Results_AttitudeComparison_tf120.0.pdf> <./fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf> <./fig/Case1_Results_AttitudeError_tf120.0.pdf> <./fig/Case1_Results_AngularRateError_tf120.0.pdf> <./fig/Case1_Results_sError_tf120.0.pdf>] [20 <./fig/Case1_Results_ControlTorque_tf120.0.pdf> <./fig/Case1_Results_WheelMomentum_tf120.0.pdf> <./fig/Case1p_Results_AttitudeError_tf120.0.pdf> <./fig/Case1p_Results_AngularRateError_tf120.0.pdf> <./fig/Case1p_Results_sError_tf120.0.pdf> <./fig/Case1p_Results_ControlTorque_tf120.0.pdf> <./fig/Case1p_Results_WheelMomentum_tf120.0.pdf>]
-<fig/qe_x_comparison.png, id=1216, 344.0052pt x 245.9589pt>
+<fig/qe_x_comparison.png, id=1215, 344.0052pt x 245.9589pt>
 File: fig/qe_x_comparison.png Graphic file (type png)
 <use fig/qe_x_comparison.png>
-Package pdftex.def Info: fig/qe_x_comparison.png  used on input line 1177.
+Package pdftex.def Info: fig/qe_x_comparison.png  used on input line 1181.
 (pdftex.def)             Requested size: 150.32504pt x 107.47914pt.
-<fig/qe_y_comparison.png, id=1217, 344.0052pt x 245.9589pt>
+<fig/qe_y_comparison.png, id=1216, 344.0052pt x 245.9589pt>
 File: fig/qe_y_comparison.png Graphic file (type png)
 <use fig/qe_y_comparison.png>
-Package pdftex.def Info: fig/qe_y_comparison.png  used on input line 1181.
+Package pdftex.def Info: fig/qe_y_comparison.png  used on input line 1185.
 (pdftex.def)             Requested size: 150.32504pt x 107.47914pt.
-<fig/qe_z_comparison.png, id=1218, 347.6187pt x 245.9589pt>
+<fig/qe_z_comparison.png, id=1217, 347.6187pt x 245.9589pt>
 File: fig/qe_z_comparison.png Graphic file (type png)
 <use fig/qe_z_comparison.png>
-Package pdftex.def Info: fig/qe_z_comparison.png  used on input line 1185.
+Package pdftex.def Info: fig/qe_z_comparison.png  used on input line 1189.
 (pdftex.def)             Requested size: 150.32504pt x 106.36449pt.
-<fig/tau_x_comparison.png, id=1219, 351.4731pt x 245.4771pt>
+<fig/tau_x_comparison.png, id=1218, 351.4731pt x 245.4771pt>
 File: fig/tau_x_comparison.png Graphic file (type png)
 <use fig/tau_x_comparison.png>
-Package pdftex.def Info: fig/tau_x_comparison.png  used on input line 1195.
+Package pdftex.def Info: fig/tau_x_comparison.png  used on input line 1199.
 (pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/tau_y_comparison.png, id=1220, 351.4731pt x 245.4771pt>
+<fig/tau_y_comparison.png, id=1219, 351.4731pt x 245.4771pt>
 File: fig/tau_y_comparison.png Graphic file (type png)
 <use fig/tau_y_comparison.png>
-Package pdftex.def Info: fig/tau_y_comparison.png  used on input line 1199.
+Package pdftex.def Info: fig/tau_y_comparison.png  used on input line 1203.
 (pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/tau_z_comparison.png, id=1221, 351.4731pt x 245.4771pt>
+<fig/tau_z_comparison.png, id=1220, 351.4731pt x 245.4771pt>
 File: fig/tau_z_comparison.png Graphic file (type png)
 <use fig/tau_z_comparison.png>
-Package pdftex.def Info: fig/tau_z_comparison.png  used on input line 1203.
+Package pdftex.def Info: fig/tau_z_comparison.png  used on input line 1207.
 (pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/h_x_comparison.png, id=1222, 337.7418pt x 245.718pt>
+<fig/h_x_comparison.png, id=1221, 337.7418pt x 245.718pt>
 File: fig/h_x_comparison.png Graphic file (type png)
 <use fig/h_x_comparison.png>
-Package pdftex.def Info: fig/h_x_comparison.png  used on input line 1213.
+Package pdftex.def Info: fig/h_x_comparison.png  used on input line 1217.
 (pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
-<fig/h_y_comparison.png, id=1223, 337.7418pt x 245.718pt>
+<fig/h_y_comparison.png, id=1222, 337.7418pt x 245.718pt>
 File: fig/h_y_comparison.png Graphic file (type png)
 <use fig/h_y_comparison.png>
-Package pdftex.def Info: fig/h_y_comparison.png  used on input line 1217.
+Package pdftex.def Info: fig/h_y_comparison.png  used on input line 1221.
 (pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
-<fig/h_z_comparison.png, id=1224, 337.7418pt x 245.718pt>
+<fig/h_z_comparison.png, id=1223, 337.7418pt x 245.718pt>
 File: fig/h_z_comparison.png Graphic file (type png)
 <use fig/h_z_comparison.png>
-Package pdftex.def Info: fig/h_z_comparison.png  used on input line 1221.
+Package pdftex.def Info: fig/h_z_comparison.png  used on input line 1225.
 (pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
  [21 <./fig/qe_x_comparison.png (PNG copy)> <./fig/qe_y_comparison.png (PNG copy)> <./fig/qe_z_comparison.png (PNG copy)>] [22 <./fig/tau_x_comparison.png (PNG copy)> <./fig/tau_y_comparison.png (PNG copy)> <./fig/tau_z_comparison.png (PNG copy)> <./fig/h_x_comparison.png (PNG copy)> <./fig/h_y_comparison.png (PNG copy)> <./fig/h_z_comparison.png (PNG copy)>]
-<fig/CaseSweep_MRPErrorNorm_log10.pdf, id=1244, 400.49625pt x 268.00125pt>
+<fig/CaseSweep_MRPErrorNorm_log10.pdf, id=1243, 400.49625pt x 268.00125pt>
 File: fig/CaseSweep_MRPErrorNorm_log10.pdf Graphic file (type pdf)
 <use fig/CaseSweep_MRPErrorNorm_log10.pdf>
-Package pdftex.def Info: fig/CaseSweep_MRPErrorNorm_log10.pdf  used on input line 1287.
+Package pdftex.def Info: fig/CaseSweep_MRPErrorNorm_log10.pdf  used on input line 1291.
 (pdftex.def)             Requested size: 225.4804pt x 150.88936pt.
-<fig/CaseSweep_SlidingNorm_log10.pdf, id=1245, 404.51125pt x 268.00125pt>
+<fig/CaseSweep_SlidingNorm_log10.pdf, id=1244, 404.51125pt x 268.00125pt>
 File: fig/CaseSweep_SlidingNorm_log10.pdf Graphic file (type pdf)
 <use fig/CaseSweep_SlidingNorm_log10.pdf>
-Package pdftex.def Info: fig/CaseSweep_SlidingNorm_log10.pdf  used on input line 1291.
+Package pdftex.def Info: fig/CaseSweep_SlidingNorm_log10.pdf  used on input line 1295.
 (pdftex.def)             Requested size: 225.4804pt x 149.38857pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 1303.
+(hyperref)                removing `\begingroup' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 1303.
+(hyperref)                removing `\<let>-command' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 1303.
+(hyperref)                removing `\NAT@ctype' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 1303.
+(hyperref)                removing `\z@' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 1303.
+(hyperref)                removing `\let' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 1303.
+(hyperref)                removing `\let' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 1303.
+(hyperref)                removing `\new@ifnextchar' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1303.
+(hyperref)                removing `subscript' on input line 1307.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1303.
+(hyperref)                removing `subscript' on input line 1307.
 
-<fig/PTC_compare_Attitude__t_total400.0.pdf, id=1248, 454.69875pt x 330.23375pt>
+<fig/PTC_compare_Attitude__t_total400.0.pdf, id=1247, 454.69875pt x 330.23375pt>
 File: fig/PTC_compare_Attitude__t_total400.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_Attitude__t_total400.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total400.0.pdf  used on input line 1317.
+Package pdftex.def Info: fig/PTC_compare_Attitude__t_total400.0.pdf  used on input line 1321.
 (pdftex.def)             Requested size: 225.4804pt x 163.76097pt.
-<fig/PTC_compare_ControlTorque_t_total400.0.pdf, id=1249, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_ControlTorque_t_total400.0.pdf, id=1248, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_ControlTorque_t_total400.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_ControlTorque_t_total400.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total400.0.pdf  used on input line 1319.
+Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total400.0.pdf  used on input line 1323.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_Attitude__t_total300.0.pdf, id=1250, 454.69875pt x 330.23375pt>
+<fig/PTC_compare_Attitude__t_total300.0.pdf, id=1249, 454.69875pt x 330.23375pt>
 File: fig/PTC_compare_Attitude__t_total300.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_Attitude__t_total300.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total300.0.pdf  used on input line 1321.
+Package pdftex.def Info: fig/PTC_compare_Attitude__t_total300.0.pdf  used on input line 1325.
 (pdftex.def)             Requested size: 225.4804pt x 163.76097pt.
-<fig/PTC_compare_ControlTorque_t_total300.0.pdf, id=1251, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_ControlTorque_t_total300.0.pdf, id=1250, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_ControlTorque_t_total300.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_ControlTorque_t_total300.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total300.0.pdf  used on input line 1323.
+Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total300.0.pdf  used on input line 1327.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
 [23 <./fig/CaseSweep_MRPErrorNorm_log10.pdf> <./fig/CaseSweep_SlidingNorm_log10.pdf>] [24 <./fig/PTC_compare_Attitude__t_total400.0.pdf> <./fig/PTC_compare_ControlTorque_t_total400.0.pdf> <./fig/PTC_compare_Attitude__t_total300.0.pdf> <./fig/PTC_compare_ControlTorque_t_total300.0.pdf>]
-<fig/PTC_compare_Attitude__t_total500.0.pdf, id=1742, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_Attitude__t_total500.0.pdf, id=1741, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_Attitude__t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_Attitude__t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total500.0.pdf  used on input line 1340.
+Package pdftex.def Info: fig/PTC_compare_Attitude__t_total500.0.pdf  used on input line 1344.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_omega__t_total500.0.pdf, id=1743, 455.7025pt x 339.2675pt>
+<fig/PTC_compare_omega__t_total500.0.pdf, id=1742, 455.7025pt x 339.2675pt>
 File: fig/PTC_compare_omega__t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_omega__t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_omega__t_total500.0.pdf  used on input line 1342.
+Package pdftex.def Info: fig/PTC_compare_omega__t_total500.0.pdf  used on input line 1346.
 (pdftex.def)             Requested size: 225.4804pt x 167.87321pt.
-<fig/PTC_compare_ControlTorque_t_total500.0.pdf, id=1744, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_ControlTorque_t_total500.0.pdf, id=1743, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_ControlTorque_t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_ControlTorque_t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total500.0.pdf  used on input line 1344.
+Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total500.0.pdf  used on input line 1348.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_WheelMomentum_t_total500.0.pdf, id=1745, 458.71375pt x 330.23375pt>
+<fig/PTC_compare_WheelMomentum_t_total500.0.pdf, id=1744, 458.71375pt x 330.23375pt>
 File: fig/PTC_compare_WheelMomentum_t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_WheelMomentum_t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_WheelMomentum_t_total500.0.pdf  used on input line 1346.
+Package pdftex.def Info: fig/PTC_compare_WheelMomentum_t_total500.0.pdf  used on input line 1350.
 (pdftex.def)             Requested size: 225.4804pt x 162.32487pt.
  [25 <./fig/PTC_compare_Attitude__t_total500.0.pdf> <./fig/PTC_compare_omega__t_total500.0.pdf> <./fig/PTC_compare_ControlTorque_t_total500.0.pdf> <./fig/PTC_compare_WheelMomentum_t_total500.0.pdf>]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 1386.
+(Font)              scaled to size 5.5pt on input line 1383.
  [26] [27] [28] (./main.bbl
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 9.0pt on input line 1.
@@ -1106,21 +1106,21 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 9.0pt on input line 11.
  [29] [30] [31]) [32] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1938FDC61F6ED2E88453D5DF44EAA744;4135.
+(rerunfilecheck)             Checksum: 996AFDCEBDB17D37447D4A213A66980E;4203.
  ) 
 Here is how much of TeX's memory you used:
- 24766 strings out of 476025
- 460008 string characters out of 5794014
+ 24768 strings out of 476025
+ 460039 string characters out of 5794014
  1872382 words of memory out of 5000000
- 44336 multiletter control sequences out of 15000+600000
- 621706 words of font info for 304 fonts, out of 8000000 for 9000
+ 44333 multiletter control sequences out of 15000+600000
+ 621964 words of font info for 307 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,14n,131p,1157b,1144s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (32 pages, 8019503 bytes).
+Output written on main.pdf (32 pages, 8018757 bytes).
 PDF statistics:
- 2373 PDF objects out of 2487 (max. 8388607)
- 1940 compressed objects within 20 object streams
- 206 named destinations out of 1000 (max. 500000)
+ 2366 PDF objects out of 2487 (max. 8388607)
+ 1933 compressed objects within 20 object streams
+ 205 named destinations out of 1000 (max. 500000)
  37174 words of extra memory for PDF output out of 42996 (max. 10000000)
 

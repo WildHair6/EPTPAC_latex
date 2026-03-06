@@ -46,11 +46,11 @@ unified treatment of dual saturation, namely, torque saturation and wheel angula
 The framework adopts a two-loop architecture. An outer-loop planner generates a 
 reference trajectory that strictly satisfies the dual-saturation limits and reaches 
 the target state exactly at the user-specified terminal time. An inner-loop 
-nonsingular controller ensures that tracking errors converge within the prescribed accuracy 
+nonsingular controller ensures that tracking errors converge to within the prescribed accuracy 
 before the terminal time in the presence of inertia uncertainties and external disturbances. 
 A systematic parameter-synthesis procedure coordinates the two loops to guarantee 
 the overall physical feasibility. Numerical simulations validate the exact terminal-time 
-convergence, prescribed tracking accuracy, and constraint compliance of the proposed method.
+convergence, prescribed tracking accuracy, and dual saturation compliance of the proposed method.
 \end{abstract}
 
 \section*{Nomenclature}
@@ -119,20 +119,22 @@ $\gamma_u,\,\gamma_h$ & constraint-tightening margins (torque/momentum) [--] \\
 
 \section{Introduction}
 
-Increasingly complex spacecraft missions impose stringent requirements on convergence time of attitude control. 
+Increasingly complex spacecraft missions impose stringent requirements on both convergence time and accuracy of attitude control. 
 Time-critical tasks such as rendezvous, docking, and formation 
 reconfiguration necessitate that the spacecraft attitude reach a target state 
-at a precise terminal time $T_f$ dictated by orbital geometry, communication windows, 
+at a prescribed terminal time $T_f$ dictated by communication windows 
 or multi-vehicle coordination 
-\cite{alex_pothen_pose_2022, das_predefined-time_2024, xu_distributed_2024}. 
-For spacecraft actuated by reaction wheels, fulfilling this requirement is further 
+\cite{alex_pothen_pose_2022, das_predefined-time_2024, xu_distributed_2024}, 
+and to within a prescribed accuracy imposed by payload pointing requirements
+\cite{xiao_attitude_2020,ye_predefined-time_2022,xiao_quantitative_2025}. 
+For spacecraft actuated by reaction wheels, fulfilling these requirements is further 
 complicated by dual saturation, where torque saturation constrains the achievable angular acceleration 
 and angular-momentum saturation restricts the attainable angular velocity. 
 These two constraints are inherently coupled, as stringent terminal-time requirements 
 drive high torques that accelerate momentum accumulation, 
 increasing the risk of angular-momentum saturation, which results in a complete loss of control authority prior to maneuver completion. 
 
-Driven by these demanding timing constraints, 
+Driven by these demanding convergence time requirements, 
 finite-time control (FTC) has been extensively investigated 
 \cite{hong_finite-time_2006,zhao_adaptive_2018,shi_finite-time_2017,zhou_finite-time_2020}. 
 Although FTC ensures convergence in finite time, 
@@ -147,7 +149,7 @@ These limitations have given rise to prescribed-time control (PTC)
 \cite{sanchez-torres_predefined-time_2015,song_time-varying_2017}, 
 which incorporates the convergence time directly as an explicit design parameter.
 
-Existing PTC methods fall into two categories. The first embeds the prescribed time 
+Existing PTC methods generally fall into two categories. The first embeds the prescribed time 
 into Lyapunov functions through time-dependent scaling terms 
 \cite{sanchez-torres_class_2018,xiao_predefined-time_2025, das_predefined-time_2024}. 
 This approach has been applied to spacecraft 
@@ -160,11 +162,12 @@ time-varying high-gain feedback with time-warping transformations
 and has been extended to multiagent consensus and robust tracking 
 \cite{wang_prescribed-time_2019,cao_practical_2022,xiao_scaling_2025}. Although this strategy 
 alleviates conservatism, it introduces rapid gain escalation as $t\to T_f$. Practical remedies 
-such as gain truncation or smoothing can suppress the resulting singularity, but at the expense 
-of terminal-time precision \cite{cao_practical_2022,xiao_scaling_2025,ye_predefined-time_2022}. Other strategies, 
-such as those based on periodic delayed feedback 
-\cite{zhou_fixed-time_2022,ding_strong_2024,zhou_prescribed_2024}, circumvent high-gain growth 
-but remain susceptible to disturbances and may induce adverse transients. 
+such as gain truncation or smoothing suppress the resulting singularity. 
+In practice, since exact convergence to the origin is generally unattainable under realistic 
+disturbances and model uncertainties, these strategies give rise to 
+prescribed-time prescribed-accuracy control, which drives the tracking error to 
+within a user-specified accuracy bound 
+\cite{xiao_scaling_2025,ye_predefined-time_2022,xiao_quantitative_2025}. 
 Despite these efforts, two fundamental shortcomings persist when PTC is applied 
 to time-critical spacecraft missions under dual saturation.
 
@@ -218,7 +221,7 @@ The main contributions are summarized as follows:
   \item Exact terminal-time convergence with prescribed accuracy is achieved 
   without premature settling.
   \item Rigorous axis-by-axis feasibility conditions are derived to guarantee strict compliance 
-  with dual saturation limits. Furthermore, a minimum feasible maneuver time $T_{f,\min}$ is 
+  with dual saturation limits. Moreover, a minimum feasible maneuver time $T_{f,\min}$ is 
   quantified to prevent physically unachievable prescriptions.
   \item A modular two-loop architecture that decouples constraint enforcement 
   from tracking performance is established, coordinated by a systematic parameter-synthesis 
@@ -986,7 +989,7 @@ followed by \(\alpha_1=\alpha_2=\kappa\,\alpha\). This provides a unique paramet
 \section{Simulation Results}
 \label{section:simulation}
 
-In this section, numerical simulations are presented to validate the proposed EPTPAC framework under dual reaction-wheel saturation.
+In this section, numerical simulations are presented to validate the proposed EPTPAC framework under dual saturation.
 Table~\ref{tab:sim_setup_all} summarizes the spacecraft parameters, actuator limits, disturbance model, and boundary conditions. 
 To demonstrate post-maneuver behavior, the simulation horizon is extended to $T_{\mathrm{sim}}>T_f$, with the reference attitude held constant at the target state for $t\ge T_f$.
 
@@ -1031,27 +1034,28 @@ $N=20$. The discrete nodal torques are subsequently reconstructed into continuou
 piecewise-linear interpolation \eqref{eq:linear_interpolation}.
 Adhering to the guidelines in Remarks~\ref{rem:gamma_u_selection}--\ref{rem:gamma_h_selection},
 the safety margins are selected as follows.
-Specifically, for the torque margin, the maximum disturbance torque is $T_{d,\max}=\SI{0.03}{N\cdot m}$ and the actuator limit is $\tau_{i,\max}=\SI{0.2}{N\cdot m}$, yielding a practical choice of $\gamma_u > 0.15$, thus, the torque margin is set to $\gamma_u = 0.2$.
+Specifically, for the torque margin, the maximum disturbance torque is $T_{d,\max}=\SI{0.03}{N\cdot m}$ and the actuator torque limit is $\tau_{i,\max}=\SI{0.2}{N\cdot m}$, yielding a practical choice of $\gamma_u > 0.15$, thus, the torque margin is set to $\gamma_u = 0.2$.
 Regarding the momentum margin, with $H_{\max}=\SI{0.1}{kg\cdot m^2/s}$, $\nu_i = 0.05 \sum_{j=1}^{3} (J_0)_{ij}$, and $h_{w,i,\max}=\SI{4.0}{kg\cdot m^2/s}$, a practical choice is $\gamma_h > 0.075$, hence, the momentum margin is set to $\gamma_h = 0.1$.
 The theoretical minimum terminal time $T_{f,\min}$ is computed via the time-optimal procedure in Appendix~\ref{app:bangbang}, yielding $T_{f,\min} \approx \SI{95}{s}$.
 Thus, the terminal time for all cases is set to $T_f \ge \SI{110}{s}$ to ensure feasibility.
 
 Four comprehensive cases are conducted to validate different aspects of the framework:
-Case~1 verifies baseline performance with dual-saturation compliance; 
+Case~1 verifies fundamental performance with dual-saturation compliance; 
 Case~2 examines exact terminal-time convergence across different $T_f$; 
 Case~3 evaluates prescribed accuracy tunability; 
 and Case~4 benchmarks the proposed framework against a representative torque-saturated prescribed-time controller from 
 \cite{xu_distributed_2022} (hereafter Ref~\cite{xu_distributed_2022}) to demonstrate the advantages of the proposed framework in achieving exact terminal-time convergence and dual-saturation feasibility.
 
-\subsection{Case 1: Baseline Maneuver}
+\subsection{Case 1: Nominal Performance Validation}
 This scenario is designed to validate the fundamental performance of the EPTPAC framework.
 The mission parameters are specified as follows: terminal time $T_f=\SI{120}{s}$, mission accuracy $\varepsilon_1=10^{-5}$, 
 prescribed-time exponent $\eta=0.2$, and time allocations $T_{p2}=\SI{15}{s}$, $T_{p1}=\SI{100}{s}$.
 Following the synthesis procedure in Section~\ref{overall_design} with $\kappa=1.2$, the inner-loop parameters are determined to be $\varepsilon_2=6.43\times10^{-5}$ and $\alpha_1=\alpha_2=6.34$.
-The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and $\varepsilon_{\delta_2}=5.13\times10^{-5}$ satisfy $\varepsilon_{\delta_i}<\varepsilon_i$, and the sufficient conditions in Theorems~\ref{thm:feasibility_axis_compact2}--\ref{thm:feasibility_momentum} are verified.
+The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and $\varepsilon_{\delta_2}=5.13\times10^{-5}$ 
+satisfy $\varepsilon_{\delta_i}<\varepsilon_i$.
 
-The simulation results are shown in Figs.~\ref{fig:tracking_performance}--\ref{fig:constraint_satisfaction}.
-Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$ by construction.
+The simulation results are illustrated in Figs.~\ref{fig:tracking_performance}--\ref{fig:constraint_satisfaction}.
+Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$.
 As shown in Fig.~\ref{fig:convergence_behavior}, all tracking errors remain within the prescribed-accuracy sets throughout the maneuver, since the initial conditions $\boldsymbol{\sigma}(0) = \boldsymbol{\sigma}_d(0)$ and $\boldsymbol{\omega}(0) = \boldsymbol{\omega}_d(0)$ yield zero initial errors.
 Fig.~\ref{fig:constraint_satisfaction} confirms that both control torques and wheel momentum remain strictly within their respective limits over $[0, T_f]$.
 
@@ -1356,17 +1360,10 @@ In summary, Case~4 underscores the necessity of physical realizability in prescr
 
 \section{Conclusion}
 \label{section:conclusion}
-
-% This paper proposed an EPTPAC framework for spacecraft with reaction wheels to achieve prescribed accuracy at a user-specified terminal time under dual saturation constraints.
-% By decoupling the constraint enforcement from the tracking performance via a two-loop
-% architecture, the proposed framework effectively overcomes the fundamental shortcomings of existing PTC methods - namely, the inherent conservatism and insufficient consideration of dual saturation. Furthermore, by identifying the minimum feasible maneuver time $T_{f,\min}$ and establishing a systematic synthesis procedure, the proposed framework significantly strengthens engineering realizability while simplifying the design process. 
-% Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable precision, and dual-saturation compliance.
-% Future work will focus on online trajectory planning and multi-spacecraft cooperative maneuvers.
-
 This paper proposed a two-loop EPTPAC framework for spacecraft actuated by reaction wheels to achieve prescribed accuracy at a user-specified terminal time under dual saturation.
 The outer loop employs a constrained optimal control problem to generate a reference trajectory that respects dual saturation constraints, while the inner loop utilizes a robust prescribed-time prescribed-accuracy controller to track the reference within the desired accuracy by the terminal time.
 Through this decoupled architecture, the proposed framework effectively overcomes the fundamental shortcomings of existing PTC methods---namely, the inherent conservatism and insufficient consideration of dual saturation. Furthermore, by identifying the minimal feasible maneuver time $T_{f,\min}$ and establishing a systematic parameter-synthesis procedure, the proposed framework significantly strengthens engineering realizability while streamlining the design process.
-Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable precision, and dual-saturation compliance.
+Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable precision, and dual saturation compliance.
 Future work will focus on online trajectory planning and multi-spacecraft cooperative maneuvers.
 
 \appendix
