@@ -49,7 +49,7 @@ the target state exactly at the user-specified terminal time. An inner-loop
 nonsingular controller ensures that tracking errors converge to within the prescribed accuracy 
 before the terminal time in the presence of inertia uncertainties and external disturbances. 
 A systematic parameter-synthesis procedure coordinates the two loops to guarantee 
-the overall physical feasibility. Numerical simulations validate the exact terminal-time 
+the overall physical feasibility. Numerical simulations are set to validate the exact terminal-time 
 convergence, prescribed tracking accuracy, and dual saturation compliance of the proposed method.
 \end{abstract}
 
@@ -173,7 +173,7 @@ to time-critical spacecraft missions under dual saturation.
 
 First, existing PTC strategies exhibit pronounced conservatism 
 \cite{cao_practical_2022,song_time-varying_2017,xu_distributed_2024}. 
-For instance, in \cite{xu_distributed_2024}, actual convergence occurs at $250~\mathrm{s}$ 
+For instance, in reference \cite{xu_distributed_2024}, actual convergence occurs at $250~\mathrm{s}$ 
 despite a prescribed $T_f=500~\mathrm{s}$. In single-spacecraft missions, such premature 
 settling forces an extended idle phase at the terminal attitude, degrading overall mission 
 efficiency. In multi-spacecraft operations, it can induce workspace conflicts 
@@ -1367,7 +1367,7 @@ Numerical simulations validated the effectiveness of the proposed framework in a
 Future work will focus on online trajectory planning and multi-spacecraft cooperative maneuvers.
 
 \appendix
-\section{Bang-Bang Estimate of Minimum Feasible Maneuver Time}
+\section{Estimate of Minimum Feasible Maneuver Time}
 \label{app:bangbang}
 
 This appendix provides a bang-bang estimate of the minimum feasible maneuver time $T_{f,\min}$ under component-wise torque and wheel-momentum limits.
