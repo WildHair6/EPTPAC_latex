@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.16)  25 MAR 2026 16:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.16)  31 MAY 2026 17:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/33592/Documents/document/ExactPTC/EPTPAC0226/Exact_Prescribed_Time_Prescribed_Accuracy_Control_for_Spacecraft_under_Dual_Reaction_Wheel_Saturation__1_/main
-(c:/Users/33592/Documents/document/ExactPTC/EPTPAC0226/Exact_Prescribed_Time_Prescribed_Accuracy_Control_for_Spacecraft_under_Dual_Reaction_Wheel_Saturation__1_/main.tex
+**c:/Users/33592/Documents/document/ExactPTC/EPTPAC0226/main
+(c:/Users/33592/Documents/document/ExactPTC/EPTPAC0226/main.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (./new-aiaa.cls
 Document Class: new-aiaa 2018/01/10, v1.2
@@ -538,228 +538,160 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip70
 \dth@everypar=\toks41
 LaTeX Info: Redefining \textsquare on input line 427.
-) (c:/texlive/2023/texmf-dist/tex/latex/mhchem/mhchem.sty
-Package: mhchem 2021/12/31 v4.09 for typesetting chemical formulae
- (c:/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2023-02-22 L3 programming layer (loader) 
- (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
-\l__pdf_internal_box=\box58
-)) (c:/texlive/2023/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
-) (c:/texlive/2023/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count310
-\calc@Bcount=\count311
-\calc@Adimen=\dimen256
-\calc@Bdimen=\dimen257
-\calc@Askip=\skip71
-\calc@Bskip=\skip72
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count312
-\calc@Cskip=\skip73
-) (c:/texlive/2023/texmf-dist/tex/latex/chemgreek/chemgreek.sty (c:/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2023-02-02 L3 Experimental document command parser
-)
-Package: chemgreek 2020/01/16 v1.1a interface for upright Greek letters for use in chemistry (CN)
-\l__chemgreek_tmpa_int=\count313
-\g__chemgreek_tmpa_int=\count314
-)
-\l__mhchem_ce_distanceFromLastComma_int=\count315
-\__mhchem_arrow_extPgfLength_skip=\skip74
-\mhchem@minispace@tmp=\skip75
-\mhchem@minibackspace@tmp=\skip76
-\mhchem@bondwidth=\skip77
-\mhchem@bondheight=\skip78
-\mhchem@smallbondwidth@tmpA=\skip79
-\mhchem@smallbondwidth@tmpB=\skip80
-\mhchem@smallbondwidth=\skip81
-\mhchem@bondtmp@minussidebearingleft=\skip82
-\mhchem@bondtmp@minussidebearingright=\skip83
-\l__mhchem_option_version_int=\count316
-\mhchem@option@minusmathsidebearingleft=\dimen258
-\mhchem@option@minusmathsidebearingright=\dimen259
-\mhchem@option@minustextsidebearingleft=\dimen260
-\mhchem@option@minustextsidebearingright=\dimen261
 ) (c:/texlive/2023/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2023-03-04 v3.2.2 A comprehensive (SI) units package
-\l__siunitx_angle_tmp_dim=\dimen262
-\l__siunitx_angle_marker_box=\box59
-\l__siunitx_angle_unit_box=\box60
-\l__siunitx_compound_count_int=\count317
+\l__siunitx_angle_tmp_dim=\dimen256
+\l__siunitx_angle_marker_box=\box58
+\l__siunitx_angle_unit_box=\box59
+\l__siunitx_compound_count_int=\count309
  (c:/texlive/2023/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
 )
-\l__siunitx_number_exponent_fixed_int=\count318
-\l__siunitx_number_min_decimal_int=\count319
-\l__siunitx_number_min_integer_int=\count320
-\l__siunitx_number_round_precision_int=\count321
-\l__siunitx_number_lower_threshold_int=\count322
-\l__siunitx_number_upper_threshold_int=\count323
-\l__siunitx_number_group_first_int=\count324
-\l__siunitx_number_group_size_int=\count325
-\l__siunitx_number_group_minimum_int=\count326
-\l__siunitx_table_tmp_box=\box61
-\l__siunitx_table_tmp_dim=\dimen263
-\l__siunitx_table_column_width_dim=\dimen264
-\l__siunitx_table_integer_box=\box62
-\l__siunitx_table_decimal_box=\box63
-\l__siunitx_table_uncert_box=\box64
-\l__siunitx_table_before_box=\box65
-\l__siunitx_table_after_box=\box66
-\l__siunitx_table_before_dim=\dimen265
-\l__siunitx_table_carry_dim=\dimen266
-\l__siunitx_unit_tmp_int=\count327
-\l__siunitx_unit_position_int=\count328
-\l__siunitx_unit_total_int=\count329
+\l__siunitx_number_exponent_fixed_int=\count310
+\l__siunitx_number_min_decimal_int=\count311
+\l__siunitx_number_min_integer_int=\count312
+\l__siunitx_number_round_precision_int=\count313
+\l__siunitx_number_lower_threshold_int=\count314
+\l__siunitx_number_upper_threshold_int=\count315
+\l__siunitx_number_group_first_int=\count316
+\l__siunitx_number_group_size_int=\count317
+\l__siunitx_number_group_minimum_int=\count318
+\l__siunitx_table_tmp_box=\box60
+\l__siunitx_table_tmp_dim=\dimen257
+\l__siunitx_table_column_width_dim=\dimen258
+\l__siunitx_table_integer_box=\box61
+\l__siunitx_table_decimal_box=\box62
+\l__siunitx_table_uncert_box=\box63
+\l__siunitx_table_before_box=\box64
+\l__siunitx_table_after_box=\box65
+\l__siunitx_table_before_dim=\dimen259
+\l__siunitx_table_carry_dim=\dimen260
+\l__siunitx_unit_tmp_int=\count319
+\l__siunitx_unit_position_int=\count320
+\l__siunitx_unit_total_int=\count321
  (c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen267
-\ar@mcellbox=\box67
-\extrarowheight=\dimen268
+\col@sep=\dimen261
+\ar@mcellbox=\box66
+\extrarowheight=\dimen262
 \NC@list=\toks42
-\extratabsurround=\skip84
-\backup@length=\skip85
-\ar@cellbox=\box68
-)) (c:/texlive/2023/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip86
-\LTright=\skip87
-\LTpre=\skip88
-\LTpost=\skip89
-\LTchunksize=\count330
-\LTcapwidth=\dimen269
-\LT@head=\box69
-\LT@firsthead=\box70
-\LT@foot=\box71
-\LT@lastfoot=\box72
-\LT@gbox=\box73
-\LT@cols=\count331
-\LT@rows=\count332
-\c@LT@tables=\count333
-\c@LT@chunks=\count334
-\LT@p@ftn=\toks43
-) (c:/texlive/2023/texmf-dist/tex/latex/tools/tabularx.sty
-Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
-\TX@col@width=\dimen270
-\TX@old@table=\dimen271
-\TX@old@col=\dimen272
-\TX@target=\dimen273
-\TX@delta=\dimen274
-\TX@cols=\count335
-\TX@ftn=\toks44
-) (c:/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
+\extratabsurround=\skip71
+\backup@length=\skip72
+\ar@cellbox=\box67
+)) (c:/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen275
-\lightrulewidth=\dimen276
-\cmidrulewidth=\dimen277
-\belowrulesep=\dimen278
-\belowbottomsep=\dimen279
-\aboverulesep=\dimen280
-\abovetopsep=\dimen281
-\cmidrulesep=\dimen282
-\cmidrulekern=\dimen283
-\defaultaddspace=\dimen284
-\@cmidla=\count336
-\@cmidlb=\count337
-\@aboverulesep=\dimen285
-\@belowrulesep=\dimen286
-\@thisruleclass=\count338
-\@lastruleclass=\count339
-\@thisrulewidth=\dimen287
+\heavyrulewidth=\dimen263
+\lightrulewidth=\dimen264
+\cmidrulewidth=\dimen265
+\belowrulesep=\dimen266
+\belowbottomsep=\dimen267
+\aboverulesep=\dimen268
+\abovetopsep=\dimen269
+\cmidrulesep=\dimen270
+\cmidrulekern=\dimen271
+\defaultaddspace=\dimen272
+\@cmidla=\count322
+\@cmidlb=\count323
+\@aboverulesep=\dimen273
+\@belowrulesep=\dimen274
+\@thisruleclass=\count324
+\@lastruleclass=\count325
+\@thisrulewidth=\dimen275
 ) (c:/texlive/2023/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
-\c@KVtest=\count340
-\sf@farskip=\skip90
-\sf@captopadj=\dimen288
-\sf@capskip=\skip91
-\sf@nearskip=\skip92
-\c@subfigure=\count341
-\c@subfigure@save=\count342
-\c@lofdepth=\count343
-\c@subtable=\count344
-\c@subtable@save=\count345
-\c@lotdepth=\count346
-\sf@top=\skip93
-\sf@bottom=\skip94
+\c@KVtest=\count326
+\sf@farskip=\skip73
+\sf@captopadj=\dimen276
+\sf@capskip=\skip74
+\sf@nearskip=\skip75
+\c@subfigure=\count327
+\c@subfigure@save=\count328
+\c@lofdepth=\count329
+\c@subtable=\count330
+\c@subtable@save=\count331
+\c@lotdepth=\count332
+\sf@top=\skip76
+\sf@bottom=\skip77
 )
-\c@theorem=\count347
-\c@lemma=\count348
-\c@remark=\count349
-\c@assumption=\count350
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 37.
+\c@theorem=\count333
+\c@lemma=\count334
+\c@remark=\count335
+\c@assumption=\count336
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 31.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 37.
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 37.
- (./main.aux)
+(Font)              scaled to size 10.0pt on input line 31.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 31.
+ (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count337
+\l__pdf_internal_box=\box68
+) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 37.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 37.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 31.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 31.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 37.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 31.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 31.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 37.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 31.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 31.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 37.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 31.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 31.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Info: Redefining \microtypecontext on input line 37.
-Package microtype Info: Applying patch `item' on input line 37.
-Package microtype Info: Applying patch `toc' on input line 37.
-Package microtype Info: Applying patch `eqnum' on input line 37.
-Package microtype Info: Applying patch `footnote' on input line 37.
-Package microtype Info: Applying patch `verbatim' on input line 37.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Info: Redefining \microtypecontext on input line 31.
+Package microtype Info: Applying patch `item' on input line 31.
+Package microtype Info: Applying patch `toc' on input line 31.
+Package microtype Info: Applying patch `eqnum' on input line 31.
+Package microtype Info: Applying patch `footnote' on input line 31.
+Package microtype Info: Applying patch `verbatim' on input line 31.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 37.
+LaTeX Info: Redefining \showhyphens on input line 31.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (c:/texlive/2023/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-\c@mv@tabular=\count351
-\c@mv@boldtabular=\count352
-LaTeX Info: Command `\dddot' is already robust on input line 37.
-LaTeX Info: Command `\ddddot' is already robust on input line 37.
+\c@mv@tabular=\count338
+\c@mv@boldtabular=\count339
+LaTeX Info: Command `\dddot' is already robust on input line 31.
+LaTeX Info: Command `\ddddot' is already robust on input line 31.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -798,39 +730,31 @@ LaTeX Info: Command `\ddddot' is already robust on input line 37.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
-(c:/texlive/2023/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 37.
- (./main.out) (./main.out)
+Package hyperref Info: Link coloring OFF on input line 31.
+(./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count353
-\scratchdimen=\dimen289
-\scratchbox=\box74
-\nofMPsegments=\count354
-\nofMParguments=\count355
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count356
-\MPscratchDim=\dimen290
-\MPnumerator=\count357
-\makeMPintoPDFobject=\count358
-\everyMPtoPDFconversion=\toks46
+\scratchcounter=\count340
+\scratchdimen=\dimen277
+\scratchbox=\box69
+\nofMPsegments=\count341
+\nofMParguments=\count342
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count343
+\MPscratchDim=\dimen278
+\MPnumerator=\count344
+\makeMPintoPDFobject=\count345
+\everyMPtoPDFconversion=\toks44
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-))
-
-Package chemgreek Info: Activating mapping `newtx' on line 37.
-
- (c:/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
+)) (c:/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -839,12 +763,12 @@ Package color Info: Driver file: pdftex.def on input line 149.
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 37.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 31.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 17.28pt on input line 40.
+(Font)              scaled to size 17.28pt on input line 34.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 40.
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 40.
+(Font)              scaled to size 17.28pt on input line 34.
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2022/01/20 v1.0 font definition file for OT1/minntx
 )
@@ -852,275 +776,204 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `minntx' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 40.
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 40.
+(Font)              scaled to size 7.3pt on input line 34.
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 40.
+(Font)              scaled to size 7.3pt on input line 34.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 40.
+(Font)              scaled to size 8.0pt on input line 34.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.2pt on input line 40.
+(Font)              scaled to size 6.2pt on input line 34.
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.2pt on input line 40.
+(Font)              scaled to size 6.2pt on input line 34.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 40.
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 41.
+(Font)              scaled to size 10.0pt on input line 34.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+(Font)              scaled to size 7.3pt on input line 34.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 56.
+(Font)              scaled to size 12.0pt on input line 35.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 56.
+(Font)              scaled to size 12.0pt on input line 35.
  [1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] [2] [3] [4] [5] [6]
-<fig/mainwork_v2.pdf, id=211, 478.40431pt x 151.03526pt>
-File: fig/mainwork_v2.pdf Graphic file (type pdf)
-<use fig/mainwork_v2.pdf>
-Package pdftex.def Info: fig/mainwork_v2.pdf  used on input line 403.
-(pdftex.def)             Requested size: 328.82707pt x 103.81804pt.
- [7 <./fig/mainwork_v2.pdf>] [8] [9] [10] [11] [12] [13] [14] [15] [16]
-<fig/overall.pdf, id=459, 411.49835pt x 508.54892pt>
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 119.
+ [2] [3] [4] [5] [6] [7] [8] [9]
+<fig/overall.pdf, id=286, 411.49835pt x 508.54892pt>
 File: fig/overall.pdf Graphic file (type pdf)
 <use fig/overall.pdf>
-Package pdftex.def Info: fig/overall.pdf  used on input line 964.
+Package pdftex.def Info: fig/overall.pdf  used on input line 650.
 (pdftex.def)             Requested size: 263.1571pt x 325.215pt.
- [17 <./fig/overall.pdf>] [18]
-<fig/Case1_Results_AttitudeComparison_tf120.0.pdf, id=510, 477.785pt x 342.27875pt>
+ [10] [11 <./fig/overall.pdf>]
+<fig/Case1_Results_AttitudeComparison_tf120.0.pdf, id=356, 477.785pt x 342.27875pt>
 File: fig/Case1_Results_AttitudeComparison_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AttitudeComparison_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AttitudeComparison_tf120.0.pdf  used on input line 1065.
+Package pdftex.def Info: fig/Case1_Results_AttitudeComparison_tf120.0.pdf  used on input line 747.
 (pdftex.def)             Requested size: 225.4804pt x 161.52908pt.
-<fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf, id=511, 477.785pt x 342.27875pt>
+<fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf, id=357, 477.785pt x 342.27875pt>
 File: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf  used on input line 1069.
+Package pdftex.def Info: fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf  used on input line 751.
 (pdftex.def)             Requested size: 225.4804pt x 161.52908pt.
-<fig/Case1_Results_AttitudeError_tf120.0.pdf, id=512, 363.3575pt x 203.76125pt>
+<fig/Case1_Results_AttitudeError_tf120.0.pdf, id=358, 363.3575pt x 203.76125pt>
 File: fig/Case1_Results_AttitudeError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AttitudeError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AttitudeError_tf120.0.pdf  used on input line 1079.
+Package pdftex.def Info: fig/Case1_Results_AttitudeError_tf120.0.pdf  used on input line 761.
 (pdftex.def)             Requested size: 150.32504pt x 84.29817pt.
-<fig/Case1_Results_AngularRateError_tf120.0.pdf, id=513, 354.32375pt x 203.76125pt>
+<fig/Case1_Results_AngularRateError_tf120.0.pdf, id=359, 354.32375pt x 203.76125pt>
 File: fig/Case1_Results_AngularRateError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_AngularRateError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_AngularRateError_tf120.0.pdf  used on input line 1083.
+Package pdftex.def Info: fig/Case1_Results_AngularRateError_tf120.0.pdf  used on input line 765.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1_Results_sError_tf120.0.pdf, id=514, 354.32375pt x 203.76125pt>
+<fig/Case1_Results_sError_tf120.0.pdf, id=360, 354.32375pt x 203.76125pt>
 File: fig/Case1_Results_sError_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_sError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_sError_tf120.0.pdf  used on input line 1087.
+Package pdftex.def Info: fig/Case1_Results_sError_tf120.0.pdf  used on input line 769.
 (pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1_Results_ControlTorque_tf120.0.pdf, id=515, 455.7025pt x 331.2375pt>
+<fig/Case1_Results_ControlTorque_tf120.0.pdf, id=361, 455.7025pt x 331.2375pt>
 File: fig/Case1_Results_ControlTorque_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_ControlTorque_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_ControlTorque_tf120.0.pdf  used on input line 1097.
+Package pdftex.def Info: fig/Case1_Results_ControlTorque_tf120.0.pdf  used on input line 779.
 (pdftex.def)             Requested size: 225.4804pt x 163.89989pt.
-<fig/Case1_Results_WheelMomentum_tf120.0.pdf, id=516, 458.71375pt x 331.2375pt>
+<fig/Case1_Results_WheelMomentum_tf120.0.pdf, id=362, 458.71375pt x 331.2375pt>
 File: fig/Case1_Results_WheelMomentum_tf120.0.pdf Graphic file (type pdf)
 <use fig/Case1_Results_WheelMomentum_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1_Results_WheelMomentum_tf120.0.pdf  used on input line 1101.
+Package pdftex.def Info: fig/Case1_Results_WheelMomentum_tf120.0.pdf  used on input line 783.
 (pdftex.def)             Requested size: 225.4804pt x 162.81827pt.
-<fig/Case1p_Results_AttitudeError_tf120.0.pdf, id=519, 354.32375pt x 203.76125pt>
-File: fig/Case1p_Results_AttitudeError_tf120.0.pdf Graphic file (type pdf)
-<use fig/Case1p_Results_AttitudeError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_AttitudeError_tf120.0.pdf  used on input line 1118.
-(pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1p_Results_AngularRateError_tf120.0.pdf, id=520, 354.32375pt x 203.76125pt>
-File: fig/Case1p_Results_AngularRateError_tf120.0.pdf Graphic file (type pdf)
-<use fig/Case1p_Results_AngularRateError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_AngularRateError_tf120.0.pdf  used on input line 1122.
-(pdftex.def)             Requested size: 150.32504pt x 86.44969pt.
-<fig/Case1p_Results_sError_tf120.0.pdf, id=521, 356.33125pt x 203.76125pt>
-File: fig/Case1p_Results_sError_tf120.0.pdf Graphic file (type pdf)
-<use fig/Case1p_Results_sError_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_sError_tf120.0.pdf  used on input line 1126.
-(pdftex.def)             Requested size: 150.32504pt x 85.95845pt.
-<fig/Case1p_Results_ControlTorque_tf120.0.pdf, id=522, 455.7025pt x 331.2375pt>
-File: fig/Case1p_Results_ControlTorque_tf120.0.pdf Graphic file (type pdf)
-<use fig/Case1p_Results_ControlTorque_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_ControlTorque_tf120.0.pdf  used on input line 1136.
-(pdftex.def)             Requested size: 225.4804pt x 163.89989pt.
-<fig/Case1p_Results_WheelMomentum_tf120.0.pdf, id=523, 458.71375pt x 331.2375pt>
-File: fig/Case1p_Results_WheelMomentum_tf120.0.pdf Graphic file (type pdf)
-<use fig/Case1p_Results_WheelMomentum_tf120.0.pdf>
-Package pdftex.def Info: fig/Case1p_Results_WheelMomentum_tf120.0.pdf  used on input line 1140.
-(pdftex.def)             Requested size: 225.4804pt x 162.81827pt.
- [19 <./fig/Case1_Results_AttitudeComparison_tf120.0.pdf> <./fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf> <./fig/Case1_Results_AttitudeError_tf120.0.pdf> <./fig/Case1_Results_AngularRateError_tf120.0.pdf> <./fig/Case1_Results_sError_tf120.0.pdf>] [20 <./fig/Case1_Results_ControlTorque_tf120.0.pdf> <./fig/Case1_Results_WheelMomentum_tf120.0.pdf> <./fig/Case1p_Results_AttitudeError_tf120.0.pdf> <./fig/Case1p_Results_AngularRateError_tf120.0.pdf> <./fig/Case1p_Results_sError_tf120.0.pdf> <./fig/Case1p_Results_ControlTorque_tf120.0.pdf> <./fig/Case1p_Results_WheelMomentum_tf120.0.pdf>]
-<fig/qe_x_comparison.png, id=1215, 344.0052pt x 245.9589pt>
+ [12 <./fig/Case1_Results_AttitudeComparison_tf120.0.pdf> <./fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf>]
+<fig/qe_x_comparison.png, id=533, 344.0052pt x 245.9589pt>
 File: fig/qe_x_comparison.png Graphic file (type png)
 <use fig/qe_x_comparison.png>
-Package pdftex.def Info: fig/qe_x_comparison.png  used on input line 1181.
+Package pdftex.def Info: fig/qe_x_comparison.png  used on input line 810.
 (pdftex.def)             Requested size: 150.32504pt x 107.47914pt.
-<fig/qe_y_comparison.png, id=1216, 344.0052pt x 245.9589pt>
+<fig/qe_y_comparison.png, id=534, 344.0052pt x 245.9589pt>
 File: fig/qe_y_comparison.png Graphic file (type png)
 <use fig/qe_y_comparison.png>
-Package pdftex.def Info: fig/qe_y_comparison.png  used on input line 1185.
+Package pdftex.def Info: fig/qe_y_comparison.png  used on input line 814.
 (pdftex.def)             Requested size: 150.32504pt x 107.47914pt.
-<fig/qe_z_comparison.png, id=1217, 347.6187pt x 245.9589pt>
+<fig/qe_z_comparison.png, id=535, 347.6187pt x 245.9589pt>
 File: fig/qe_z_comparison.png Graphic file (type png)
 <use fig/qe_z_comparison.png>
-Package pdftex.def Info: fig/qe_z_comparison.png  used on input line 1189.
+Package pdftex.def Info: fig/qe_z_comparison.png  used on input line 818.
 (pdftex.def)             Requested size: 150.32504pt x 106.36449pt.
-<fig/tau_x_comparison.png, id=1218, 351.4731pt x 245.4771pt>
-File: fig/tau_x_comparison.png Graphic file (type png)
-<use fig/tau_x_comparison.png>
-Package pdftex.def Info: fig/tau_x_comparison.png  used on input line 1199.
-(pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/tau_y_comparison.png, id=1219, 351.4731pt x 245.4771pt>
-File: fig/tau_y_comparison.png Graphic file (type png)
-<use fig/tau_y_comparison.png>
-Package pdftex.def Info: fig/tau_y_comparison.png  used on input line 1203.
-(pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/tau_z_comparison.png, id=1220, 351.4731pt x 245.4771pt>
-File: fig/tau_z_comparison.png Graphic file (type png)
-<use fig/tau_z_comparison.png>
-Package pdftex.def Info: fig/tau_z_comparison.png  used on input line 1207.
-(pdftex.def)             Requested size: 150.32504pt x 104.99123pt.
-<fig/h_x_comparison.png, id=1221, 337.7418pt x 245.718pt>
-File: fig/h_x_comparison.png Graphic file (type png)
-<use fig/h_x_comparison.png>
-Package pdftex.def Info: fig/h_x_comparison.png  used on input line 1217.
-(pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
-<fig/h_y_comparison.png, id=1222, 337.7418pt x 245.718pt>
-File: fig/h_y_comparison.png Graphic file (type png)
-<use fig/h_y_comparison.png>
-Package pdftex.def Info: fig/h_y_comparison.png  used on input line 1221.
-(pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
-<fig/h_z_comparison.png, id=1223, 337.7418pt x 245.718pt>
-File: fig/h_z_comparison.png Graphic file (type png)
-<use fig/h_z_comparison.png>
-Package pdftex.def Info: fig/h_z_comparison.png  used on input line 1225.
-(pdftex.def)             Requested size: 150.32504pt x 109.36478pt.
- [21 <./fig/qe_x_comparison.png (PNG copy)> <./fig/qe_y_comparison.png (PNG copy)> <./fig/qe_z_comparison.png (PNG copy)>] [22 <./fig/tau_x_comparison.png (PNG copy)> <./fig/tau_y_comparison.png (PNG copy)> <./fig/tau_z_comparison.png (PNG copy)> <./fig/h_x_comparison.png (PNG copy)> <./fig/h_y_comparison.png (PNG copy)> <./fig/h_z_comparison.png (PNG copy)>]
-<fig/CaseSweep_MRPErrorNorm_log10.pdf, id=1243, 400.49625pt x 268.00125pt>
+ [13 <./fig/Case1_Results_AttitudeError_tf120.0.pdf> <./fig/Case1_Results_AngularRateError_tf120.0.pdf> <./fig/Case1_Results_sError_tf120.0.pdf> <./fig/Case1_Results_ControlTorque_tf120.0.pdf> <./fig/Case1_Results_WheelMomentum_tf120.0.pdf> <./fig/qe_x_comparison.png (PNG copy)> <./fig/qe_y_comparison.png (PNG copy)> <./fig/qe_z_comparison.png (PNG copy)>]
+<fig/CaseSweep_MRPErrorNorm_log10.pdf, id=796, 400.49625pt x 268.00125pt>
 File: fig/CaseSweep_MRPErrorNorm_log10.pdf Graphic file (type pdf)
 <use fig/CaseSweep_MRPErrorNorm_log10.pdf>
-Package pdftex.def Info: fig/CaseSweep_MRPErrorNorm_log10.pdf  used on input line 1291.
+Package pdftex.def Info: fig/CaseSweep_MRPErrorNorm_log10.pdf  used on input line 841.
 (pdftex.def)             Requested size: 225.4804pt x 150.88936pt.
-<fig/CaseSweep_SlidingNorm_log10.pdf, id=1244, 404.51125pt x 268.00125pt>
+<fig/CaseSweep_SlidingNorm_log10.pdf, id=797, 404.51125pt x 268.00125pt>
 File: fig/CaseSweep_SlidingNorm_log10.pdf Graphic file (type pdf)
 <use fig/CaseSweep_SlidingNorm_log10.pdf>
-Package pdftex.def Info: fig/CaseSweep_SlidingNorm_log10.pdf  used on input line 1295.
+Package pdftex.def Info: fig/CaseSweep_SlidingNorm_log10.pdf  used on input line 845.
 (pdftex.def)             Requested size: 225.4804pt x 149.38857pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 1307.
+(hyperref)                removing `\begingroup' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 1307.
+(hyperref)                removing `\<let>-command' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 1307.
+(hyperref)                removing `\NAT@ctype' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 1307.
+(hyperref)                removing `\z@' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 1307.
+(hyperref)                removing `\let' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 1307.
+(hyperref)                removing `\let' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 1307.
+(hyperref)                removing `\new@ifnextchar' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1307.
+(hyperref)                removing `subscript' on input line 855.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1307.
+(hyperref)                removing `subscript' on input line 855.
 
-<fig/PTC_compare_Attitude__t_total400.0.pdf, id=1247, 454.69875pt x 330.23375pt>
+<fig/PTC_compare_Attitude__t_total400.0.pdf, id=800, 454.69875pt x 330.23375pt>
 File: fig/PTC_compare_Attitude__t_total400.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_Attitude__t_total400.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total400.0.pdf  used on input line 1321.
+Package pdftex.def Info: fig/PTC_compare_Attitude__t_total400.0.pdf  used on input line 870.
 (pdftex.def)             Requested size: 225.4804pt x 163.76097pt.
-<fig/PTC_compare_ControlTorque_t_total400.0.pdf, id=1248, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_ControlTorque_t_total400.0.pdf, id=801, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_ControlTorque_t_total400.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_ControlTorque_t_total400.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total400.0.pdf  used on input line 1323.
+Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total400.0.pdf  used on input line 872.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_Attitude__t_total300.0.pdf, id=1249, 454.69875pt x 330.23375pt>
-File: fig/PTC_compare_Attitude__t_total300.0.pdf Graphic file (type pdf)
-<use fig/PTC_compare_Attitude__t_total300.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total300.0.pdf  used on input line 1325.
-(pdftex.def)             Requested size: 225.4804pt x 163.76097pt.
-<fig/PTC_compare_ControlTorque_t_total300.0.pdf, id=1250, 455.7025pt x 330.23375pt>
-File: fig/PTC_compare_ControlTorque_t_total300.0.pdf Graphic file (type pdf)
-<use fig/PTC_compare_ControlTorque_t_total300.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total300.0.pdf  used on input line 1327.
-(pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-[23 <./fig/CaseSweep_MRPErrorNorm_log10.pdf> <./fig/CaseSweep_SlidingNorm_log10.pdf>] [24 <./fig/PTC_compare_Attitude__t_total400.0.pdf> <./fig/PTC_compare_ControlTorque_t_total400.0.pdf> <./fig/PTC_compare_Attitude__t_total300.0.pdf> <./fig/PTC_compare_ControlTorque_t_total300.0.pdf>]
-<fig/PTC_compare_Attitude__t_total500.0.pdf, id=1741, 455.7025pt x 330.23375pt>
+[14 <./fig/CaseSweep_MRPErrorNorm_log10.pdf> <./fig/CaseSweep_SlidingNorm_log10.pdf>]
+<fig/PTC_compare_Attitude__t_total500.0.pdf, id=934, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_Attitude__t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_Attitude__t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_Attitude__t_total500.0.pdf  used on input line 1344.
+Package pdftex.def Info: fig/PTC_compare_Attitude__t_total500.0.pdf  used on input line 893.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_omega__t_total500.0.pdf, id=1742, 455.7025pt x 339.2675pt>
+<fig/PTC_compare_omega__t_total500.0.pdf, id=935, 455.7025pt x 339.2675pt>
 File: fig/PTC_compare_omega__t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_omega__t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_omega__t_total500.0.pdf  used on input line 1346.
+Package pdftex.def Info: fig/PTC_compare_omega__t_total500.0.pdf  used on input line 895.
 (pdftex.def)             Requested size: 225.4804pt x 167.87321pt.
-<fig/PTC_compare_ControlTorque_t_total500.0.pdf, id=1743, 455.7025pt x 330.23375pt>
+<fig/PTC_compare_ControlTorque_t_total500.0.pdf, id=936, 455.7025pt x 330.23375pt>
 File: fig/PTC_compare_ControlTorque_t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_ControlTorque_t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total500.0.pdf  used on input line 1348.
+Package pdftex.def Info: fig/PTC_compare_ControlTorque_t_total500.0.pdf  used on input line 897.
 (pdftex.def)             Requested size: 225.4804pt x 163.40321pt.
-<fig/PTC_compare_WheelMomentum_t_total500.0.pdf, id=1744, 458.71375pt x 330.23375pt>
+<fig/PTC_compare_WheelMomentum_t_total500.0.pdf, id=937, 458.71375pt x 330.23375pt>
 File: fig/PTC_compare_WheelMomentum_t_total500.0.pdf Graphic file (type pdf)
 <use fig/PTC_compare_WheelMomentum_t_total500.0.pdf>
-Package pdftex.def Info: fig/PTC_compare_WheelMomentum_t_total500.0.pdf  used on input line 1350.
+Package pdftex.def Info: fig/PTC_compare_WheelMomentum_t_total500.0.pdf  used on input line 899.
 (pdftex.def)             Requested size: 225.4804pt x 162.32487pt.
- [25 <./fig/PTC_compare_Attitude__t_total500.0.pdf> <./fig/PTC_compare_omega__t_total500.0.pdf> <./fig/PTC_compare_ControlTorque_t_total500.0.pdf> <./fig/PTC_compare_WheelMomentum_t_total500.0.pdf>]
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 1383.
- [26] [27] [28] (./main.bbl
+ [15 <./fig/PTC_compare_Attitude__t_total400.0.pdf> <./fig/PTC_compare_ControlTorque_t_total400.0.pdf>] [16 <./fig/PTC_compare_Attitude__t_total500.0.pdf> <./fig/PTC_compare_omega__t_total500.0.pdf> <./fig/PTC_compare_ControlTorque_t_total500.0.pdf> <./fig/PTC_compare_WheelMomentum_t_total500.0.pdf>] [17] (./main.bbl
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 9.0pt on input line 1.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 9.0pt on input line 11.
- [29] [30] [31]) [32] (./main.aux)
+ [18] [19] [20]) [21] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 408FAEDCB9B360A67EA93A57429195B2;4150.
+(rerunfilecheck)             Checksum: E5AAB85287A6A8CE70CAAE7530C04942;4313.
  ) 
 Here is how much of TeX's memory you used:
- 24768 strings out of 476025
- 460039 string characters out of 5794014
- 1872382 words of memory out of 5000000
- 44333 multiletter control sequences out of 15000+600000
- 621964 words of font info for 307 fonts, out of 8000000 for 9000
+ 23360 strings out of 476025
+ 426142 string characters out of 5794014
+ 1873382 words of memory out of 5000000
+ 43050 multiletter control sequences out of 15000+600000
+ 619673 words of font info for 290 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,14n,131p,1157b,1144s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (32 pages, 8018715 bytes).
+ 86i,14n,131p,1051b,1132s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXBMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (21 pages, 4570225 bytes).
 PDF statistics:
- 2366 PDF objects out of 2487 (max. 8388607)
- 1933 compressed objects within 20 object streams
- 205 named destinations out of 1000 (max. 500000)
- 37174 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1714 PDF objects out of 1728 (max. 8388607)
+ 1398 compressed objects within 14 object streams
+ 155 named destinations out of 1000 (max. 500000)
+ 36600 words of extra memory for PDF output out of 42996 (max. 10000000)
 

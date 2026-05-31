@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{times}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{flushright}
+\textbf{Yan Xiao} (Corresponding Author)\\
+Research Center of Satellite Technology\\
+State Key Laboratory of Micro-Spacecraft Rapid Design\\
+and Intelligent Cluster\\
+Harbin Institute of Technology\\
+Harbin 150001, China\\
+\href{mailto:xiaoy@hit.edu.cn}{xiaoy@hit.edu.cn}\\[6pt]
+April 13, 2026
+\end{flushright}
+
+\bigskip
+
+Editor-in-Chief\\
+\textit{Journal of Guidance, Control, and Dynamics}\\
+American Institute of Aeronautics and Astronautics
+
+\bigskip
+
+Dear Editor,
+
+We submit the manuscript entitled \textbf{``Exact Prescribed-Time
+Prescribed-Accuracy Control for Spacecraft under Dual Reaction Wheel
+Saturation''} for consideration in the \textit{Journal of Guidance,
+Control, and Dynamics}.
+
+Modern multi-spacecraft missions, including on-orbit servicing, autonomous
+docking, and cooperative reconfiguration, demand strict timeline compliance.
+\textbf{Attitude maneuvers must reach the target state at exactly the
+prescribed terminal time}, as failure to do so disrupts mission sequencing and
+leads to mission failure. Yet existing prescribed-time controllers are
+conservative and cannot guarantee exact-time arrival. Additionally, \textbf{both torque and
+angular-momentum saturation of the reaction wheels must be simultaneously
+satisfied throughout the maneuver}. Angular-momentum saturation is largely neglected in the literature,
+and the minimum feasible terminal time under dual saturation constraints
+remains uncharacterized, leaving parameter selection arbitrary.
+
+To address these gaps, this paper presents a two-loop solution for exact
+prescribed-time prescribed-accuracy control under dual reaction-wheel
+saturation. The outer-loop planner generates a reference that reaches
+the target attitude exactly at the user-specified terminal time while satisfying
+torque and momentum limits, and the inner-loop nonsingular controller guarantees
+prescribed tracking accuracy under uncertainties and disturbances. A
+constructive parameter-synthesis rule determines the minimum feasible terminal
+time. Simulations verify exact-time convergence, prescribed-accuracy tracking,
+and strict dual-saturation compliance.
+
+We trust this work will be of interest to the \textit{JGCD} readership in
+spacecraft attitude guidance and control. This manuscript is original, not
+currently under review elsewhere, and has been approved by all co-authors,
+with no conflicts of interest to declare. Should you have any questions,
+please do not hesitate to contact the corresponding author at the e-mail
+address above. We thank the editor for their time and consideration.
+
+Yours sincerely,
+
+\bigskip\bigskip
+
+Zaihua Liu, Yan Xiao, Dong Ye, Haiyue Yang, and Zhaowei Sun
+
+\end{document}

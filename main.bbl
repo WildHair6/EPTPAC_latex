@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{34}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -43,10 +43,6 @@ Zhao, L., Yu, J., and Yu, H., \enquote{Adaptive Finite-Time Attitude Tracking Co
 Shi, X.-N., Zhou, Z.-G., and Zhou, D., \enquote{Finite-Time Attitude Trajectory Tracking Control of Rigid Spacecraft,} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~53, No.~6, 2017, pp. 2913--2923.
 \newblock \doi{10.1109/TAES.2017.2710398}.
 
-\bibitem[{Zhou(2020)}]{zhou_finite-time_2020}
-Zhou, B., \enquote{Finite-time stability analysis and stabilization by bounded linear time-varying feedback,} \emph{Automatica}, Vol. 121, 2020, p. 109191.
-\newblock \doi{10.1016/j.automatica.2020.109191}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109820303897}.
-
 \bibitem[{Polyakov(2012)}]{polyakov_nonlinear_2012}
 Polyakov, A., \enquote{Nonlinear {Feedback} {Design} for {Fixed}-{Time} {Stabilization} of {Linear} {Control} {Systems},} \emph{IEEE Transactions on Automatic Control}, Vol.~57, No.~8, 2012, pp. 2106--2110.
 \newblock \doi{10.1109/TAC.2011.2179869}, \urlprefix\url{https://ieeexplore.ieee.org/document/6104367/}.
@@ -75,13 +71,9 @@ Sánchez-Torres, J.~D., Gómez-Gutiérrez, D., López, E., and Loukianov, A.~G.,
 Xiao, Y., Wang, Y., Ye, D., and Sun, Z., \enquote{Predefined-time robust attitude tracking control of flexible spacecraft with continuous and nonsingular performance,} \emph{Aerospace Science and Technology}, Vol. 159, 2025{\natexlab{b}}, p. 110000.
 \newblock \doi{10.1016/j.ast.2025.110000}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S1270963825000720}.
 
-\bibitem[{Meng et~al.(2025)Meng, Zhu, Cui, and Qiao}]{meng_predefined-time_2025}
-Meng, Y., Zhu, Y., Cui, Y., and Qiao, J., \enquote{Predefined-{Time} {Enhanced} {Antidisturbance} {Attitude} {Control} for {Rigid}-{Liquid} {Coupled} {Launch} {Vehicles},} \emph{Journal of Guidance Control and Dynamics}, Vol.~48, No.~4, 2025, pp. 870--884.
-\newblock \doi{10.2514/1.G008397}, num Pages: 15 Place: Reston Publisher: Amer Inst Aeronautics Astronautics Web of Science ID: WOS:001403479000001.
-
-\bibitem[{Wang et~al.(2019)Wang, Song, Hill, and Krstic}]{wang_prescribed-time_2019}
-Wang, Y., Song, Y., Hill, D.~J., and Krstic, M., \enquote{Prescribed-{Time} {Consensus} and {Containment} {Control} of {Networked} {Multiagent} {Systems},} \emph{IEEE Transactions on Cybernetics}, Vol.~49, No.~4, 2019, pp. 1138--1147.
-\newblock \doi{10.1109/TCYB.2017.2788874}, \urlprefix\url{https://ieeexplore.ieee.org/document/8272410}.
+\bibitem[{Zhou(2020)}]{zhou_finite-time_2020}
+Zhou, B., \enquote{Finite-time stability analysis and stabilization by bounded linear time-varying feedback,} \emph{Automatica}, Vol. 121, 2020, p. 109191.
+\newblock \doi{10.1016/j.automatica.2020.109191}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109820303897}.
 
 \bibitem[{Cao et~al.(2022)Cao, Cao, and Song}]{cao_practical_2022}
 Cao, Y., Cao, J., and Song, Y., \enquote{Practical prescribed time tracking control over infinite time interval involving mismatched uncertainties and non-vanishing disturbances,} \emph{Automatica}, Vol. 136, 2022, p. 110050.
@@ -103,6 +95,18 @@ Xu, C., Wu, B., and Wang, D., \enquote{Distributed {Prescribed}-{Time} {Attitude
 Zhao, S., Zheng, J., Yi, F., Wang, X., and Zuo, Z., \enquote{Exponential {Predefined} {Time} {Trajectory} {Tracking} {Control} for {Fixed}-{Wing} {UAV} {With} {Input} {Saturation},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~60, No.~5, 2024, pp. 6406--6419.
 \newblock \doi{10.1109/TAES.2024.3402656}, \urlprefix\url{https://ieeexplore.ieee.org/document/10534850/}.
 
+\bibitem[{Wallsgrove and Akella(2005)}]{wallsgrove_globally_2005}
+Wallsgrove, R.~J., and Akella, M.~R., \enquote{Globally Stabilizing Saturated Attitude Control in the Presence of Bounded Unknown Disturbances,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~28, No.~5, 2005, pp. 957--963.
+\newblock \doi{10.2514/1.9980}.
+
+\bibitem[{Hu et~al.(2017)Hu, Tan, and Akella}]{hu_finite-time_2017}
+Hu, Q., Tan, X., and Akella, M.~R., \enquote{Finite-Time Fault-Tolerant Spacecraft Attitude Control with Torque Saturation,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~40, No.~10, 2017, pp. 2524--2537.
+\newblock \doi{10.2514/1.G002191}.
+
+\bibitem[{Miller and Akella(2024)}]{miller_guidance_2024}
+Miller, A.~J., and Akella, M.~R., \enquote{Guidance Templates for Spacecraft Attitude Maneuver Planning,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~47, No.~7, 2024, pp. 1470--1478.
+\newblock \doi{10.2514/1.G007862}.
+
 \bibitem[{Kobayashi et~al.(2017)Kobayashi, Shoji, and Yamada}]{kobayashi_optimal_2017}
 Kobayashi, H., Shoji, Y., and Yamada, K., \enquote{Optimal {Attitude} {Trajectory} of {Spacecraft} with {Pyramid}-{Type} {CMGs} {Using} a {Pseudo}-{Spectral} {Method},} \emph{AEROSPACE TECHNOLOGY JAPAN, THE JAPAN SOCIETY FOR AERONAUTICAL AND SPACE SCIENCES}, Vol.~16, No.~0, 2017, pp. 55--63.
 \newblock \doi{10.2322/astj.16.55}, \urlprefix\url{https://www.jstage.jst.go.jp/article/astj/16/0/16_JSASS-D-16-00034/_article/-char/ja/}.
@@ -118,14 +122,6 @@ Celani, F., and Lucarelli, D., \enquote{Spacecraft {Attitude} {Motion} {Planning
 \bibitem[{Fan et~al.(2024)Fan, Xu, Li, Zhu, Shang, Gao, and Gao}]{fan_polynomial_2024}
 Fan, Y., Xu, R., Li, Z., Zhu, S., Shang, H., Gao, A., and Gao, Y., \enquote{Polynomial Attitude Trajectory Planning for Spacecraft with Movable Parts Using Decoupled Strategy,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~47, No.~1, 2024, pp. 72--86.
 \newblock \doi{10.2514/1.G007645}, \urlprefix\url{https://doi.org/10.2514/1.G007645}.
-
-\bibitem[{Chai et~al.(2020)Chai, Tsourdos, Savvaris, Chai, Xia, and Chen}]{chai_six-dof_2020}
-Chai, R., Tsourdos, A., Savvaris, A., Chai, S., Xia, Y., and Chen, C. L.~P., \enquote{Six-{DOF} {Spacecraft} {Optimal} {Trajectory} {Planning} and {Real}-{Time} {Attitude} {Control}: {A} {Deep} {Neural} {Network}-{Based} {Approach},} \emph{IEEE Transactions on Neural Networks and Learning Systems}, Vol.~31, No.~11, 2020, pp. 5005--5013.
-\newblock \doi{10.1109/TNNLS.2019.2955400}, \urlprefix\url{https://ieeexplore.ieee.org/document/8939337}.
-
-\bibitem[{Gong et~al.(2021)Gong, Yan, Zhang, and Tang}]{gong_lyapunov-based_2021}
-Gong, P., Yan, Z., Zhang, W., and Tang, J., \enquote{Lyapunov-based model predictive control trajectory tracking for an autonomous underwater vehicle with external disturbances,} \emph{Ocean Engineering}, Vol. 232, 2021, p. 109010.
-\newblock \doi{10.1016/j.oceaneng.2021.109010}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0029801821004455}.
 
 \bibitem[{Mammarella et~al.(2019)Mammarella, Lee, Park, Capello, and Ghiglino}]{mammarella_attitude_2019}
 Mammarella, M., Lee, D.~Y., Park, H., Capello, E., and Ghiglino, P., \enquote{Attitude Control of a Small Spacecraft via Tube-Based Model Predictive Control,} \emph{Journal of Spacecraft and Rockets}, Vol.~56, No.~6, 2019, pp. 1585--1597.
