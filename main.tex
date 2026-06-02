@@ -241,9 +241,9 @@ where $0<\eta<1$ and $T_p>0$. Then the origin is prescribed-time stable.
 \label{section:MAINRES}
 
 \subsection{Outer-Loop Trajectory Planning Under Dual Saturation}
+\label{sec:outer}
 
-A reference trajectory $(\boldsymbol{\sigma}_d(t),\boldsymbol{\omega}_d(t))$ is generated offline by solving the following
-constrained OCP over $[0,T_f]$, which embeds the kinematics, dynamics, and dual-saturation constraints:
+A reference trajectory $(\boldsymbol{\sigma}_d(t),\boldsymbol{\omega}_d(t))$ is generated offline by solving a constrained optimal control problem (OCP) over $[0,T_f]$. The OCP is formulated as follows:
 \begin{equation}
 \begin{aligned}
 \min_{\boldsymbol{\tau}_{\mathrm{ref}}(\cdot)} \quad &
@@ -262,16 +262,16 @@ constrained OCP over $[0,T_f]$, which embeds the kinematics, dynamics, and dual-
 \end{equation}
 where $\lambda>0$ balances control effort against smoothness,
 and $\gamma_u,\gamma_h\in(0,1)$ are safety margins reserved for the inner loop.
-The OCP is solved via GPOPS-II \cite{patterson_gpops-ii_2014} with piecewise-linear interpolation,
-yielding a reference trajectory with bounded angular velocity and acceleration:
-there exist constants $\omega_{d,\max}>0$ and $\dot{\omega}_{d,\max}>0$ such that
+The OCP is solved via GPOPS-II \cite{patterson_gpops-ii_2014}.
+The resulting discrete nodal solution is reconstructed as a continuous-time reference via piecewise-linear interpolation.
+The reference trajectory has bounded angular velocity and angular acceleration; specifically, there exist constants $\omega_{d,\max}>0$ and $\dot{\omega}_{d,\max}>0$ such that
 $\|\boldsymbol{\omega}_d(t)\| \le \omega_{d,\max}$ and
 $\|\dot{\boldsymbol{\omega}}_d(t)\| \le \dot{\omega}_{d,\max}$ for all $t\in[0,T_f]$.
 
-This decoupling of constrained planning from tracking control enables exact terminal-time convergence
-and dual-saturation compliance without the conservatism of existing PTC methods.
+The outer loop thus provides a reference trajectory that reaches the target state exactly at $T_f$, serving as the nominal reference for the inner-loop tracking controller.
 
 \subsection{Inner-Loop Nonsingular Prescribed-Time Prescribed-Accuracy Tracking Control}
+\label{sec:inner}
 
 To accommodate the lumped perturbation, we extend Lemma~\ref{lem:PT} to the
 following practical prescribed-time prescribed-accuracy form.
@@ -298,8 +298,7 @@ By Lemma~\ref{lem:PT}, any trajectory with $V(0)>V^*_\delta$ enters $\{V\le V^*_
 At $V=V^*_\delta$, $\dot V\le -K(V^{1-\frac{\eta}{2}}+V^{1+\frac{\eta}{2}})$ ensures forward invariance.
 \end{proof}
 
-Define the sliding mode surface
-
+The sliding mode surface is defined as
 \begin{equation}
 \boldsymbol{s} = \boldsymbol{\omega}_e + \boldsymbol{Q}(\boldsymbol{\sigma}_e)
 \label{eq:slide_surface}
@@ -310,7 +309,7 @@ with the nonlinear coupling term $\boldsymbol{Q}(\boldsymbol{\sigma}_e)$ defined
 = c_1 k_1 \frac{\boldsymbol{\sigma}_e}{(\|\boldsymbol{\sigma}_e\| + \varepsilon_1)^\eta}
 + c_1 k_2 \frac{\boldsymbol{\sigma}_e}{(\|\boldsymbol{\sigma}_e\| + \varepsilon_1)^{-\eta}}
 \end{equation}
-where $0 < \eta < 1$, $\varepsilon_1 > 0$, $T_{p1} > 0$, and $\alpha_1 > 0$ are design parameters. The gains are given by
+where $\varepsilon_1 > 0$, $T_{p1} > 0$, and $\alpha_1 > 0$ are design parameters, and $\eta$ is as in Lemma~\ref{lem:PT}. The gains are given by
 \[
 c_1 = \frac{\pi}{\eta T_{p1}}, \quad
 k_1 = (1 + \alpha_1) 2^{1 + \frac{3}{2}\eta}, \quad
@@ -327,7 +326,7 @@ Then the attitude error $\boldsymbol{\sigma}_e(t)$ converges to the bounded set
 \end{equation}
 within $T_{p1}$ and remains therein for all $t\ge T_{p1}$, where
 $\varepsilon_{\delta_1} = \sqrt{2}\,( \delta_1 \eta T_{p1} / (\pi \alpha_1) )^{1/(1-\eta)}$
-and $\delta_1 = \sqrt{2}\,s_{\max}/2$.
+and $\delta_1 = s_{\max}/\sqrt{2}$.
 \end{theorem}
 
 
@@ -364,7 +363,7 @@ The regularized set $\{\|\boldsymbol{\sigma}_e\|\le\varepsilon_1\}$ is positivel
 Thus $\|\boldsymbol{\sigma}_e(t)\| \le \max\{\varepsilon_{\delta_1},\varepsilon_1\}$ for all $t\ge T_{p1}$.
 \end{proof}
 
-The inner-loop torque command is designed as
+To drive the sliding variable $\boldsymbol{s}$ to zero, the inner-loop control law is designed as
 \begin{equation}
 \boldsymbol{\tau} = -\boldsymbol{f}(t) - \boldsymbol{J}_0\dot{\boldsymbol{Q}}(\boldsymbol{\sigma}_e) + \boldsymbol{\tau}_c
 \label{eq:tau_law_feasibility}
@@ -384,8 +383,7 @@ k_4 = 2^{-1 - \frac{\eta}{2}} \lambda_{\max}(\boldsymbol{J}_0)^{1 + \frac{\eta}{
 \label{eq:gains_c2k3k4}
 \end{equation}
 where $T_{p2}>0$ and $\alpha_2>0$ are design parameters.
-Substituting \eqref{eq:tau_law_feasibility} into \eqref{eq:simplified_error_dynamics} and
-noting $\dot{\boldsymbol{\omega}}_e = \dot{\boldsymbol{s}} - \dot{\boldsymbol{Q}}(\boldsymbol{\sigma}_e)$ gives the closed-loop dynamics
+Substituting \eqref{eq:tau_law_feasibility} into \eqref{eq:simplified_error_dynamics}, together with the identity $\dot{\boldsymbol{\omega}}_e = \dot{\boldsymbol{s}} - \dot{\boldsymbol{Q}}(\boldsymbol{\sigma}_e)$, yields the closed-loop sliding dynamics
 \begin{equation}
 \boldsymbol{J}_0 \dot{\boldsymbol{s}} = \boldsymbol{\tau}_c + \boldsymbol{T}_d(t)
 \label{eqL:closed_dynamics_s}
@@ -440,7 +438,7 @@ The set $\{\|\boldsymbol{s}\|\le\varepsilon_2\}$ is positively invariant.
 Thus $\|\boldsymbol{s}(t)\| \le \max\{\varepsilon_{\delta_2},\varepsilon_2\}$ for all $t\ge T_{p2}$.
 \end{proof}
 
-By appropriately selecting $\alpha_1,\alpha_2>0$, the designer can ensure
+By appropriately selecting $\alpha_1,\alpha_2>0$, one can guarantee that
 $\varepsilon_{\delta_1}<\varepsilon_1$ and $\varepsilon_{\delta_2}<\varepsilon_2$,
 so that the user-specified tolerances $\varepsilon_1,\varepsilon_2$ govern the ultimate convergence bounds.
 Theorems~\ref{thm:attitude_convergence} and \ref{thm:sliding_convergence} jointly ensure that the tracking errors
