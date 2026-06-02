@@ -48,30 +48,32 @@ complicated by dual saturation, namely, torque saturation and
 momentum saturation.
 Stringent terminal-time requirements drive high torques that accelerate
 momentum accumulation.
-Once momentum saturation occurs, the spacecraft risks losing control authority.
+Once momentum saturates, the spacecraft risks losing control authority.
 
-Conventional finite-time and fixed-time control methods
+Motivated by the demand for rapid convergence, finite-time control (FTC) and
+fixed-time control (FxTC)
 \cite{hong_finite-time_2006,zhao_adaptive_2018,shi_finite-time_2017,
 polyakov_nonlinear_2012,polyakov_finite-time_2015,delValleFixtime2025}
-cannot prescribe $T_f$ directly.
+have been extensively investigated, yet neither can prescribe $T_f$ directly.
 Prescribed-time control (PTC)
 \cite{sanchez-torres_predefined-time_2015,song_time-varying_2017}
-addresses this through time-dependent scaling functions
+addresses this limitation through time-dependent scaling functions
 \cite{sanchez-torres_class_2018,xiao_predefined-time_2025}
 or time-varying high-gain feedback
 \cite{zhou_finite-time_2020,cao_practical_2022,xiao_scaling_2025}.
-However, existing PTC strategies remain conservative;
-for instance, in Ref.~\cite{xu_distributed_2024}, convergence occurs at $250~\mathrm{s}$ for $T_f=500~\mathrm{s}$.
-This premature settling forces an idle phase and the aggressive initial effort
-accelerates momentum accumulation.
+However, existing PTC strategies remain conservative.
+For instance, in Ref.~\cite{xu_distributed_2024}, convergence occurs at
+$250~\mathrm{s}$ for $T_f=500~\mathrm{s}$.
+Such premature convergence risks mission failure through observation
+interruption or collision in time-critical missions.
 
-Beyond conservatism, the physical realizability of PTC under dual saturation
-has received little attention and entails two consequences.
+Beyond conservatism, the dual saturation constraint has been rarely addressed
+in existing PTC strategies, and its neglect entails two consequences.
 First, although torque saturation has been considered in certain PTC strategies
 \cite{sun_attitude_2024,xu_distributed_2022,zhao_exponential_2024},
-angular-momentum saturation is seldom treated as a coupled constraint;
-reaching the momentum limit causes complete loss of control authority
-regardless of whether torque commands remain within bounds.
+momentum saturation is seldom treated as a coupled constraint.
+Once momentum saturation occurs on an axis, the wheel cannot generate torque
+in that direction, compromising three-axis controllability.
 Second, $T_f$ is typically treated as a free parameter
 without accounting for the minimum feasible maneuver time $T_{f,\min}$
 imposed by dual saturation.
@@ -79,37 +81,40 @@ Without $T_f \ge T_{f,\min}$,
 prescribed-time convergence is physically unrealizable,
 rendering the notion of prescribed time meaningless under practical constraints.
 
-Prior constrained attitude control methods
-\cite{wallsgrove_globally_2005,hu_finite-time_2017,miller_guidance_2024}
-provide torque-saturation guarantees but do not address angular-momentum limits.
-Optimization-based planning
-\cite{kobayashi_optimal_2017,spiller_inverse_2018,celani_spacecraft_2020,fan_polynomial_2024}
-is inherently open-loop, and model predictive control
+While dual-saturation constraints can be explicitly incorporated through
+optimization-based trajectory planning
+\cite{kobayashi_optimal_2017,spiller_inverse_2018,celani_spacecraft_2020,fan_polynomial_2024},
+these methods are open-loop and therefore susceptible to unmodeled disturbances.
+Model predictive control (MPC)
 \cite{mammarella_attitude_2019,yang_attitude_2023}
-ensures only asymptotic convergence without angular-momentum constraints.
-No existing approach simultaneously achieves exact terminal-time convergence,
-prescribed accuracy, and dual-saturation compliance.
-A systematic solution remains to be developed.
+addresses disturbances through feedback, but the momentum saturation is a constraint of integral type,
+reducing the problem to a full-horizon optimization and rendering MPC ill-suited in this context.
+Approaches that combine trajectory planning with closed-loop tracking control
+\cite{wallsgrove_globally_2005,hu_finite-time_2017,miller_guidance_2024}
+offer robustness against perturbations, yet none provides a rigorous guarantee on
+the prescribed terminal time or tracking accuracy.
+Achieving exact prescribed-time convergence while rigorously accounting for
+dual-saturation constraints therefore remains an open problem.
 
-Motivated by the above analysis, this note proposes an exact prescribed-time
+To address this problem, this note proposes an exact prescribed-time
 prescribed-accuracy control (EPTPAC) framework with a two-loop architecture.
-The outer loop generates a dual-saturation-feasible reference trajectory reaching the target
-precisely at $T_f$ via constrained optimal control.
+The outer loop solves a constrained optimal control problem to generate
+a feasible reference trajectory that satisfies the dual-saturation constraints and reaches the target precisely at $T_f$.
 The inner loop employs a nonsingular prescribed-time controller that drives tracking errors
 to within a user-specified accuracy before $T_f$, despite inertia uncertainties and disturbances.
-A parameter-synthesis methodology coordinates the two loops,
-ensuring closed-loop feasibility under dual saturation.
+A parameter-synthesis methodology is developed in which most controller parameters
+are determined directly from mission inputs, with only three remaining as free design choices,
+coordinating the two loops to ensure closed-loop prescribed-accuracy performance.
 
 The main contributions of this note are as follows:
 \begin{enumerate}
-  \item Exact terminal-time convergence with prescribed accuracy is achieved
-  without premature settling.
-  \item Rigorous axis-by-axis feasibility conditions are derived to guarantee strict compliance
-  with dual-saturation limits. Moreover, a minimum feasible maneuver time $T_{f,\min}$ is
-  quantified to prevent physically unachievable prescriptions.
-  \item A modular two-loop architecture that decouples constraint enforcement
-  from tracking performance is established, coordinated by a parameter-synthesis
-  methodology requiring only three free designer choices.
+  \item Exact convergence to within a prescribed accuracy at $T_f$ is achieved
+  through a two-loop architecture, despite inertia uncertainty and external disturbances.
+  \item Rigorous axis-by-axis feasibility conditions are derived to guarantee satisfaction
+  of the dual-saturation limits, and a minimum feasible maneuver time $T_{f,\min}$ is
+  analytically quantified to ensure the prescribed terminal time is physically realizable.
+  \item A parameter-synthesis methodology is developed to coordinate the two-loop
+  architecture with only three free design parameters.
 \end{enumerate}
 
 
@@ -139,7 +144,8 @@ The attitude kinematics and dynamics of a rigid spacecraft actuated by reaction 
 \end{equation}
 where $\boldsymbol{\sigma}\in\mathbb{R}^3$ (MRPs) and $\boldsymbol{\omega}\in\mathbb{R}^3$ denote the attitude and body angular velocity,
 $\boldsymbol{J}_0\in\mathbb{R}^{3\times 3}$ is the nominal inertia with uncertainty $\Delta\boldsymbol{J}$,
-$\boldsymbol{h}_w\in\mathbb{R}^3$ and $\boldsymbol{\tau}\in\mathbb{R}^3$ are the wheel angular momentum and control torque,
+$\boldsymbol{J}\triangleq\boldsymbol{J}_0+\Delta\boldsymbol{J}$ is the total inertia,
+$\boldsymbol{h}_w\in\mathbb{R}^3$ and $\boldsymbol{\tau}\in\mathbb{R}^3$ are the wheel momentum and control torque,
 and $\boldsymbol{d}\in\mathbb{R}^3$ is the external disturbance.
 
 A three-axis wheel cluster aligned with the body axes is subject to dual-saturation constraints
@@ -185,7 +191,7 @@ $\boldsymbol{T}_d = -\Delta \boldsymbol{J} \dot{\boldsymbol{\omega}}_e - \boldsy
 \boldsymbol{\omega}_d - \boldsymbol{R}(\boldsymbol{\sigma}_e) \dot{\boldsymbol{\omega}}_d) + \boldsymbol{d}$
 is the lumped perturbation.
 
-The following assumptions are adopted throughout this work.
+The following assumptions are adopted throughout this note.
 
 \begin{assumption}\label{ass:feasible_Tf}
 The prescribed terminal time satisfies
@@ -206,7 +212,7 @@ The lumped perturbation satisfies
 \end{assumption}
 
 \begin{assumption}\label{ass:H_budget}
-Let $\boldsymbol{H}=\boldsymbol{J}\boldsymbol{\omega}+\boldsymbol{h}_w$ be the total angular momentum and $\boldsymbol{H}_0=\boldsymbol{H}(0)$.
+Let $\boldsymbol{H}=\boldsymbol{J}\boldsymbol{\omega}+\boldsymbol{h}_w$ be the total momentum and $\boldsymbol{H}_0=\boldsymbol{H}(0)$.
 The momentum drift satisfies
 \begin{equation}
 \|\boldsymbol{H}(t)-\boldsymbol{H}_0\| \le H_{\max}, \qquad \forall t \in [0, T_f]
@@ -217,9 +223,9 @@ where $H_{\max} > 0$ is a known bound.
 
 \subsection{Preliminaries}
 Consider $\dot{\boldsymbol{x}} = \boldsymbol{g}(\boldsymbol{x},t)$ with $\boldsymbol{g}(\boldsymbol{0},t)\equiv\boldsymbol{0}$ and $\boldsymbol{g}$ locally Lipschitz in $\boldsymbol{x}$.
-The origin is prescribed-time stable if $\boldsymbol{x}(t)=\boldsymbol{0}$ for all $t\ge T_p$
+The origin is prescribed-time stable if $\boldsymbol{x}(t)=\boldsymbol{0}$ for all $t\ge T_p$ and any $\boldsymbol{x}(0)$
 \cite{sanchez-torres_predefined-time_2015},
-and prescribed-time prescribed-accuracy stable if $\|\boldsymbol{x}(t)\|\le\varepsilon$ for all $t\ge T_p$
+and prescribed-time prescribed-accuracy stable if $\|\boldsymbol{x}(t)\|\le\varepsilon$ for all $t\ge T_p$ and any $\boldsymbol{x}(0)$
 \cite{xiao_scaling-transformation-based_2025}.
 
 \begin{lemma}[\cite{anguiano-gijon_predefined-time_2019}]\label{lem:PT}
@@ -230,28 +236,6 @@ Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ such that
 \end{equation}
 where $0<\eta<1$ and $T_p>0$. Then the origin is prescribed-time stable.
 \end{lemma}
-
-\begin{theorem}\label{thm:practical_PT}
-Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ such that
-\begin{equation}
-\dot V \le \delta V^{\tfrac{1}{2}} - \frac{\pi}{\eta T_p}\left[(1+\alpha) V^{1-\tfrac{\eta}{2}}+V^{1+\tfrac{\eta}{2}}\right]
-\label{eq:theorem1_condition}
-\end{equation}
-where $\delta>0$, $\alpha>0$, $0<\eta<1$, and $T_p>0$. Then the trajectory enters
-$V\le V^*_\delta$ with $V^*_\delta = \bigl(\frac{\delta\,\eta\,T_p}{\pi\,\alpha}\bigr)^{\frac{2}{1-\eta}}$
-within $T_p$ and remains therein.
-\end{theorem}
-
-\begin{proof}
-Let $K = \frac{\pi}{\eta T_p}$. From~\eqref{eq:theorem1_condition},
-$\dot V \le \delta V^{1/2} - K[ (1+\alpha)V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} ]$.
-At $V=V^*_\delta$, $\delta V^{1/2} = K\alpha V^{1-\eta/2}$ holds by definition.
-For all $V\ge V^*_\delta$, since $V^{-(1-\eta)/2}$ is monotonically decreasing,
-$\delta V^{1/2} \le K\alpha V^{1-\eta/2}$, yielding
-$\dot V \le -K( V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} )$ for all $V\ge V^*_\delta$.
-By Lemma~\ref{lem:PT}, any trajectory with $V(0)>V^*_\delta$ enters $\{V\le V^*_\delta\}$ within $T_p$.
-At $V=V^*_\delta$, $\dot V\le -K(V^{1-\frac{\eta}{2}}+V^{1+\frac{\eta}{2}})$ ensures forward invariance.
-\end{proof}
 
 \section{Main Results}
 \label{section:MAINRES}
@@ -288,6 +272,31 @@ This decoupling of constrained planning from tracking control enables exact term
 and dual-saturation compliance without the conservatism of existing PTC methods.
 
 \subsection{Inner-Loop Nonsingular Prescribed-Time Prescribed-Accuracy Tracking Control}
+
+To accommodate the lumped perturbation, we extend Lemma~\ref{lem:PT} to the
+following practical prescribed-time prescribed-accuracy form.
+
+\begin{theorem}\label{thm:practical_PT}
+Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ such that
+\begin{equation}
+\dot V \le \delta V^{\tfrac{1}{2}} - \frac{\pi}{\eta T_p}\left[(1+\alpha) V^{1-\tfrac{\eta}{2}}+V^{1+\tfrac{\eta}{2}}\right]
+\label{eq:theorem1_condition}
+\end{equation}
+where $\delta>0$, $\alpha>0$, $0<\eta<1$, and $T_p>0$. Then the trajectory enters
+$V\le V^*_\delta$ with $V^*_\delta = \bigl(\frac{\delta\,\eta\,T_p}{\pi\,\alpha}\bigr)^{\frac{2}{1-\eta}}$
+within $T_p$ and remains therein.
+\end{theorem}
+
+\begin{proof}
+Let $K = \frac{\pi}{\eta T_p}$. From~\eqref{eq:theorem1_condition},
+$\dot V \le \delta V^{1/2} - K[ (1+\alpha)V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} ]$.
+At $V=V^*_\delta$, $\delta V^{1/2} = K\alpha V^{1-\eta/2}$ holds by definition.
+For all $V\ge V^*_\delta$, since $V^{-(1-\eta)/2}$ is monotonically decreasing,
+$\delta V^{1/2} \le K\alpha V^{1-\eta/2}$, yielding
+$\dot V \le -K( V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} )$ for all $V\ge V^*_\delta$.
+By Lemma~\ref{lem:PT}, any trajectory with $V(0)>V^*_\delta$ enters $\{V\le V^*_\delta\}$ within $T_p$.
+At $V=V^*_\delta$, $\dot V\le -K(V^{1-\frac{\eta}{2}}+V^{1+\frac{\eta}{2}})$ ensures forward invariance.
+\end{proof}
 
 Define the sliding mode surface
 
@@ -556,7 +565,7 @@ H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsi
 \label{eq:thm5_axis_condition}
 \end{equation}
 where $\bar Q$ is defined in \eqref{eq:omegae_barQ}, $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
-then the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
+then the wheel momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
 \end{theorem}
 
 \begin{proof}
@@ -581,7 +590,7 @@ applying the triangle inequality to each axis $i$ yields
   &\le (1 - \gamma_h) h_{w,i,\max} + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}
 \end{align}
 
-Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel angular momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
+Therefore, if \eqref{eq:thm5_axis_condition} holds, the wheel momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
 \end{proof}
 
 
@@ -885,7 +894,7 @@ This scenario examines the consequences when physical constraints are violated.
 Under torque-only saturation with $T_f$ reduced to $150~\si{s}$,
 Ref.~\cite{xu_distributed_2022} loses prescribed-time convergence entirely, lagging until $230~\si{s}$,
 because its high-gain mechanism does not account for the physical feasibility limit $T_{f,\min}$.
-Introducing the additional angular-momentum constraint ($h_{w,i,\max}=4.0~\si{kg\cdot m^2/s}$) with $T_f=300~\si{s}$
+Introducing the additional momentum constraint ($h_{w,i,\max}=4.0~\si{kg\cdot m^2/s}$) with $T_f=300~\si{s}$
 further exposes the vulnerability.
 
 \begin{figure}[ht]
@@ -896,14 +905,14 @@ further exposes the vulnerability.
     \\
     \subfloat[Control torque]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0.pdf}\label{fig:tau_dual}}
     \hfill
-    \subfloat[Wheel angular momentum]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
+    \subfloat[Wheel momentum]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
     
     \caption{Case 3.2: Performance under dual saturation}
     \label{fig:case4_2_comparison}
 \end{figure}
 
 As shown in Fig.~\ref{fig:case4_2_comparison}, Ref.~\cite{xu_distributed_2022}
-neglects angular-momentum constraints and commands impulsive torques, rapidly saturating the wheels.
+neglects momentum constraints and commands impulsive torques, rapidly saturating the wheels.
 The resulting loss of control authority leads to uncontrolled drift and severely delayed convergence at $410~\si{s}$,
 far exceeding the prescribed $300~\si{s}$.
 In contrast, EPTPAC strategically modulates the torque profile to prevent momentum saturation,
@@ -953,7 +962,7 @@ T_{f,\min}\approx
 \section{Bound on the Feedforward Mismatch}
 \label{app:Deltaf_bound}
 
-The reference angular momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$,
+The reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$,
 generated under disturbance-free dynamics from $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$,
 satisfies $\|\boldsymbol{H}_d(t)\|=H_0$ and $\|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\|\le 2H_0$.
 The reference torque is $\boldsymbol{\tau}_{\mathrm{ref}} = \boldsymbol{J}_0\dot{\boldsymbol{\omega}}_d + \boldsymbol{\omega}_d^{\times}\boldsymbol{H}_d$.
