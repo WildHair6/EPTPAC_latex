@@ -169,7 +169,8 @@ The tracking errors $\boldsymbol{\sigma}_e,\boldsymbol{\omega}_e$ are defined as
 \end{equation}
 where $\boldsymbol{R}(\boldsymbol{\sigma}_e) = \boldsymbol{I}_3 + [\,8{\boldsymbol{\sigma}_e}^{\times}{\boldsymbol{\sigma}_e}^{\times}
 - 4(1-\boldsymbol{\sigma}_e^\top\boldsymbol{\sigma}_e){\boldsymbol{\sigma}_e}^{\times}\,]/(1+\boldsymbol{\sigma}_e^\top\boldsymbol{\sigma}_e)^2$
-is the direction cosine matrix.
+is the direction cosine matrix. By the MRP shadow set property,
+$\|\boldsymbol{\sigma}_e\|<1$ holds.
 
 The error kinematics and dynamics take the form
 \begin{equation}
@@ -189,7 +190,8 @@ is the computable feedforward term, and
 $\boldsymbol{T}_d = -\Delta \boldsymbol{J} \dot{\boldsymbol{\omega}}_e - \boldsymbol{\omega}^\times \Delta \boldsymbol{J}
 \boldsymbol{\omega} + \Delta \boldsymbol{J} (\boldsymbol{\omega}_e^\times \boldsymbol{R}(\boldsymbol{\sigma}_e)
 \boldsymbol{\omega}_d - \boldsymbol{R}(\boldsymbol{\sigma}_e) \dot{\boldsymbol{\omega}}_d) + \boldsymbol{d}$
-is the lumped perturbation.
+is the lumped perturbation. From $\|\boldsymbol{\sigma}_e\|<1$, one obtains
+$\|\boldsymbol{G}(\boldsymbol{\sigma}_e)\| = (1+\|\boldsymbol{\sigma}_e\|^2)/4 < \tfrac{1}{2}$.
 
 The following assumptions are adopted throughout this note.
 
@@ -262,13 +264,12 @@ A reference trajectory $(\boldsymbol{\sigma}_d(t),\boldsymbol{\omega}_d(t))$ is 
 \end{equation}
 where $\lambda>0$ balances control effort against smoothness,
 and $\gamma_u,\gamma_h\in(0,1)$ are safety margins reserved for the inner loop.
-The OCP is solved via GPOPS-II \cite{patterson_gpops-ii_2014}.
-The resulting discrete nodal solution is reconstructed as a continuous-time reference via piecewise-linear interpolation.
-The reference trajectory has bounded angular velocity and angular acceleration; specifically, there exist constants $\omega_{d,\max}>0$ and $\dot{\omega}_{d,\max}>0$ such that
+The OCP is solved via GPOPS-II \cite{patterson_gpops-ii_2014}, and the resulting discrete nodal solution is reconstructed as a continuous-time reference through piecewise-linear interpolation.
+This reference trajectory has bounded angular velocity and angular acceleration. Specifically, there exist constants $\omega_{d,\max}>0$ and $\dot{\omega}_{d,\max}>0$ such that
 $\|\boldsymbol{\omega}_d(t)\| \le \omega_{d,\max}$ and
 $\|\dot{\boldsymbol{\omega}}_d(t)\| \le \dot{\omega}_{d,\max}$ for all $t\in[0,T_f]$.
 
-The outer loop thus provides a reference trajectory that reaches the target state exactly at $T_f$, serving as the nominal reference for the inner-loop tracking controller.
+By construction, the outer loop provides a reference trajectory that reaches the target state exactly at $T_f$, thereby serving as the nominal reference for the inner-loop tracking controller.
 
 \subsection{Inner-Loop Nonsingular Prescribed-Time Prescribed-Accuracy Tracking Control}
 \label{sec:inner}
@@ -309,7 +310,7 @@ with the nonlinear coupling term $\boldsymbol{Q}(\boldsymbol{\sigma}_e)$ defined
 = c_1 k_1 \frac{\boldsymbol{\sigma}_e}{(\|\boldsymbol{\sigma}_e\| + \varepsilon_1)^\eta}
 + c_1 k_2 \frac{\boldsymbol{\sigma}_e}{(\|\boldsymbol{\sigma}_e\| + \varepsilon_1)^{-\eta}}
 \end{equation}
-where $\varepsilon_1 > 0$, $T_{p1} > 0$, and $\alpha_1 > 0$ are design parameters, and $\eta$ is as in Lemma~\ref{lem:PT}. The gains are given by
+where $\varepsilon_1 > 0$, $T_{p1} > 0$, $\alpha_1 > 0$, and $\eta\in(0,1)$ are design parameters. The regularization $\varepsilon_1$ in the denominator ensures that $\boldsymbol{Q}(\boldsymbol{\sigma}_e)$ remains nonsingular for all $\boldsymbol{\sigma}_e\in\mathbb{R}^3$. The gains are given by
 \[
 c_1 = \frac{\pi}{\eta T_{p1}}, \quad
 k_1 = (1 + \alpha_1) 2^{1 + \frac{3}{2}\eta}, \quad
@@ -340,8 +341,16 @@ Differentiating along \eqref{eq:mrp_error_kinematics} and substituting $\boldsym
 \dot{V}_1 \le \|\boldsymbol{G}(\boldsymbol{\sigma}_e)\|\,\|\boldsymbol{\sigma}_e\|\,s_{\max}
 - \boldsymbol{\sigma}_e^\top \boldsymbol{G}(\boldsymbol{\sigma}_e) \boldsymbol{Q}(\boldsymbol{\sigma}_e)
 \end{equation}
-For $\|\boldsymbol{\sigma}_e\| \ge \varepsilon_1$, invoking $\|\boldsymbol{G}(\boldsymbol{\sigma}_e)\| < \tfrac{1}{2}$ (which holds for $\|\boldsymbol{\sigma}_e\|<1$) and the inequality
-$\|\boldsymbol{x}\|^2/(\|\boldsymbol{x}\|+\varepsilon)^\eta \ge \frac{1}{2^\eta} \|\boldsymbol{x}\|^{2-\eta}$,
+When $\|\boldsymbol{x}\|\ge\varepsilon$, the following norm inequalities hold:
+\begin{equation}
+\frac{\|\boldsymbol{x}\|^2}{(\|\boldsymbol{x}\|+\varepsilon)^\eta} \ge \frac{1}{2^\eta} \|\boldsymbol{x}\|^{2-\eta},
+\qquad
+\|\boldsymbol{x}\|^2(\|\boldsymbol{x}\|+\varepsilon)^\eta \ge \|\boldsymbol{x}\|^{2+\eta}
+\label{eq:norm_inequalities}
+\end{equation}
+For $\|\boldsymbol{\sigma}_e\| \ge \varepsilon_1$, applying these
+together with $\|\boldsymbol{G}(\boldsymbol{\sigma}_e)\| < \tfrac{1}{2}$
+to the Lyapunov derivative gives
 \begin{align}
 \dot{V}_1
 &\le \frac{1}{2}\|\boldsymbol{\sigma}_e\| s_{\max}
@@ -358,24 +367,24 @@ Substituting the gains $c_1,k_1,k_2$ and simplifying,
 \end{equation}
 This satisfies the condition of Theorem~\ref{thm:practical_PT}. Hence $V_1$ enters $\{V_1 < V^*_{\delta_1}\}$ before $T_{p1}$ with
 $V^*_{\delta_1} = (\frac{\delta_1 \eta T_{p1}}{\pi \alpha_1})^{\frac{2}{1-\eta}}$.
-Converting back, $\|\boldsymbol{\sigma}_e(t)\| \le \sqrt{2V^*_{\delta_1}} = \varepsilon_{\delta_1}$.
+Expressing this bound in terms of $\|\boldsymbol{\sigma}_e\|$ yields $\|\boldsymbol{\sigma}_e(t)\| \le \sqrt{2V^*_{\delta_1}} = \varepsilon_{\delta_1}$.
 The regularized set $\{\|\boldsymbol{\sigma}_e\|\le\varepsilon_1\}$ is positively invariant.
 Thus $\|\boldsymbol{\sigma}_e(t)\| \le \max\{\varepsilon_{\delta_1},\varepsilon_1\}$ for all $t\ge T_{p1}$.
 \end{proof}
 
-To drive the sliding variable $\boldsymbol{s}$ to zero, the inner-loop control law is designed as
+To drive the sliding variable $\boldsymbol{s}$ to a bounded neighborhood of the origin, the inner-loop control law is designed as
 \begin{equation}
 \boldsymbol{\tau} = -\boldsymbol{f}(t) - \boldsymbol{J}_0\dot{\boldsymbol{Q}}(\boldsymbol{\sigma}_e) + \boldsymbol{\tau}_c
 \label{eq:tau_law_feasibility}
 \end{equation}
-with the prescribed-time stabilizing term
+where
 \begin{equation}
 \boldsymbol{\tau}_c = -c_2 \left[
 k_3 \frac{\boldsymbol{s}}{(\|\boldsymbol{s}\| + \varepsilon_2)^\eta}
 + k_4 \frac{\boldsymbol{s}}{(\|\boldsymbol{s}\| + \varepsilon_2)^{-\eta}}
 \right]
 \end{equation}
-and gains
+The regularization $\varepsilon_2>0$ in the denominator ensures that $\boldsymbol{\tau}_c$ remains nonsingular for all $\boldsymbol{s}\in\mathbb{R}^3$. The gains are given by
 \begin{equation}
 c_2 = \frac{\pi}{\eta T_{p2}}, \quad
 k_3 = (1 + \alpha_2) 2^{-1 + \frac{3}{2}\eta} \lambda_{\max}(\boldsymbol{J}_0)^{1 - \frac{\eta}{2}}, \quad
@@ -416,8 +425,7 @@ $\|\boldsymbol{s}\| \le \sqrt{2V_2/\lambda_{\min}(\boldsymbol{J}_0)}$,
 \le \boldsymbol{s}^\top\boldsymbol{\tau}_c + \delta_2 V_2^{1/2}
 \end{equation}
 with $\delta_2 = T_{d,\max}\sqrt{2/\lambda_{\min}(\boldsymbol{J}_0)}$.
-For $\|\boldsymbol{s}\| \ge \varepsilon_2$, applying the same norm inequality as in the proof of
-Theorem~\ref{thm:attitude_convergence} and substituting the gains \eqref{eq:gains_c2k3k4},
+For $\|\boldsymbol{s}\| \ge \varepsilon_2$, applying \eqref{eq:norm_inequalities} and substituting the gains \eqref{eq:gains_c2k3k4} yields
 \begin{align}
 \boldsymbol{s}^\top\boldsymbol{\tau}_c
 &\le -c_2\Big[k_3\frac{\|\boldsymbol{s}\|^2}{(\|\boldsymbol{s}\|+\varepsilon_2)^\eta}
@@ -433,20 +441,20 @@ Substituting this bound into the expression for $\dot{V}_2$,
 \end{equation}
 This satisfies the condition of Theorem~\ref{thm:practical_PT}. Hence $V_2$ enters $\{V_2\le V^*_{\delta_2}\}$ within $T_{p2}$ with
 $V^*_{\delta_2} = (\frac{\delta_2\eta T_{p2}}{\pi\alpha_2})^{\frac{2}{1-\eta}}$.
-Converting back, $\|\boldsymbol{s}(t)\| \le \sqrt{2V^*_{\delta_2}/\lambda_{\min}(\boldsymbol{J}_0)} = \varepsilon_{\delta_2}$.
+Rewriting this bound in terms of $\|\boldsymbol{s}\|$ gives $\|\boldsymbol{s}(t)\| \le \sqrt{2V^*_{\delta_2}/\lambda_{\min}(\boldsymbol{J}_0)} = \varepsilon_{\delta_2}$.
 The set $\{\|\boldsymbol{s}\|\le\varepsilon_2\}$ is positively invariant.
 Thus $\|\boldsymbol{s}(t)\| \le \max\{\varepsilon_{\delta_2},\varepsilon_2\}$ for all $t\ge T_{p2}$.
 \end{proof}
 
-By appropriately selecting $\alpha_1,\alpha_2>0$, one can guarantee that
-$\varepsilon_{\delta_1}<\varepsilon_1$ and $\varepsilon_{\delta_2}<\varepsilon_2$,
-so that the user-specified tolerances $\varepsilon_1,\varepsilon_2$ govern the ultimate convergence bounds.
-Theorems~\ref{thm:attitude_convergence} and \ref{thm:sliding_convergence} jointly ensure that the tracking errors
-converge in two stages. First, $\|\boldsymbol{s}(t)\|\le\max\{\varepsilon_{\delta_2},\varepsilon_2\}$
-for $t\ge T_{p2}$. Subsequently,
-$\|\boldsymbol{\sigma}_e(t)\|\le\max\{\varepsilon_{\delta_1},\varepsilon_1\}$ for $t\ge T_{p1}+T_{p2}$.
-Both bounds remain valid thereafter.
-Setting $T_{p1}+T_{p2}<T_f$ guarantees settling before the terminal time.
+Theorems~\ref{thm:attitude_convergence} and \ref{thm:sliding_convergence} jointly ensure two-stage convergence.
+Theorem~\ref{thm:sliding_convergence} guarantees $\|\boldsymbol{s}(t)\|\le\max\{\varepsilon_{\delta_2},\varepsilon_2\}$
+for all $t\ge T_{p2}$, satisfying $\|\boldsymbol{s}\|\le s_{\max}$ required by
+Theorem~\ref{thm:attitude_convergence}.
+The attitude error then converges to $\|\boldsymbol{\sigma}_e(t)\|\le\max\{\varepsilon_{\delta_1},\varepsilon_1\}$
+within $T_{p1}$ thereafter.
+By appropriately selecting $\{T_{p1},T_{p2}\}$ and $\{\alpha_1,\alpha_2\}$, one can ensure
+$T_{p1}+T_{p2}<T_f$, $\varepsilon_{\delta_1}<\varepsilon_1$, and $\varepsilon_{\delta_2}<\varepsilon_2$,
+guaranteeing convergence to the specified accuracy within the prescribed time $T_f$.
 
 The following theorems verify dual-saturation compliance under the condition
 \begin{equation}
@@ -454,9 +462,44 @@ The following theorems verify dual-saturation compliance under the condition
 \label{eq:error_bounds_condition}
 \end{equation}
 
+To bound the torque deviation caused by tracking errors and inertia uncertainty, the feedforward term $-\boldsymbol{f}$ in the control law \eqref{eq:tau_law_feasibility} is decomposed as $-\boldsymbol{f} = \boldsymbol{\tau}_{\mathrm{ref}} + \boldsymbol{\Delta}_f$, where $\boldsymbol{\tau}_{\mathrm{ref}}$ is the reference torque and $\boldsymbol{\Delta}_f$ captures the mismatch.
+The reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$, generated under disturbance-free dynamics from $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$, satisfies
+\begin{equation}
+\|\boldsymbol{H}_d(t)\| = H_0, \qquad \|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\| \le 2H_0 .
+\label{eq:Hd_bound}
+\end{equation}
+The reference torque is $\boldsymbol{\tau}_{\mathrm{ref}} = \boldsymbol{J}_0\dot{\boldsymbol{\omega}}_d + \boldsymbol{\omega}_d^{\times}\boldsymbol{H}_d$, and substituting $\boldsymbol{f}$ from~\eqref{eq:simplified_error_dynamics} into $\boldsymbol{\Delta}_f = -\boldsymbol{f} - \boldsymbol{\tau}_{\mathrm{ref}}$ yields
+\begin{align}
+\boldsymbol{\Delta}_f
+&= \boldsymbol{\omega}^{\times}(\boldsymbol{H}-\boldsymbol{H}_0)
++ \boldsymbol{\omega}_e^{\times}\boldsymbol{H}_0
++ [(\boldsymbol{R}-\boldsymbol{I})\boldsymbol{\omega}_d]^{\times}\boldsymbol{H}_0
++ \boldsymbol{\omega}_d^{\times}(\boldsymbol{H}_0-\boldsymbol{H}_d) \nonumber \\
+&\quad - \boldsymbol{\omega}^{\times}\Delta\boldsymbol{J}\boldsymbol{\omega}
+- \boldsymbol{J}_0\boldsymbol{\omega}_e^{\times}\boldsymbol{R}\boldsymbol{\omega}_d
++ \boldsymbol{J}_0(\boldsymbol{R}-\boldsymbol{I})\dot{\boldsymbol{\omega}}_d .
+\end{align}
+Invoking $\|\boldsymbol{H}-\boldsymbol{H}_0\|\le H_{\max}$ (Assumption~\ref{ass:H_budget}),
+$\|\boldsymbol{H}_0-\boldsymbol{H}_d\|\le 2H_0$ from \eqref{eq:Hd_bound},
+$\|\boldsymbol{I}-\boldsymbol{R}\|\le 4\|\boldsymbol{\sigma}_e\|$,
+and $\|\boldsymbol{a}^{\times}\boldsymbol{b}\|\le\|\boldsymbol{a}\|\|\boldsymbol{b}\|$,
+the component-wise bound is
+\begin{align}
+|\Delta_{f,i}|
+&\le (\|\boldsymbol{\omega}_e\|+\|\boldsymbol{\omega}_d\|)H_{\max}
++ \|\boldsymbol{\omega}_e\|H_0
++ 4\|\boldsymbol{\sigma}_e\|\|\boldsymbol{\omega}_d\|H_0
++ 2\|\boldsymbol{\omega}_d\|H_0 \nonumber \\
+&\quad + \hat\nu_i(\|\boldsymbol{\omega}_e\|+\|\boldsymbol{\omega}_d\|)^2
++ \mu_i\|\boldsymbol{\omega}_e\|\|\boldsymbol{\omega}_d\|
++ 4\mu_i\|\boldsymbol{\sigma}_e\|\|\dot{\boldsymbol{\omega}}_d\|
+\label{eq:Deltaf_bound}
+\end{align}
+where $\mu_i=\sum_{j=1}^{3}|(J_0)_{ij}|$, $\nu_i=\sum_{j=1}^{3}|(\Delta J)_{ij}|$, $\hat\nu_i=\sum_{j\ne i}\nu_j$.
+
 \begin{theorem}
 \label{thm:feasibility_axis_compact2}
-Consider the inner-loop control law \eqref{eq:tau_law_feasibility}. Under the condition \eqref{eq:error_bounds_condition}, 
+Consider the inner-loop control law \eqref{eq:tau_law_feasibility}. Under the condition \eqref{eq:error_bounds_condition},
 if the safety margin $\gamma_u$ and prescribed-accuracy set $(\varepsilon_1,\varepsilon_2)$ are selected such that
 \begin{equation}
 \Delta_{f,i,\max}(\varepsilon_1,\varepsilon_2)
@@ -465,15 +508,13 @@ if the safety margin $\gamma_u$ and prescribed-accuracy set $(\varepsilon_1,\var
 \le \gamma_u\,\tau_{i,\max},\qquad i=1,2,3
 \label{eq:thm4_axis_condition_compact2}
 \end{equation}
-where $\Delta_{f,i,\max}(\varepsilon_1,\varepsilon_2)$,
-$\overline{(J_0 \dot Q)}_i(\varepsilon_1,\varepsilon_2)$, and $\bar\tau_c(\varepsilon_2)$
-are explicit bounds derived in the proof,
+where the bounds are defined in the proof below,
 then the actuator torques satisfy $|\tau_i(t)|\le \tau_{i,\max}$ for all $i=1,2,3$.
 \end{theorem}
 
 \begin{proof}
-From the decomposition $-\boldsymbol{f}(t) = \boldsymbol{\tau}_{\mathrm{ref}}(t) + \boldsymbol{\Delta}_f(t)$
-(see Appendix~\ref{app:Deltaf_bound}), substituting~\eqref{eq:tau_law_feasibility} and applying the triangle inequality yields,
+Substituting the decomposition $-\boldsymbol{f} = \boldsymbol{\tau}_{\mathrm{ref}} + \boldsymbol{\Delta}_f$
+and the control law \eqref{eq:tau_law_feasibility} into the expression for $\boldsymbol{\tau}$, the triangle inequality gives,
 for each axis $i\in\{1,2,3\}$,
 \begin{equation}
 |\tau_i| \le |\tau_{\mathrm{ref},i}| + |\Delta_{f,i}| + |(\boldsymbol{J}_0\dot{\boldsymbol{Q}})_i| + |\tau_{c,i}|
@@ -493,7 +534,8 @@ where
 \end{equation}
 
 \emph{(i) Bound on $|\Delta_{f,i}|$.}
-From Appendix~\ref{app:Deltaf_bound} and applying the bounds~\eqref{eq:omegae_barQ} and the reference bounds from Section~\ref{section:MAINRES},
+Substituting the bounds~\eqref{eq:omegae_barQ} and the reference bounds from Section~\ref{section:MAINRES}
+into the feedforward mismatch decomposition~\eqref{eq:Deltaf_bound} yields,
 for each $i=1,2,3$,
 \begin{align}
 |\Delta_{f,i}(t)|\le \Delta_{f,i,\max}(\varepsilon_1,\varepsilon_2)
@@ -506,7 +548,7 @@ for each $i=1,2,3$,
 +4\mu_i\varepsilon_1\dot\omega_{d,\max}
 \label{eq:Deltaf_i_envelope_inproof}
 \end{align}
-where $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$, $\hat\nu_i = \sum_{j\ne i}\nu_j$,
+where $\mu_i$, $\nu_i$, $\hat\nu_i$ are as defined in~\eqref{eq:Deltaf_bound},
 $H_0 = \|\boldsymbol{H}_0\|$, and $H_{\max}$ is from Assumption~\ref{ass:H_budget}.
 
 \emph{(ii) Bound on $|\tau_{c,i}|$.}
@@ -519,8 +561,9 @@ c_2\big(k_3 2^{-\eta}\varepsilon_2^{1-\eta} + k_4 2^{\eta}\varepsilon_2^{1+\eta}
 \end{equation}
 
 \emph{(iii) Bound on $|(\boldsymbol{J}_0\dot{\boldsymbol{Q}})_i|$.}
-From $\dot{\boldsymbol{Q}} = \frac{\partial\boldsymbol{Q}}{\partial\boldsymbol{\sigma}_e}\boldsymbol{G}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_e$
-and $\|\boldsymbol{G}(\boldsymbol{\sigma}_e)\| < 1/2$,
+Differentiating $\boldsymbol{Q}$ yields
+$\dot{\boldsymbol{Q}} = \frac{\partial\boldsymbol{Q}}{\partial\boldsymbol{\sigma}_e}\boldsymbol{G}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_e$.
+Since $\|\boldsymbol{G}(\boldsymbol{\sigma}_e)\| = (1+\|\boldsymbol{\sigma}_e\|^2)/4 \le (1+\varepsilon_1^2)/4$ for $\|\boldsymbol{\sigma}_e\|\le\varepsilon_1$,
 \begin{equation}
 \|\dot{\boldsymbol{Q}}(t)\|
 \le \Big\|\frac{\partial\boldsymbol{Q}}{\partial\boldsymbol{\sigma}_e}\Big\|
@@ -575,13 +618,13 @@ Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{
 - (\boldsymbol{J}_0 + \Delta\boldsymbol{J})\boldsymbol{\omega}_e
 - \Delta\boldsymbol{J}\boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d
 \]
-By the condition \eqref{eq:error_bounds_condition}, $\|\boldsymbol{\omega}_e\| \le \varepsilon_2 + \bar Q$.
-Together with the reference bounds $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ from Section~\ref{section:MAINRES}, 
-$\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$ from Assumption~\ref{ass:H_budget},
-$\|\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\| \le 2H_0$ (see Appendix~\ref{app:Deltaf_bound}),
-$\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4\|\boldsymbol{\sigma}_e\| \le 4\varepsilon_1$,
-and the outer-loop constraint $|h_{w,d,i}| \le (1 - \gamma_h) h_{w,i,\max}$, 
-applying the triangle inequality to each axis $i$ yields
+Under condition \eqref{eq:error_bounds_condition}, the error satisfies $\|\boldsymbol{\omega}_e\| \le \varepsilon_2 + \bar Q$ and $\|\boldsymbol{\sigma}_e\| \le \varepsilon_1$.
+The reference trajectory satisfies $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ (Section~\ref{section:MAINRES})
+and $|h_{w,d,i}| \le (1 - \gamma_h) h_{w,i,\max}$.
+From Assumption~\ref{ass:H_budget}, $\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$.
+From \eqref{eq:Hd_bound}, $\|\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\| \le 2H_0$ holds.
+Additionally, $\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4\|\boldsymbol{\sigma}_e\| \le 4\varepsilon_1$.
+Applying the triangle inequality to each axis $i$ then yields
 \begin{align}
   |h_{w,i}| &\le |h_{w,d,i}| + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i)\|\boldsymbol{\omega}_e\| + \nu_i\|\boldsymbol{\omega}_d\| \nonumber \\
   &\le |h_{w,d,i}| + H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max} \nonumber \\
@@ -956,47 +999,6 @@ T_{f,\min}\approx
 \end{cases}
 \label{eq:app_Tmin_piecewise}
 \end{equation}
-
-\section{Bound on the Feedforward Mismatch}
-\label{app:Deltaf_bound}
-
-The reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$,
-generated under disturbance-free dynamics from $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$,
-satisfies $\|\boldsymbol{H}_d(t)\|=H_0$ and $\|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\|\le 2H_0$.
-The reference torque is $\boldsymbol{\tau}_{\mathrm{ref}} = \boldsymbol{J}_0\dot{\boldsymbol{\omega}}_d + \boldsymbol{\omega}_d^{\times}\boldsymbol{H}_d$.
-Substituting $\boldsymbol{f}$ from~\eqref{eq:simplified_error_dynamics} into
-$\boldsymbol{\Delta}_f = -\boldsymbol{f} - \boldsymbol{\tau}_{\mathrm{ref}}$ and simplifying,
-\begin{align}
-\boldsymbol{\Delta}_f
-&= \boldsymbol{\omega}^{\times}(\boldsymbol{H}-\boldsymbol{H}_0)
-+ \boldsymbol{\omega}_e^{\times}\boldsymbol{H}_0
-+ [(\boldsymbol{R}-\boldsymbol{I})\boldsymbol{\omega}_d]^{\times}\boldsymbol{H}_0
-+ \boldsymbol{\omega}_d^{\times}(\boldsymbol{H}_0-\boldsymbol{H}_d) \nonumber \\
-&\quad - \boldsymbol{\omega}^{\times}\Delta\boldsymbol{J}\boldsymbol{\omega}
-- \boldsymbol{J}_0\boldsymbol{\omega}_e^{\times}\boldsymbol{R}\boldsymbol{\omega}_d
-+ \boldsymbol{J}_0(\boldsymbol{R}-\boldsymbol{I})\dot{\boldsymbol{\omega}}_d
-\end{align}
-Invoking $\|\boldsymbol{H}-\boldsymbol{H}_0\|\le H_{\max}$ (Assumption~\ref{ass:H_budget}),
-$\|\boldsymbol{H}_0-\boldsymbol{H}_d\|\le 2H_0$,
-$\|\boldsymbol{I}-\boldsymbol{R}\|\le 4\|\boldsymbol{\sigma}_e\|$,
-and $\|\boldsymbol{a}^{\times}\boldsymbol{b}\|\le\|\boldsymbol{a}\|\|\boldsymbol{b}\|$,
-the component-wise bound is
-\begin{align}
-|\Delta_{f,i}|
-&\le (\|\boldsymbol{\omega}_e\|+\|\boldsymbol{\omega}_d\|)H_{\max}
-+ \|\boldsymbol{\omega}_e\|H_0
-+ 4\|\boldsymbol{\sigma}_e\|\|\boldsymbol{\omega}_d\|H_0
-+ 2\|\boldsymbol{\omega}_d\|H_0 \nonumber \\
-&\quad + \hat\nu_i(\|\boldsymbol{\omega}_e\|+\|\boldsymbol{\omega}_d\|)^2
-+ \mu_i\|\boldsymbol{\omega}_e\|\|\boldsymbol{\omega}_d\|
-+ 4\mu_i\|\boldsymbol{\sigma}_e\|\|\dot{\boldsymbol{\omega}}_d\|
-\label{eq:Deltaf_bound}
-\end{align}
-where $\mu_i=\sum_{j=1}^{3}|(J_0)_{ij}|$, $\nu_i=\sum_{j=1}^{3}|(\Delta J)_{ij}|$, $\hat\nu_i=\sum_{j\ne i}\nu_j$.
-Substituting the supremum bounds
-$\|\boldsymbol{\omega}_e\|\le\omega_{e,\max}$, $\|\boldsymbol{\sigma}_e\|\le\sigma_{\max}$,
-$\|\boldsymbol{\omega}_d\|\le\omega_{d,\max}$, $\|\dot{\boldsymbol{\omega}}_d\|\le\dot{\omega}_{d,\max}$
-yields the envelope $\Delta_{f,i,\max}$ used in Theorem~\ref{thm:feasibility_axis_compact2}.
 
 \newpage
 
