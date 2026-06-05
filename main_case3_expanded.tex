@@ -839,7 +839,7 @@ In summary, Case~1 validates the baseline performance of the EPTPAC framework un
 \label{sec:case2_prescribed_perf}
 
 This case evaluates the two defining characteristics of the EPTPAC framework, exact terminal-time convergence
-and prescribed-accuracy tunability.
+and prescribed-accuracy tunability, in a unified assessment.
 
 \subsubsection{Time-flexibility.}
 The terminal time is swept over $T_f\in\{110,\,120,\,130,\,140\}~\si{s}$, with $\varepsilon_1=10^{-5}$, $\eta=0.2$, $T_{p2}=\SI{15}{s}$, and $T_{p1}=T_f-\SI{20}{s}$.
@@ -872,11 +872,9 @@ To evaluate accuracy tunability, the prescribed accuracy is swept over $\varepsi
 For each $\varepsilon_1$, the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2$
 following Section~\ref{overall_design}.
 
-Fig.~\ref{fig:case3_precision_compare} shows that all four settings achieve their prescribed accuracies within $T_f$.
-As precision increases, however, the required gains grow substantially: tightening $\varepsilon_1$ from $10^{-4}$ to $10^{-7}$
+As shown in Fig.~\ref{fig:case3_precision_compare}, all four settings achieve their prescribed accuracies within $T_f$.
+Higher precision requires higher gains: tightening $\varepsilon_1$ from $10^{-4}$ to $10^{-7}$
 increases $\alpha_1=\alpha_2$ from $4.30$ to $24.78$.
-Thus $\varepsilon_1$ should be matched to the actual sensor resolution. Pursuing accuracy beyond the sensing capability
-yields no practical benefit while needlessly escalating control gains.
 
 \begin{figure}[ht]
     \centering
@@ -892,8 +890,8 @@ yields no practical benefit while needlessly escalating control gains.
     \label{fig:case3_precision_compare}
 \end{figure}
 
-Case~2 confirms that the EPTPAC framework delivers exact terminal-time convergence
-with high temporal precision and tunable steady-state accuracy.
+Case~2 confirms that the EPTPAC framework simultaneously delivers exact terminal-time convergence
+with sub-percent temporal precision and tunable steady-state accuracy across four orders of magnitude.
 
 \subsection{Case 3: Comparison with Ref.~\cite{xu_distributed_2022}}
 
@@ -905,29 +903,44 @@ additional momentum constraint affects controller performance.
 
 \subsubsection{Case 3.1: Torque-only saturation}
 
-This scenario compares terminal-time tracking performance under torque saturation
-($\tau_{i,\max}=0.2~\si{N\cdot m}$) with $T_f=300~\si{s}$.
+This scenario evaluates terminal-time tracking performance under torque saturation only
+($\tau_{i,\max}=0.2~\si{N\cdot m}$) with two prescribed terminal times:
+$T_f=300~\si{s}$ and $T_f=150~\si{s}$.
 
 \begin{figure}[ht]
     \centering
-    \subfloat[Attitude error]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_Attitude__t_total400.0.pdf}\label{fig:err300}}
+    \subfloat[Attitude error ($T_f=300$ s)]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_Attitude__t_total400.0.pdf}\label{fig:err300}}
     \hfill
-    \subfloat[Control torque]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0.pdf}\label{fig:tau300}}
+    \subfloat[Control torque ($T_f=300$ s)]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0.pdf}\label{fig:tau300}}
+    \\
+    \subfloat[Attitude error ($T_f=150$ s)]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_Attitude__t_total300.0.pdf}\label{fig:err150}}
+    \hfill
+    \subfloat[Control torque ($T_f=150$ s)]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0.pdf}\label{fig:tau150}}
     \caption{Case 3.1: Performance comparison under torque-only saturation}
     \label{fig:case4_1_comparison}
 \end{figure}
 
-As shown in Fig.~\ref{fig:case4_1_comparison},
-Ref.~\cite{xu_distributed_2022} exhibits pronounced conservatism, converging around $150~\si{s}$
-despite the prescribed $T_f=300~\si{s}$.
-In contrast, EPTPAC achieves exact convergence at $t=300~\si{s}$ with smooth control effort.
+For the $T_f=300~\si{s}$ case, as depicted in Figs.~\ref{fig:err300} and~\ref{fig:tau300},
+Ref.~\cite{xu_distributed_2022} exhibits pronounced conservatism, converging around $150~\si{s}$---only 50\% of the prescribed duration.
+Such premature convergence necessitates unnecessarily aggressive control action in the early stage,
+leading to excessive torque expenditure.
+
+A more critical breakdown is observed when $T_f$ is reduced to $150~\si{s}$,
+approaching the minimum feasible maneuver time $T_{f,\min}$ (Appendix~\ref{app:bangbang}).
+As shown in Figs.~\ref{fig:err150} and~\ref{fig:tau150},
+Ref.~\cite{xu_distributed_2022} loses prescribed-time convergence entirely,
+with the response delayed until approximately $230~\si{s}$.
+This failure occurs because the high-gain feedback mechanism does not account for
+physical feasibility under tight actuator constraints.
+The resulting torque saturation compromises the nominal stability guarantees of the prescribed-time control law.
+
+In contrast, EPTPAC consistently achieves exact convergence at both prescribed terminal times
+with smooth, feasible control profiles. These results underscore that physical realizability
+is a fundamental requirement for reliable terminal-time tracking.
 
 \subsubsection{Case 3.2: Dual saturation}
 
-This scenario evaluates controller performance under dual saturation
-($\tau_{i,\max}=0.2~\si{N\cdot m}$, $h_{w,i,\max}=4.0~\si{kg\cdot m^2/s}$) with $T_f=300~\si{s}$.
-Under the additional momentum constraint,
-Ref.~\cite{xu_distributed_2022} loses prescribed-time convergence entirely.
+This scenario examines controller performance under dual-saturation constraints with $T_f=300~\si{s}$.
 
 \begin{figure}[ht]
     \centering
@@ -938,21 +951,26 @@ Ref.~\cite{xu_distributed_2022} loses prescribed-time convergence entirely.
     \subfloat[Control torque]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0.pdf}\label{fig:tau_dual}}
     \hfill
     \subfloat[Wheel momentum]{\includegraphics[width=0.48\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
-    
-    \caption{Case 3.2: Performance under dual saturation}
+
+    \caption{Case 3.2: Performance comparison under dual saturation}
     \label{fig:case4_2_comparison}
 \end{figure}
 
 As shown in Fig.~\ref{fig:case4_2_comparison}, Ref.~\cite{xu_distributed_2022}
-neglects momentum constraints and commands impulsive torques, rapidly saturating the wheels.
-The resulting loss of control authority leads to uncontrolled drift and severely delayed convergence at $410~\si{s}$,
-far exceeding the prescribed $300~\si{s}$.
+neglects momentum constraints and commands impulsive torques,
+leading to rapid momentum accumulation that drives the reaction wheels into saturation
+(Figs.~\ref{fig:tau_dual} and~\ref{fig:hw_dual}).
+Once saturated, the spacecraft suffers a complete loss of control authority and enters an uncontrolled drift phase,
+with convergence severely delayed to $410~\si{s}$---far exceeding the prescribed $300~\si{s}$.
 In contrast, EPTPAC modulates the torque profile to prevent momentum saturation,
 achieving exact convergence at $t=300~\si{s}$.
 
-In summary, Case~3 demonstrates that existing PTC methods suffer from pronounced conservatism
-(Case~3.1) and lose convergence guarantees when physical constraints are violated
-(Case~3.2). The EPTPAC framework circumvents both issues through constraint-aware co-design
+In summary, Case~3 underscores the necessity of physical realizability in prescribed-time control.
+Case~3.1 shows that existing PTC methods exhibit either excessive conservatism or loss of convergence guarantees
+when $T_f$ approaches $T_{f,\min}$.
+Case~3.2 reveals that unmanaged momentum accumulation exacerbates these limitations,
+leading to prolonged loss of control authority.
+The EPTPAC framework circumvents both issues through constraint-aware co-design
 of the planning and control layers.
 
 \section{Conclusion}
