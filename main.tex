@@ -904,13 +904,13 @@ $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
 
 \begin{figure}[ht]
     \centering
-    \subfloat[Attitude error ($T_f=300$ s)]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_Attitude__t_total400.0.pdf}\label{fig:err300}}
+    \subfloat[Attitude error ($T_f=300$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total400.0.pdf}\label{fig:err300}}
     \hspace{0.05\linewidth}
-    \subfloat[Control torque ($T_f=300$ s)]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0.pdf}\label{fig:tau300}}
+    \subfloat[Control torque ($T_f=300$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0.pdf}\label{fig:tau300}}
     \\[-6pt]
-    \subfloat[Attitude error ($T_f=150$ s)]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_Attitude__t_total300.0.pdf}\label{fig:err150}}
+    \subfloat[Attitude error ($T_f=150$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total300.0.pdf}\label{fig:err150}}
     \hspace{0.05\linewidth}
-    \subfloat[Control torque ($T_f=150$ s)]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0.pdf}\label{fig:tau150}}
+    \subfloat[Control torque ($T_f=150$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0.pdf}\label{fig:tau150}}
     \caption{Case 3.1: Performance comparison under torque-only saturation}
     \label{fig:case4_1_comparison}
 \end{figure}
@@ -927,13 +927,13 @@ This scenario examines controller performance under dual-saturation constraints 
 
 \begin{figure}[ht]
     \centering
-    \subfloat[Attitude error]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_Attitude__t_total500.0.pdf}\label{fig:err_dual}}
+    \subfloat[Attitude error]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total500.0.pdf}\label{fig:err_dual}}
     \hspace{0.05\linewidth}
-    \subfloat[Angular velocity error]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_omega__t_total500.0.pdf}\label{fig:omega_dual}}
+    \subfloat[Angular velocity error]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_omega__t_total500.0.pdf}\label{fig:omega_dual}}
     \\[-6pt]
-    \subfloat[Control torque]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0.pdf}\label{fig:tau_dual}}
+    \subfloat[Control torque]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0.pdf}\label{fig:tau_dual}}
     \hspace{0.05\linewidth}
-    \subfloat[Wheel momentum]{\includegraphics[width=0.35\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
+    \subfloat[Wheel momentum]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
 
     \caption{Case 3.2: Performance comparison under dual saturation}
     \label{fig:case4_2_comparison}
@@ -949,7 +949,6 @@ In summary, Case~3 demonstrates that dual saturation critically impacts control 
 \section{Conclusion}
 \label{section:conclusion}
 This Note addresses the problem of exact prescribed-time attitude control under dual reaction wheel saturation. This problem poses two principal challenges. First, existing PTC methods are inherently conservative, guaranteeing only an upper bound on convergence time rather than convergence exactly at a prescribed instant. Second, dual saturation severely constrains maneuver feasibility, where ignoring momentum saturation risks loss of control authority and neglecting $T_{f,\min}$ may render prescribed-time convergence physically unattainable. The proposed EPTPAC framework addresses these challenges through a decoupled two-loop architecture, eliminating conservatism while ensuring dual-saturation compliance. An analytical estimate of $T_{f,\min}$ guarantees physical realizability of the prescribed terminal time, and a parameter-synthesis method makes the design process systematic rather than heuristic.
-
 Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable accuracy, and dual-saturation compliance.
 
 \appendix
