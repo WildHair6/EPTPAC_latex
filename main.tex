@@ -80,7 +80,7 @@ without accounting for the minimum feasible maneuver time $T_{f,\min}$
 imposed by dual saturation.
 Without $T_f \ge T_{f,\min}$,
 prescribed-time convergence is physically unrealizable,
-making the notion of prescribed time meaningless under practical constraints.
+making the notion of prescribed time meaningless under dual saturation.
 
 While dual-saturation constraints can be explicitly incorporated through
 optimization-based trajectory planning
@@ -99,7 +99,7 @@ dual-saturation constraints therefore remains an open problem.
 
 To address this problem, this note proposes an exact prescribed-time
 prescribed-accuracy control (EPTPAC) framework with a two-loop architecture.
-The outer loop solves a constrained optimal control problem to generate
+The outer loop solves a constrained optimal control problem (OCP) to generate
 a feasible reference trajectory that satisfies the dual-saturation constraints and reaches the target precisely at $T_f$.
 The inner loop employs a nonsingular prescribed-time controller that drives tracking errors
 to within a prescribed accuracy before $T_f$, despite inertia uncertainties and external disturbances.
@@ -127,7 +127,7 @@ The main contributions of this note are as follows:
 Let $\mathbb{R}$ denote the set of real numbers.
 $\|\cdot\|$ is the 2-norm of a vector or matrix, and
 $\boldsymbol{I}_n$ is the $n\times n$ identity matrix.
-$\lambda_{\min}(\boldsymbol{A})$ and $\lambda_{\max}(\boldsymbol{A})$ are the extreme eigenvalues of $\boldsymbol{A}$.
+$\lambda_{\min}(\boldsymbol{A})$ and $\lambda_{\max}(\boldsymbol{A})$ represent the extreme eigenvalues of $\boldsymbol{A}$.
 For $\boldsymbol{a}=[a_1,a_2,a_3]^\top\in\mathbb{R}^3$,
 $\boldsymbol{a}^{\times}$ denotes the skew-symmetric matrix
 $\boldsymbol{a}^{\times} \triangleq [0,\,-a_3,\,a_2;\; a_3,\,0,\,-a_1;\; -a_2,\,a_1,\,0]$.
@@ -144,7 +144,7 @@ The attitude kinematics and dynamics of a rigid spacecraft actuated by reaction 
 + \boldsymbol{d} + \boldsymbol{\tau}, \quad \boldsymbol{\tau} = -\dot{\boldsymbol{h}}_w
 \label{eq:attitude_dynamics}
 \end{equation}
-where $\boldsymbol{\sigma}\in\mathbb{R}^3$ represents the attitude in Modified Rodrigues Parameters (MRPs) and $\boldsymbol{\omega}\in\mathbb{R}^3$ the body angular velocity,
+where $\boldsymbol{\sigma}\in\mathbb{R}^3$ represents the attitude in Modified Rodrigues Parameters (MRPs), $\boldsymbol{\omega}\in\mathbb{R}^3$ denotes the body angular velocity,
 $\boldsymbol{J}_0\in\mathbb{R}^{3\times 3}$ is the nominal inertia with uncertainty $\Delta\boldsymbol{J}$,
 $\boldsymbol{J}\triangleq\boldsymbol{J}_0+\Delta\boldsymbol{J}$ is the total inertia,
 $\boldsymbol{h}_w\in\mathbb{R}^3$ and $\boldsymbol{\tau}\in\mathbb{R}^3$ are the wheel momentum and control torque, respectively. $\boldsymbol{d}\in\mathbb{R}^3$ denotes the external disturbance.
@@ -217,12 +217,12 @@ where $T_{d,\max}>0$ is a known bound on the perturbation magnitude.
 
 \begin{assumption}\label{ass:H_budget}
 Let $\boldsymbol{H}=\boldsymbol{J}\boldsymbol{\omega}+\boldsymbol{h}_w$ be the total momentum and $\boldsymbol{H}_0=\boldsymbol{H}(0)$.
-The momentum drift satisfies
+The momentum drift induced by external disturbances satisfies
 \begin{equation}
 \|\boldsymbol{H}(t)-\boldsymbol{H}_0\| \le H_{\max}
 \label{eq:Hmax}
 \end{equation}
-where $H_{\max} > 0$ is a known bound.
+where $H_{\max} > 0$ is a known bound on the momentum drift.
 \end{assumption}
 
 \subsection{Preliminaries}
@@ -233,7 +233,7 @@ Consider the nonlinear system
 \end{equation}
 where $\boldsymbol{x}\in\mathbb{R}^n$ and $\boldsymbol{g}(\boldsymbol{x},t)\in\mathbb{R}^n$ is locally Lipschitz in $\boldsymbol{x}$, with $\boldsymbol{g}(\boldsymbol{0},t)\equiv\boldsymbol{0}$.
 
-The origin of \eqref{eq:system} is said to be prescribed-time stable if, with $T_p>0$ and any initial condition, $\boldsymbol{x}(t)=\boldsymbol{0}$ for all $t\ge T_p$ \cite{sanchez-torres_predefined-time_2015}, and prescribed-time prescribed-accuracy stable if, with $\varepsilon>0$, also $\|\boldsymbol{x}(t)\|\le\varepsilon$ for all $t\ge T_p$ \cite{xiao_scaling-transformation-based_2025}.
+The origin of system \eqref{eq:system} is said to be prescribed-time stable if there exists a prescribed constant $T_p>0$ such that for any $\boldsymbol{x}_0\in\mathbb{R}^n$ and all $t\ge T_p$, the solution $\boldsymbol{x}(t,\boldsymbol{x}_0)$ of system \eqref{eq:system} satisfies $\boldsymbol{x}(t,\boldsymbol{x}_0)=\boldsymbol{0}$~\cite{sanchez-torres_predefined-time_2015}. The origin of system \eqref{eq:system} is said to be prescribed-time prescribed-accuracy stable if there exist prescribed constants $T_p>0$ and $\varepsilon>0$ such that for any $\boldsymbol{x}_0\in\mathbb{R}^n$ and all $t\ge T_p$, the solution $\boldsymbol{x}(t,\boldsymbol{x}_0)$ of system \eqref{eq:system} satisfies $\|\boldsymbol{x}(t,\boldsymbol{x}_0)\|\le\varepsilon$~\cite{xiao_scaling-transformation-based_2025}.
 
 \begin{lemma}[\cite{anguiano-gijon_predefined-time_2019}]\label{lem:PT}
 Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ for system \eqref{eq:system} such that
@@ -241,8 +241,32 @@ Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ for system \eqref{e
 \dot V \le -\frac{\pi}{\eta T_p}\left(V^{1-\tfrac{\eta}{2}}+V^{1+\tfrac{\eta}{2}}\right)
 \label{eq:lemma_PT_cond}
 \end{equation}
-where $0<\eta<1$ and $T_p>0$. Then the origin is prescribed-time stable.
+where $0<\eta<1$ and $T_p>0$ are given constants. Then the origin is prescribed-time stable.
 \end{lemma}
+
+To accommodate bounded perturbations, we extend Lemma~\ref{lem:PT} to the following practical prescribed-time prescribed-accuracy form.
+
+\begin{theorem}\label{thm:practical_PT}
+Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ for system \eqref{eq:system} such that
+\begin{equation}
+\dot V \le \delta V^{\tfrac{1}{2}} - \frac{\pi}{\eta T_p}\left[(1+\alpha) V^{1-\tfrac{\eta}{2}}+V^{1+\tfrac{\eta}{2}}\right]
+\label{eq:theorem1_condition}
+\end{equation}
+where $\delta>0$, $\alpha>0$, $0<\eta<1$, and $T_p>0$. Then the trajectory enters
+$V\le V^*_\delta$ with $V^*_\delta = \bigl(\frac{\delta\,\eta\,T_p}{\pi\,\alpha}\bigr)^{\frac{2}{1-\eta}}$
+within $T_p$ and remains therein.
+\end{theorem}
+
+\begin{proof}
+Let $K = \frac{\pi}{\eta T_p}$. From~\eqref{eq:theorem1_condition},
+$\dot V \le \delta V^{1/2} - K[ (1+\alpha)V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} ]$.
+At $V=V^*_\delta$, $\delta V^{1/2} = K\alpha V^{1-\eta/2}$ holds by definition.
+For all $V\ge V^*_\delta$, since $V^{-(1-\eta)/2}$ is monotonically decreasing,
+$\delta V^{1/2} \le K\alpha V^{1-\eta/2}$, yielding
+$\dot V \le -K( V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} )$ for all $V\ge V^*_\delta$.
+By Lemma~\ref{lem:PT}, any trajectory with $V(0)>V^*_\delta$ enters $\{V\le V^*_\delta\}$ within $T_p$.
+At $V=V^*_\delta$, $\dot V\le -K(V^{1-\frac{\eta}{2}}+V^{1+\frac{\eta}{2}})$ ensures forward invariance.
+\end{proof}
 
 \section{Main Results}
 \label{section:MAINRES}
@@ -250,7 +274,7 @@ where $0<\eta<1$ and $T_p>0$. Then the origin is prescribed-time stable.
 \subsection{Outer-Loop Trajectory Planning Under Dual Saturation}
 \label{sec:outer}
 
-A reference trajectory $(\boldsymbol{\sigma}_d(t),\boldsymbol{\omega}_d(t))$ is generated offline by solving a constrained optimal control problem (OCP) over $[0,T_f]$. The OCP is formulated as follows:
+A reference trajectory $(\boldsymbol{\sigma}_d(t),\boldsymbol{\omega}_d(t))$ is generated offline by solving the OCP over $[0,T_f]$, formulated as follows:
 \begin{equation}
 \begin{aligned}
 \min_{\boldsymbol{\tau}_{\mathrm{ref}}(\cdot)} \quad &
@@ -278,31 +302,6 @@ By construction, the outer loop provides a reference trajectory that reaches the
 
 \subsection{Inner-Loop Nonsingular Prescribed-Time Prescribed-Accuracy Tracking Control}
 \label{sec:inner}
-
-To accommodate the lumped perturbation, we extend Lemma~\ref{lem:PT} to the
-following practical prescribed-time prescribed-accuracy form.
-
-\begin{theorem}\label{thm:practical_PT}
-Suppose there exists a Lyapunov function $V(\boldsymbol{x})$ such that
-\begin{equation}
-\dot V \le \delta V^{\tfrac{1}{2}} - \frac{\pi}{\eta T_p}\left[(1+\alpha) V^{1-\tfrac{\eta}{2}}+V^{1+\tfrac{\eta}{2}}\right]
-\label{eq:theorem1_condition}
-\end{equation}
-where $\delta>0$, $\alpha>0$, $0<\eta<1$, and $T_p>0$. Then the trajectory enters
-$V\le V^*_\delta$ with $V^*_\delta = \bigl(\frac{\delta\,\eta\,T_p}{\pi\,\alpha}\bigr)^{\frac{2}{1-\eta}}$
-within $T_p$ and remains therein.
-\end{theorem}
-
-\begin{proof}
-Let $K = \frac{\pi}{\eta T_p}$. From~\eqref{eq:theorem1_condition},
-$\dot V \le \delta V^{1/2} - K[ (1+\alpha)V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} ]$.
-At $V=V^*_\delta$, $\delta V^{1/2} = K\alpha V^{1-\eta/2}$ holds by definition.
-For all $V\ge V^*_\delta$, since $V^{-(1-\eta)/2}$ is monotonically decreasing,
-$\delta V^{1/2} \le K\alpha V^{1-\eta/2}$, yielding
-$\dot V \le -K( V^{1-\frac{\eta}{2}} + V^{1+\frac{\eta}{2}} )$ for all $V\ge V^*_\delta$.
-By Lemma~\ref{lem:PT}, any trajectory with $V(0)>V^*_\delta$ enters $\{V\le V^*_\delta\}$ within $T_p$.
-At $V=V^*_\delta$, $\dot V\le -K(V^{1-\frac{\eta}{2}}+V^{1+\frac{\eta}{2}})$ ensures forward invariance.
-\end{proof}
 
 The sliding mode surface is designed as
 \begin{equation}
@@ -469,7 +468,7 @@ The following theorems verify dual-saturation compliance under the condition
 \end{equation}
 
 To bound the torque deviation caused by tracking errors and inertia uncertainty, we decompose the feedforward term $-\boldsymbol{f}$ in the control law \eqref{eq:tau_law_feasibility} as $-\boldsymbol{f} = \boldsymbol{\tau}_{\mathrm{ref}} + \boldsymbol{\Delta}_f$, where $\boldsymbol{\tau}_{\mathrm{ref}}$ is the reference torque and $\boldsymbol{\Delta}_f$ captures the mismatch.
-The reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$ is generated under the disturbance-free dynamics of the OCP, where the magnitude of the total angular momentum is conserved. Hence, with $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$ and $H_0 \triangleq \|\boldsymbol{H}_0\|$, we have
+Under the disturbance free dynamics of the OCP, the total reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$ is conserved. Hence, with $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$ and $H_0 \triangleq \|\boldsymbol{H}_0\|$, we have
 \begin{equation}
 \|\boldsymbol{H}_d(t)\| = H_0, \qquad \|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\| \le 2H_0 .
 \label{eq:Hd_bound}
@@ -485,7 +484,7 @@ The reference torque is $\boldsymbol{\tau}_{\mathrm{ref}} = \boldsymbol{J}_0\dot
 - \boldsymbol{J}_0\boldsymbol{\omega}_e^{\times}\boldsymbol{R}\boldsymbol{\omega}_d
 + \boldsymbol{J}_0(\boldsymbol{R}-\boldsymbol{I})\dot{\boldsymbol{\omega}}_d .
 \end{align}
-Invoking $\|\boldsymbol{H}-\boldsymbol{H}_0\|\le H_{\max}$ (Assumption~\ref{ass:H_budget}),
+Invoking $\|\boldsymbol{H}-\boldsymbol{H}_0\|\le H_{\max}$ from Assumption~\ref{ass:H_budget},
 $\|\boldsymbol{H}_0-\boldsymbol{H}_d\|\le 2H_0$ from \eqref{eq:Hd_bound},
 $\|\boldsymbol{I}-\boldsymbol{R}\|\le 4\|\boldsymbol{\sigma}_e\|$,
 and $\|\boldsymbol{a}^{\times}\boldsymbol{b}\|\le\|\boldsymbol{a}\|\|\boldsymbol{b}\|$,
@@ -608,7 +607,7 @@ if the safety margin $\gamma_h$ and prescribed-accuracy set $(\varepsilon_1,\var
 H_{\max} + 2H_0 + 4\mu_i\varepsilon_1\omega_{d,\max} + (\mu_i + \nu_i) (\varepsilon_2 + \bar Q) + \nu_i \omega_{d,\max}\le \gamma_h\, h_{w,i,\max},\qquad i=1,2,3
 \label{eq:thm5_axis_condition}
 \end{equation}
-where $\bar Q$ is defined in \eqref{eq:omegae_barQ}, $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$, and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
+where $\mu_i = \sum_{j=1}^{3}|(J_0)_{ij}|$ and $\nu_i = \sum_{j=1}^{3}|(\Delta J)_{ij}|$,
 then the wheel momentum $|h_{w,i}(t)|\le h_{w,i,\max}$ holds for all $i=1,2,3$.
 \end{theorem}
 
@@ -622,10 +621,9 @@ Using $\boldsymbol{\omega} = \boldsymbol{\omega}_e + \boldsymbol{R}(\boldsymbol{
 - \Delta\boldsymbol{J}\boldsymbol{R}(\boldsymbol{\sigma}_e)\boldsymbol{\omega}_d
 \]
 Under condition \eqref{eq:error_bounds_condition}, the error satisfies $\|\boldsymbol{\omega}_e\| \le \varepsilon_2 + \bar Q$ and $\|\boldsymbol{\sigma}_e\| \le \varepsilon_1$.
-The reference trajectory satisfies $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ (Section~\ref{section:MAINRES})
+The reference trajectory satisfies $\|\boldsymbol{\omega}_d\| \le \omega_{d,\max}$ from Section~\ref{section:MAINRES}
 and $|h_{w,d,i}| \le (1 - \gamma_h) h_{w,i,\max}$.
-From Assumption~\ref{ass:H_budget}, $\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$.
-From \eqref{eq:Hd_bound}, $\|\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\| \le 2H_0$ holds.
+From Assumption~\ref{ass:H_budget}, $\|\boldsymbol{H} - \boldsymbol{H}_0\| < H_{\max}$, and inequality \eqref{eq:Hd_bound} gives $\|\boldsymbol{H}_0 - \boldsymbol{H}_d(t)\| \le 2H_0$.
 Additionally, $\|\boldsymbol{I} - \boldsymbol{R}(\boldsymbol{\sigma}_e)\| \le 4\|\boldsymbol{\sigma}_e\| \le 4\varepsilon_1$.
 Applying the triangle inequality to each axis $i$ then yields
 \begin{align}
@@ -650,17 +648,11 @@ ensuring dual-saturation compliance throughout the maneuver.
 \end{remark}
 
 \begin{remark}
-\label{rem:gamma_u_selection}
-Within the prescribed accuracy sets, $\boldsymbol{\Delta}_f$ and $\boldsymbol{J}_0\dot{\boldsymbol{\omega}}_e$
-are small, so the dominant torque disturbance is $\boldsymbol{T}_d$.
-A practical guideline is $\gamma_u > T_{d,\max} / \tau_{i,\max}$ for each axis $i$.
-\end{remark}
-
-\begin{remark}
-\label{rem:gamma_h_selection}
-Similarly, the term $(\mu_i+\nu_i)(\varepsilon_2+\bar Q)$ is negligible within the prescribed accuracy sets,
-so the momentum margin is governed by $H_{\max}$, $2H_0$, and $\nu_i\omega_{d,\max}$.
-A practical guideline is
+\label{rem:gamma_selection}
+Within the prescribed accuracy sets, $\boldsymbol{\Delta}_f$ and $\boldsymbol{J}_0\dot{\boldsymbol{\omega}}_e$ remain relatively small, so the torque margin is predominantly dictated by $\boldsymbol{T}_d$, giving the practical guideline
+$\gamma_u > T_{d,\max} / \tau_{i,\max}$ for each axis $i$.
+Similarly, the term $(\mu_i+\nu_i)(\varepsilon_2+\bar Q)$ in the momentum bound remains relatively small,
+so the momentum margin is governed by $H_{\max}$, $2H_0$, and $\nu_i\omega_{d,\max}$, giving
 $\gamma_h > (H_{\max} + 2H_0 + \nu_i\omega_{d,\max})/h_{w,i,\max}$ for each axis $i$.
 \end{remark}
 
@@ -675,7 +667,7 @@ The parameter-synthesis procedure is as follows.
 Specify $T_f$, $\varepsilon_{\mathrm{mission}}$, $\tau_{i,\max}$, $h_{w,i,\max}$, $T_{d,\max}$, and $H_{\max}$.
 
 \item[\textbf{Step 2.}] \textbf{Margins and feasibility.}
-Select $\gamma_u,\gamma_h$ via Remarks~\ref{rem:gamma_u_selection}--\ref{rem:gamma_h_selection}
+Select $\gamma_u,\gamma_h$ via Remark~\ref{rem:gamma_selection}
 and verify $T_f\ge T_{f,\min}$ via Appendix~\ref{app:bangbang}.
 
 \item[\textbf{Step 3.}] \textbf{Inner-loop synthesis.}
@@ -698,7 +690,7 @@ The complete procedure is illustrated in Fig.~\ref{fig:overall_design}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[height=0.35\textheight]{fig/overall.pdf}
+    \includegraphics[height=0.4\textheight]{fig/overall.pdf}
     \caption{Parameter-synthesis method.}
     \label{fig:overall_design}
 \end{figure}
@@ -766,7 +758,7 @@ $[0,\ 0,\ 0]^\top~\si{rad/s}$ \\\bottomrule
 
 Specifically, the nominal trajectory reference $(\boldsymbol{\sigma}_d,\boldsymbol{\omega}_d)$ is generated offline by solving the constrained OCP
 \eqref{eq:OCP_slack} via GPOPS-II.
-Following Remarks~\ref{rem:gamma_u_selection}--\ref{rem:gamma_h_selection},
+Following Remark~\ref{rem:gamma_selection},
 $\gamma_u=0.2$ and $\gamma_h=0.1$ are adopted.
 From Appendix~\ref{app:bangbang}, the minimum feasible terminal time is $T_{f,\min}\approx\SI{95}{s}$.
 All cases use $T_f\ge\SI{110}{s}$ to ensure feasibility.
@@ -953,6 +945,7 @@ In contrast, EPTPAC modulates the control torques to prevent momentum saturation
 
 In summary, Case~3 demonstrates that dual saturation critically impacts control performance and confirms the advantage of the proposed EPTPAC framework, which eliminates conservatism while ensuring maneuver feasibility under dual-saturation constraints.
 
+\newpage
 \section{Conclusion}
 \label{section:conclusion}
 This Note addresses the problem of exact prescribed-time attitude control under dual reaction wheel saturation. This problem poses two principal challenges. First, existing PTC methods are inherently conservative, guaranteeing only an upper bound on convergence time rather than convergence exactly at a prescribed instant. Second, dual saturation severely constrains maneuver feasibility, where ignoring momentum saturation risks loss of control authority and neglecting $T_{f,\min}$ may render prescribed-time convergence physically unattainable. The proposed EPTPAC framework addresses these challenges through a decoupled two-loop architecture, eliminating conservatism while ensuring dual-saturation compliance. An analytical estimate of $T_{f,\min}$ guarantees physical realizability of the prescribed terminal time, and a parameter-synthesis method makes the design process systematic rather than heuristic.
