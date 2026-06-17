@@ -468,7 +468,7 @@ The following theorems verify dual-saturation compliance under the condition
 \end{equation}
 
 To bound the torque deviation caused by tracking errors and inertia uncertainty, we decompose the feedforward term $-\boldsymbol{f}$ in the control law \eqref{eq:tau_law_feasibility} as $-\boldsymbol{f} = \boldsymbol{\tau}_{\mathrm{ref}} + \boldsymbol{\Delta}_f$, where $\boldsymbol{\tau}_{\mathrm{ref}}$ is the reference torque and $\boldsymbol{\Delta}_f$ captures the mismatch.
-Under the disturbance free dynamics of the OCP, the total reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$ is conserved. Hence, with $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$ and $H_0 \triangleq \|\boldsymbol{H}_0\|$, we have
+Under the disturbance-free dynamics of the OCP, the total reference momentum $\boldsymbol{H}_d = \boldsymbol{J}_0\boldsymbol{\omega}_d + \boldsymbol{h}_{w,d}$ is conserved. Hence, with $\boldsymbol{H}_d(0)=\boldsymbol{H}(0)=\boldsymbol{H}_0$ and $H_0 \triangleq \|\boldsymbol{H}_0\|$, we have
 \begin{equation}
 \|\boldsymbol{H}_d(t)\| = H_0, \qquad \|\boldsymbol{H}_d(t)-\boldsymbol{H}_0\| \le 2H_0 .
 \label{eq:Hd_bound}
@@ -891,7 +891,7 @@ Case~2 confirms the prescribed-time convergence and prescribed-accuracy tunabili
 \subsection{Case 3: Comparison with Ref.~\cite{xu_distributed_2022}}
 
 To evaluate the advantage of the proposed framework over existing methods, this case compares EPTPAC with Ref.~\cite{xu_distributed_2022}, which addresses torque limits but does not account for momentum constraints.
-Two scenarios are considered: Case~3.1 considers
+Two scenarios are considered: Case~3.1 evaluates
 torque saturation only, thereby providing a fair comparison under identical constraint
 assumptions. Case~3.2 enforces dual saturation to assess how the
 momentum constraint affects controller performance.
@@ -915,7 +915,7 @@ $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
     \label{fig:case4_1_comparison}
 \end{figure}
 
-With $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$(Figs.~\ref{fig:err300} and~\ref{fig:tau300}), exhibiting pronounced conservatism at only 50\% of the prescribed duration.
+With $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$ (Figs.~\ref{fig:err300} and~\ref{fig:tau300}), exhibiting pronounced conservatism at only 50\% of the prescribed duration.
 However, when $T_f$ is reduced to $150~\si{s}$, approaching $T_{f,\min}$, the prescribed-time property breaks down: the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$ (Figs.~\ref{fig:err150} and~\ref{fig:tau150}).
 This phenomenon stems from the aggressive escalation of time-varying gains as $T_f$ approaches $T_{f,\min}$, which drives the control torque into saturation and invalidates the theoretical conditions on which convergence depends.
 
@@ -949,6 +949,8 @@ In summary, Case~3 demonstrates that dual saturation critically impacts control 
 \section{Conclusion}
 \label{section:conclusion}
 This Note addresses the problem of exact prescribed-time attitude control under dual reaction wheel saturation. This problem poses two principal challenges. First, existing PTC methods are inherently conservative, guaranteeing only an upper bound on convergence time rather than convergence exactly at a prescribed instant. Second, dual saturation severely constrains maneuver feasibility, where ignoring momentum saturation risks loss of control authority and neglecting $T_{f,\min}$ may render prescribed-time convergence physically unattainable. The proposed EPTPAC framework addresses these challenges through a decoupled two-loop architecture, eliminating conservatism while ensuring dual-saturation compliance. An analytical estimate of $T_{f,\min}$ guarantees physical realizability of the prescribed terminal time, and a parameter-synthesis method makes the design process systematic rather than heuristic.
+
+Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable accuracy, and dual-saturation compliance.
 
 \appendix
 \section{Estimate of Minimum Feasible Maneuver Time}
