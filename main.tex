@@ -82,7 +82,7 @@ Without $T_f \ge T_{f,\min}$,
 prescribed-time convergence is physically unrealizable,
 making the notion of prescribed time meaningless under dual saturation.
 
-While dual-saturation constraints can be explicitly incorporated through
+While dual saturation constraint can be explicitly incorporated through
 optimization-based trajectory planning
 \cite{kobayashi_optimal_2017,spiller_inverse_2018,celani_spacecraft_2020,fan_polynomial_2024},
 these methods are open-loop and therefore susceptible to unmodeled disturbances.
@@ -97,7 +97,7 @@ the prescribed terminal time or tracking accuracy.
 Achieving exact prescribed-time convergence while rigorously accounting for
 dual-saturation constraints therefore remains an open problem.
 
-To address this problem, this note proposes an exact prescribed-time
+To address this problem, this paper proposes an exact prescribed-time
 prescribed-accuracy control (EPTPAC) framework with a two-loop architecture.
 The outer loop solves a constrained optimal control problem (OCP) to generate
 a feasible reference trajectory that satisfies the dual-saturation constraints and reaches the target precisely at $T_f$.
@@ -107,7 +107,7 @@ A parameter-synthesis method is developed in which most controller parameters
 are determined directly from mission inputs, with only three remaining as free design choices,
 coordinating the two loops to ensure closed-loop prescribed-accuracy performance.
 
-The main contributions of this note are as follows:
+The main contributions of this paper are as follows:
 \begin{enumerate}
   \item Exact convergence to within a prescribed accuracy at $T_f$ is achieved
   through a two-loop architecture, despite inertia uncertainty and external disturbances.
@@ -155,7 +155,7 @@ A three-axis wheel cluster aligned with the body axes is subject to dual-saturat
 |h_{w,i}(t)| \le h_{w,i,\max}, \quad i \in \{1,2,3\}
 \label{eq:dual_saturation}
 \end{equation}
-where $\tau_{i,\max}>0$ and $h_{w,i,\max}>0$ are the torque and momentum saturation limits of the $i$-th axis.
+where $\tau_{i,\max}>0$ and $h_{w,i,\max}>0$ are the torque and momentum saturation limits of the $i$-th axis, respectively.
 
 Let $\boldsymbol{\sigma}_d,\boldsymbol{\omega}_d$ denote the desired attitude and angular velocity.
 The tracking errors $\boldsymbol{\sigma}_e,\boldsymbol{\omega}_e$ are defined as
@@ -764,10 +764,7 @@ From Appendix~\ref{app:bangbang}, the minimum feasible terminal time is $T_{f,\m
 All cases use $T_f\ge\SI{110}{s}$ to ensure feasibility.
 In all cases, the simulation horizon extends to $T_{\mathrm{sim}}>T_f$, with the reference held at the target for $t\ge T_f$.
 
-Three cases are conducted to validate different aspects of the framework.
-Case~1 verifies nominal tracking performance and dual-saturation compliance.
-Case~2 assesses exact prescribed-time convergence and accuracy tunability.
-Case~3 benchmarks the proposed framework against the torque-saturated prescribed-time controller in~\cite{xu_distributed_2022} (hereafter Ref.~\cite{xu_distributed_2022}) under torque-only and dual-saturation conditions.
+Three cases are conducted: Case~1 validates nominal tracking performance and dual-saturation compliance, Case~2 assesses exact prescribed-time convergence and accuracy tunability, and Case~3 benchmarks the proposed framework against the torque-saturated prescribed-time controller in~\cite{xu_distributed_2022} (hereafter Ref.~\cite{xu_distributed_2022}) under torque-only and dual-saturation conditions.
 
 \subsection{Case 1: Nominal Performance Validation}
 The mission parameters are taken as follows: terminal time $T_f=\SI{120}{s}$, mission accuracy $\varepsilon_1=10^{-5}$, 
@@ -841,7 +838,8 @@ For each $T_f$, the OCP generates a constraint-feasible reference trajectory, an
 the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2$
 following the procedure in Section~\ref{overall_design}.
 
-Fig.~\ref{fig:Case2_qe_xyz} shows that the attitude tracking error converges at the respective prescribed terminal times for all tested values, entering the prescribed accuracy only $0.24$--$0.25~\si{s}$ prior to $T_f$ (relative timing error below $0.06\%$).
+Fig.~\ref{fig:Case2_qe_xyz} shows that the attitude tracking error converges at the respective prescribed terminal times for all tested values, 
+entering the prescribed accuracy only $0.24$--$0.25~\si{s}$ prior to $T_f$.
 
 \begin{figure}[htbp]
   \centering
@@ -866,7 +864,7 @@ To evaluate prescribed-accuracy tunability, $\varepsilon_1$ is swept over $\{10^
 For each $\varepsilon_1$, the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2$
 following Section~\ref{overall_design}.
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \begin{minipage}[b]{0.38\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/CaseSweep_MRPErrorNorm_log10.pdf}\\[2pt]
@@ -892,8 +890,8 @@ Case~2 confirms the prescribed-time convergence and prescribed-accuracy tunabili
 
 To evaluate the advantage of the proposed framework over existing methods, this case compares EPTPAC with Ref.~\cite{xu_distributed_2022}, which addresses torque limits but does not account for momentum constraints.
 Two scenarios are considered: Case~3.1 evaluates
-torque saturation only, thereby providing a fair comparison under identical constraint
-assumptions. Case~3.2 enforces dual saturation to assess how the
+torque saturation only under identical constraint assumptions to provide a fair comparison,
+while Case~3.2 enforces dual saturation to assess how the
 momentum constraint affects controller performance.
 
 \subsubsection{Case 3.1: Torque-only saturation}
@@ -918,7 +916,6 @@ $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
 With $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$ (Figs.~\ref{fig:err300} and~\ref{fig:tau300}), exhibiting pronounced conservatism at only 50\% of the prescribed duration.
 However, when $T_f$ is reduced to $150~\si{s}$, approaching $T_{f,\min}$, the prescribed-time property breaks down: the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$ (Figs.~\ref{fig:err150} and~\ref{fig:tau150}).
 This phenomenon stems from the aggressive escalation of time-varying gains as $T_f$ approaches $T_{f,\min}$, which drives the control torque into saturation and invalidates the theoretical conditions on which convergence depends.
-
 In contrast, EPTPAC achieves exact convergence at both prescribed terminal times with smooth, feasible control torques.
 
 \subsubsection{Case 3.2: Dual saturation}
@@ -939,8 +936,7 @@ This scenario examines controller performance under dual-saturation constraints 
     \label{fig:case4_2_comparison}
 \end{figure}
 
-Under dual saturation, Ref.~\cite{xu_distributed_2022} fails to achieve prescribed-time convergence, with convergence delayed to approximately $410~\si{s}$ (Fig.~\ref{fig:case4_2_comparison}).
-Lacking momentum management, the controller issues aggressive torque commands that rapidly drive the wheel momentum into saturation, leading to loss of control authority and uncontrolled drift.
+As shown in Fig.~\ref{fig:case4_2_comparison}, under dual saturation Ref.~\cite{xu_distributed_2022} fails to achieve prescribed-time convergence, with the settling time delayed to approximately $410~\si{s}$. This failure stems from the lack of momentum management: aggressive torque commands rapidly drive the wheels into saturation, leading to loss of control authority and uncontrolled drift.
 In contrast, EPTPAC modulates the control torques to prevent momentum saturation, achieving exact convergence at $t=300~\si{s}$.
 
 In summary, Case~3 demonstrates that dual saturation critically impacts control performance and confirms the advantage of the proposed EPTPAC framework, which eliminates conservatism while ensuring maneuver feasibility under dual-saturation constraints.
@@ -948,7 +944,7 @@ In summary, Case~3 demonstrates that dual saturation critically impacts control 
 \newpage
 \section{Conclusion}
 \label{section:conclusion}
-This Note addresses the problem of exact prescribed-time attitude control under dual reaction wheel saturation. This problem poses two principal challenges. First, existing PTC methods are inherently conservative, guaranteeing only an upper bound on convergence time rather than convergence exactly at a prescribed instant. Second, dual saturation severely constrains maneuver feasibility, where ignoring momentum saturation risks loss of control authority and neglecting $T_{f,\min}$ may render prescribed-time convergence physically unattainable. The proposed EPTPAC framework addresses these challenges through a decoupled two-loop architecture, eliminating conservatism while ensuring dual-saturation compliance. An analytical estimate of $T_{f,\min}$ guarantees physical realizability of the prescribed terminal time, and a parameter-synthesis method makes the design process systematic rather than heuristic.
+This paper addresses the problem of exact prescribed-time attitude control under dual reaction wheel saturation, which poses two principal challenges. First, existing PTC methods are inherently conservative, guaranteeing only an upper bound on convergence time rather than convergence exactly at a prescribed instant. Second, dual saturation severely constrains maneuver feasibility, where ignoring momentum saturation risks loss of control authority and neglecting $T_{f,\min}$ may render prescribed-time convergence physically unattainable. The proposed EPTPAC framework addresses these challenges through a decoupled two-loop architecture, eliminating conservatism while ensuring dual-saturation compliance. Moreover, an analytical estimate of $T_{f,\min}$ guarantees physical realizability of the prescribed terminal time, and a parameter-synthesis method further makes the design process systematic rather than heuristic.
 Numerical simulations validated the effectiveness of the proposed framework in achieving exact terminal-time convergence, tunable accuracy, and dual-saturation compliance.
 
 \appendix
