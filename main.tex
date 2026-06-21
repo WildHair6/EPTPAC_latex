@@ -21,14 +21,12 @@
 
 \title{Exact Prescribed-Time Prescribed-Accuracy Control for Spacecraft under Dual Reaction Wheel Saturation}
 
-\author[1,2]{Zaihua Liu}
-\author[1,2]{Yan Xiao\footnote{Corresponding author}}
-\author[1,2]{Dong Ye}
-\author[3]{Haiyue Yang}
-\author[1,2]{Zhaowei Sun}
-\affil[1]{Research Center of Satellite Technology, Harbin Institute of Technology, Harbin 150001, China}
-\affil[2]{State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster, Harbin Institute of Technology, Harbin 150001, China}
-\affil[3]{Department of Signal Theory and Communications, Universitat Polit\`{e}cnica de Catalunya, Barcelona 08034, Spain}
+\author{Zaihua Liu\footnote{Ph.D. Candidate, Research Center of Satellite Technology, State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster.}, Yan Xiao\footnote{Associate Professor, Research Center of Satellite Technology, State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster. xiaoy@hit.edu.cn (Corresponding Author).}, and Dong Ye\footnote{Professor, Research Center of Satellite Technology, State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster.}}
+\affil{Harbin Institute of Technology, Harbin 150001, People's Republic of China}
+\author{Haiyue Yang\footnote{Ph.D. Candidate, Department of Signal Theory and Communications.}}
+\affil{Universitat Polit\`{e}cnica de Catalunya, Barcelona 08034, Spain}
+\author{and Zhaowei Sun\footnote{Professor, Research Center of Satellite Technology, State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster.}}
+\affil{Harbin Institute of Technology, Harbin 150001, People's Republic of China}
 
 \begin{document}
 
@@ -688,9 +686,9 @@ If violated, increase $T_f$, relax $\varepsilon_1$, or increase $\gamma_u,\gamma
 For a given mission, the framework requires only three free designer choices, namely $\eta$, $T_{p1}$, and $T_{p2}$, with all remaining parameters systematically derived via the analytical conditions, thus systematizing the design process.
 The complete procedure is illustrated in Fig.~\ref{fig:overall_design}.
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
-    \includegraphics[height=0.4\textheight]{fig/overall.pdf}
+    \includegraphics[height=0.45\textheight]{fig/overall.pdf}
     \caption{Parameter-synthesis method.}
     \label{fig:overall_design}
 \end{figure}
@@ -773,18 +771,14 @@ Following the synthesis method in Section~\ref{overall_design} with $\kappa=1.2$
 The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and $\varepsilon_{\delta_2}=5.13\times10^{-5}$ 
 satisfy $\varepsilon_{\delta_i}<\varepsilon_i$.
 
-Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$.
-As shown in Fig.~\ref{fig:convergence_behavior}, all tracking errors remain within the prescribed-accuracy sets over $[0,T_f]$.
-Fig.~\ref{fig:constraint_satisfaction} confirms that both the control torque and wheel momentum respect their respective saturation limits throughout the maneuver.
-
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_AttitudeComparison_tf120.0.pdf}\\[2pt]
         \footnotesize (a) Attitude MRPs
     \end{minipage}
     \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf}\\[2pt]
         \footnotesize (b) Angular velocity
     \end{minipage}
@@ -794,36 +788,29 @@ Fig.~\ref{fig:constraint_satisfaction} confirms that both the control torque and
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.32\linewidth}\centering
-        \includegraphics[width=\linewidth]{fig/Case1_Results_AttitudeError_tf120.0.pdf}\\[2pt]
-        \footnotesize (a) $ \boldsymbol{\sigma}_e $
-    \end{minipage}\hfill
-    \begin{minipage}[b]{0.32\linewidth}\centering
-        \includegraphics[width=\linewidth]{fig/Case1_Results_AngularRateError_tf120.0.pdf}\\[2pt]
-        \footnotesize (b) $ \boldsymbol{\omega}_e $
-    \end{minipage}\hfill
-    \begin{minipage}[b]{0.32\linewidth}\centering
-        \includegraphics[width=\linewidth]{fig/Case1_Results_sError_tf120.0.pdf}\\[2pt]
-        \footnotesize (c) $ \boldsymbol{s} $
-    \end{minipage}
-    \caption{Case~1: Error responses}
+    \includegraphics[width=0.68\linewidth]{fig/Case1_Results_ErrorNorms_tf120.0.pdf}
+    \caption{Case~1: Log-scale error norms and prescribed-accuracy bounds.}
     \label{fig:convergence_behavior}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_ControlTorque_tf120.0.pdf}\\[2pt]
         \footnotesize (a) $ \boldsymbol{\tau} $
     \end{minipage}
     \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_WheelMomentum_tf120.0.pdf}\\[2pt]
         \footnotesize (b) $ \boldsymbol{h}_w $
     \end{minipage}
     \caption{Case~1: Torque and wheel momentum.}
     \label{fig:constraint_satisfaction}
 \end{figure}
+
+Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$.
+As shown in Fig.~\ref{fig:convergence_behavior}, all tracking errors remain within the prescribed-accuracy sets over $[0,T_f]$.
+Fig.~\ref{fig:constraint_satisfaction} confirms that both the control torque and wheel momentum respect their respective saturation limits throughout the maneuver.
 
 In summary, Case~1 validates the nominal tracking performance and dual-saturation compliance of the EPTPAC framework.
 
@@ -839,19 +826,20 @@ the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2
 following the procedure in Section~\ref{overall_design}.
 
 Fig.~\ref{fig:Case2_qe_xyz} shows that the attitude tracking error converges at the respective prescribed terminal times for all tested values, 
-entering the prescribed accuracy only $0.24$--$0.25~\si{s}$ prior to $T_f$.
+entering the prescribed accuracy only $0.27$--$0.37~\si{s}$ prior to $T_f$.
 
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}[b]{0.32\linewidth}\centering
+  \begin{minipage}[b]{0.45\linewidth}\centering
     \includegraphics[width=\linewidth]{fig/qe_x_comparison.png}\\[2pt]
     \footnotesize (a) $ \sigma_{e1, \mathrm{tar}} $
-  \end{minipage}\hfill
-  \begin{minipage}[b]{0.32\linewidth}\centering
+  \end{minipage}
+  \hspace{0.05\linewidth}
+  \begin{minipage}[b]{0.45\linewidth}\centering
     \includegraphics[width=\linewidth]{fig/qe_y_comparison.png}\\[2pt]
     \footnotesize (b) $ \sigma_{e2, \mathrm{tar}} $
-  \end{minipage}\hfill
-  \begin{minipage}[b]{0.32\linewidth}\centering
+  \end{minipage}\\[-2pt]
+  \begin{minipage}[b]{0.45\linewidth}\centering
     \includegraphics[width=\linewidth]{fig/qe_z_comparison.png}\\[2pt]
     \footnotesize (c) $ \sigma_{e3, \mathrm{tar}} $
   \end{minipage}
@@ -866,20 +854,20 @@ following Section~\ref{overall_design}.
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/CaseSweep_MRPErrorNorm_log10.pdf}\\[2pt]
         \footnotesize (a) $\log_{10}(\|\boldsymbol{\sigma}_e\|)$ with $\varepsilon_1$ thresholds
     \end{minipage}
     \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.38\linewidth}\centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/CaseSweep_SlidingNorm_log10.pdf}\\[2pt]
         \footnotesize (b) $\log_{10}(\|\boldsymbol{s}\|)$ with $\varepsilon_2$ thresholds
     \end{minipage}
     \caption{Case~2: Log-scale comparison of $\|\boldsymbol{\sigma}_e\|$ and $\|\boldsymbol{s}\|$ for different $\varepsilon_1$}
-    \label{fig:case3_precision_compare}
+    \label{fig:case2_precision_compare}
 \end{figure}
 
-Fig.~\ref{fig:case3_precision_compare} shows that all four settings achieve their prescribed accuracies within $T_f$.
+Fig.~\ref{fig:case2_precision_compare} shows that all four settings achieve their prescribed accuracies within $T_f$.
 As the prescribed accuracy tightens, however, the required gains grow substantially: tightening $\varepsilon_1$ from $10^{-4}$ to $10^{-7}$
 increases $\alpha_1=\alpha_2$ from $4.30$ to $24.78$.
 Thus $\varepsilon_1$ should be matched to the actual sensor resolution, since pursuing accuracy beyond the sensing capability merely escalates control gains without practical benefit.
@@ -902,19 +890,38 @@ $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
 
 \begin{figure}[ht]
     \centering
-    \subfloat[Attitude error ($T_f=300$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total400.0.pdf}\label{fig:err300}}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total400.0_eptpac.pdf}\\[2pt]
+        \footnotesize (a) Attitude error
+    \end{minipage}
     \hspace{0.05\linewidth}
-    \subfloat[Control torque ($T_f=300$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0.pdf}\label{fig:tau300}}
-    \\[-6pt]
-    \subfloat[Attitude error ($T_f=150$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total300.0.pdf}\label{fig:err150}}
-    \hspace{0.05\linewidth}
-    \subfloat[Control torque ($T_f=150$ s)]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0.pdf}\label{fig:tau150}}
-    \caption{Case 3.1: Performance comparison under torque-only saturation}
-    \label{fig:case4_1_comparison}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0_eptpac.pdf}\\[2pt]
+        \footnotesize (b) Control torque
+    \end{minipage}
+    \caption{Case 3.1: Torque-only saturation with $T_f=300$ s}
+    \label{fig:case4_1_tf300}
 \end{figure}
 
-With $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$ (Figs.~\ref{fig:err300} and~\ref{fig:tau300}), exhibiting pronounced conservatism at only 50\% of the prescribed duration.
-However, when $T_f$ is reduced to $150~\si{s}$, approaching $T_{f,\min}$, the prescribed-time property breaks down: the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$ (Figs.~\ref{fig:err150} and~\ref{fig:tau150}).
+As indicated in Fig.~\ref{fig:case4_1_tf300}, for $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$, exhibiting pronounced conservatism at only 50\% of the prescribed maneuver duration.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total300.0_eptpac.pdf}\\[2pt]
+        \footnotesize (a) Attitude error
+    \end{minipage}
+    \hspace{0.05\linewidth}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0_eptpac.pdf}\\[2pt]
+        \footnotesize (b) Control torque
+    \end{minipage}
+    \caption{Case 3.1: Torque-only saturation with $T_f=150$ s}
+    \label{fig:case4_1_tf150}
+\end{figure}
+
+However, when $T_f$ is reduced to $150~\si{s}$, the prescribed-time property breaks down.
+As illustrated in Fig.~\ref{fig:case4_1_tf150}, the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$.
 This phenomenon stems from the aggressive escalation of time-varying gains as $T_f$ approaches $T_{f,\min}$, which drives the control torque into saturation and invalidates the theoretical conditions on which convergence depends.
 In contrast, EPTPAC achieves exact convergence at both prescribed terminal times with smooth, feasible control torques.
 
@@ -924,13 +931,24 @@ This scenario examines controller performance under dual-saturation constraints 
 
 \begin{figure}[ht]
     \centering
-    \subfloat[Attitude error]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_Attitude__t_total500.0.pdf}\label{fig:err_dual}}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total500.0_eptpac.pdf}\\[2pt]
+        \footnotesize (a) Attitude error
+    \end{minipage}
     \hspace{0.05\linewidth}
-    \subfloat[Angular velocity error]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_omega__t_total500.0.pdf}\label{fig:omega_dual}}
-    \\[-6pt]
-    \subfloat[Control torque]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0.pdf}\label{fig:tau_dual}}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_omega__t_total500.0_eptpac.pdf}\\[2pt]
+        \footnotesize (b) Angular velocity error
+    \end{minipage}\\[4pt]
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0_eptpac.pdf}\\[2pt]
+        \footnotesize (c) Control torque
+    \end{minipage}
     \hspace{0.05\linewidth}
-    \subfloat[Wheel momentum]{\includegraphics[width=0.4\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0.pdf}\label{fig:hw_dual}}
+    \begin{minipage}[b]{0.45\linewidth}\centering
+        \includegraphics[width=\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0_eptpac.pdf}\\[2pt]
+        \footnotesize (d) Wheel momentum
+    \end{minipage}
 
     \caption{Case 3.2: Performance comparison under dual saturation}
     \label{fig:case4_2_comparison}
@@ -980,7 +998,6 @@ T_{f,\min}\approx
 \section*{Acknowledgments}
 
 This work was supported in part by the National Key Research and Development Program of China under Grant Nos. 2021YFC2202901, 2023YFC2206004, and 2024YFC2207203; the National Natural Science Foundation of China under Grant No. U25B2052; the Excellent Youth Fund of the Heilongjiang Provincial Natural Science Foundation under Grant No. YQ2024F010; and the Fund of the State Key Laboratory of Micro-Spacecraft Rapid Design and Intelligent Cluster under Grant No. MS02240103.
-
 During the preparation of this work, the authors used an AI-assisted writing tool for language polishing. All scientific content, methodology, and conclusions are entirely the work of the authors.
 
 \newpage

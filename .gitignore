@@ -11,3 +11,8 @@
 
 # Keep figure PDFs used in paper
 !fig/*.pdf
+
+# MATLAB/Simulink generated cache files
+code/slprj/
+*.slxc
+*.autosave
