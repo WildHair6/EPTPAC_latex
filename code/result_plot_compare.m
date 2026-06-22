@@ -77,8 +77,8 @@ fig_height_tiled = 10*1.2;    % 瀛愬浘楂樺害锛堝帢绫筹級
 
 % 缁熶竴瀛椾綋
 fontName = 'Times New Roman';
-fontSize = 12;
-lw       = 1.5;
+fontSize = 14;
+lw       = 1.8;
 
 ref_time = get_ref_time_marker(t_total);
 labelStr = sprintf('$T_f = %.0f\\,\\mathrm{s}$', tf);
@@ -130,11 +130,12 @@ for i = 1:3
           'Label', labelStr, ...
           'LabelVerticalAlignment', 'bottom', ...
           'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex');
-        add_ref_time_line(gca, ref_time, labelStr2, true);
+          'Interpreter', 'latex', ...
+          'FontName', fontName, 'FontSize', fontSize);
+        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
     else
         xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
-        add_ref_time_line(gca, ref_time, labelStr2, false);
+        add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
     end
 
     grid on; box on;
@@ -185,11 +186,12 @@ for i = 1:3
           'Label', labelStr, ...
           'LabelVerticalAlignment', 'bottom', ...
           'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex');
-        add_ref_time_line(gca, ref_time, labelStr2, true);
+          'Interpreter', 'latex', ...
+          'FontName', fontName, 'FontSize', fontSize);
+        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
     else
         xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
-        add_ref_time_line(gca, ref_time, labelStr2, false);
+        add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
     end
 
     grid on; box on;
@@ -245,11 +247,12 @@ for i = 1:3
           'Label', labelStr, ...
           'LabelVerticalAlignment', 'bottom', ...
           'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex');
-        add_ref_time_line(gca, ref_time, labelStr2, true);
+          'Interpreter', 'latex', ...
+          'FontName', fontName, 'FontSize', fontSize);
+        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
     else
         xline(tf, 'Color', [0.3 0.3 0.3], 'LineStyle', '--', 'LineWidth', 1.2);
-        add_ref_time_line(gca, ref_time, labelStr2, false);
+        add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
     end
 
     grid on; box on;
@@ -262,6 +265,7 @@ for i = 1:3
     end
     set(gca,'FontName',fontName,'FontSize',fontSize);
     xlim([t(1), t(end)]);
+    ylim(1.15 * [-tau_max(i), tau_max(i)]);
 end
 
 % 鍥句緥鏀惧湪搴曢儴
@@ -295,11 +299,12 @@ for i = 1:3
           'Label', labelStr, ...
           'LabelVerticalAlignment', 'bottom', ...
           'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex');
-        add_ref_time_line(gca, ref_time, labelStr2, true);
+          'Interpreter', 'latex', ...
+          'FontName', fontName, 'FontSize', fontSize);
+        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
     else
         xline(tf, 'Color', [0.3 0.3 0.3], 'LineStyle', '--', 'LineWidth', 1.2);
-        add_ref_time_line(gca, ref_time, labelStr2, false);
+        add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
     end
 
     grid on; box on;
@@ -375,7 +380,7 @@ function ref_time = get_ref_time_marker(t_total)
     end
 end
 
-function add_ref_time_line(ax, ref_time, labelStr, showLabel)
+function add_ref_time_line(ax, ref_time, labelStr, showLabel, fontName, fontSize)
     if ~isfinite(ref_time)
         return;
     end
@@ -385,7 +390,8 @@ function add_ref_time_line(ax, ref_time, labelStr, showLabel)
             'Label', labelStr, ...
             'LabelVerticalAlignment', 'bottom', ...
             'LabelHorizontalAlignment', 'left', ...
-            'Interpreter', 'latex');
+            'Interpreter', 'latex', ...
+            'FontName', fontName, 'FontSize', fontSize);
     else
         xline(ax, ref_time, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
     end
