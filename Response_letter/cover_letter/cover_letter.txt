@@ -40,7 +40,7 @@ torque and momentum limits, and the inner-loop nonsingular controller
 guarantees prescribed tracking accuracy under uncertainties and disturbances.
 A constructive parameter-synthesis rule determines the minimum feasible
 terminal time. Simulations verify exact-time convergence, prescribed-accuracy
-tracking, and strict dual-saturation compliance.
+performance, and strict dual-saturation compliance.
 
 We trust this work will be of interest to the JGCD readership in spacecraft
 attitude guidance and control. This manuscript is original, not currently
