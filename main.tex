@@ -688,7 +688,7 @@ The complete procedure is illustrated in Fig.~\ref{fig:overall_design}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[height=0.45\textheight]{fig/overall.pdf}
+    \includegraphics[height=0.4\textheight]{fig/overall.pdf}
     \caption{Parameter-synthesis method.}
     \label{fig:overall_design}
 \end{figure}
@@ -716,12 +716,13 @@ followed by $\alpha_1=\alpha_2=\kappa\,\alpha$. This provides a unique parameter
 \section{Simulation Results}
 \label{section:simulation}
 
-This section presents simulation results to validate the effectiveness of the proposed EPTPAC framework.
-The baseline simulation parameters and boundary conditions are listed in Table~\ref{tab:sim_setup_all}.
+This section presents simulation results to validate the proposed EPTPAC framework.
+For all simulations, the initial attitude is set to $\boldsymbol{\sigma}(0)=[0.2,\ 0.3,\ -0.3]^\top$ and the target attitude is $\boldsymbol{\sigma}_{\mathrm{target}}=\boldsymbol{0}$. The spacecraft starts and ends at rest with $\boldsymbol{\omega}(0)=\boldsymbol{\omega}_{\mathrm{target}}=\boldsymbol{0}~\si{rad/s}$.
+The common physical and disturbance parameters are listed in Table~\ref{tab:sim_setup_all}.
 
 \begin{table}[ht]
 \centering
-\caption{Common simulation settings and boundary conditions}
+\caption{Common simulation settings}
 \label{tab:sim_setup_all}
 \begin{tabular}{@{}l l@{}}
 \toprule
@@ -742,43 +743,30 @@ $0.01\,[\sin(2t),\ \cos(t),\ \cos(t+2)]^\top~\si{N\cdot m}$ \\
 $T_{d,\max}$ &
 $\SI{0.03}{N\cdot m}$ \\
 $H_{\max}$ &
-$\SI{0.1}{kg\cdot m^2/s}$ \\
-$\boldsymbol{\sigma}(0)$ &
-$[0.2,\ 0.3,\ -0.3]^\top$ \\
-$\boldsymbol{\sigma}_{\mathrm{target}}$ &
-$[0,\ 0,\ 0]^\top$ \\
-$\boldsymbol{\omega}(0)$ &
-$[0,\ 0,\ 0]^\top~\si{rad/s}$ \\
-$\boldsymbol{\omega}_{\mathrm{target}}$ &
-$[0,\ 0,\ 0]^\top~\si{rad/s}$ \\\bottomrule
+$\SI{0.1}{kg\cdot m^2/s}$ \\\bottomrule
 \end{tabular}
 \end{table}
 
-Specifically, the nominal trajectory reference $(\boldsymbol{\sigma}_d,\boldsymbol{\omega}_d)$ is generated offline by solving the constrained OCP
-\eqref{eq:OCP_slack} via GPOPS-II.
-Following Remark~\ref{rem:gamma_selection},
-$\gamma_u=0.2$ and $\gamma_h=0.1$ are adopted.
-From Appendix~\ref{app:bangbang}, the minimum feasible terminal time is $T_{f,\min}\approx\SI{95}{s}$.
-All cases use $T_f\ge\SI{110}{s}$ to ensure feasibility.
-In all cases, the simulation horizon extends to $T_{\mathrm{sim}}>T_f$, with the reference held at the target for $t\ge T_f$.
+In each case, the nominal reference trajectory $(\boldsymbol{\sigma}_d,\boldsymbol{\omega}_d)$ is generated offline by solving the constrained OCP \eqref{eq:OCP_slack} via GPOPS-II, and is held constant at the target state for $t\ge T_f$.
+Following Remark~\ref{rem:gamma_selection}, $\gamma_u=0.2$ and $\gamma_h=0.1$ are adopted.
+From Appendix~\ref{app:bangbang}, the minimum feasible terminal time is $T_{f,\min}\approx\SI{95}{s}$. Therefore, $T_f\ge\SI{110}{s}$ is employed in all cases to ensure feasibility.
 
-Three cases are conducted: Case~1 validates nominal tracking performance and dual-saturation compliance, Case~2 assesses exact prescribed-time convergence and accuracy tunability, and Case~3 benchmarks the proposed framework against the torque-saturated prescribed-time controller in~\cite{xu_distributed_2022} (hereafter Ref.~\cite{xu_distributed_2022}) under torque-only and dual-saturation conditions.
+To comprehensively evaluate the framework, three cases are conducted: Case~1 validates the baseline performance; Case~2 assesses exact prescribed-time convergence and accuracy tunability; and Case~3 benchmarks the proposed framework against the torque-saturated prescribed-time controller in~\cite{xu_distributed_2022} (hereafter Ref.~\cite{xu_distributed_2022}) under both torque-only and dual-saturation conditions.
 
 \subsection{Case 1: Nominal Performance Validation}
 The mission parameters are taken as follows: terminal time $T_f=\SI{120}{s}$, mission accuracy $\varepsilon_1=10^{-5}$, 
 prescribed-time exponent $\eta=0.2$, and time allocations $T_{p2}=\SI{15}{s}$, $T_{p1}=\SI{100}{s}$.
 Following the synthesis method in Section~\ref{overall_design} with $\kappa=1.2$, the inner-loop parameters are determined to be $\varepsilon_2=6.43\times10^{-5}$ and $\alpha_1=\alpha_2=6.34$.
-The practical convergence bounds $\varepsilon_{\delta_1}=7.96\times10^{-6}$ and $\varepsilon_{\delta_2}=5.13\times10^{-5}$ 
-satisfy $\varepsilon_{\delta_i}<\varepsilon_i$.
+The results are as follows.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_AttitudeComparison_tf120.0.pdf}\\[2pt]
         \footnotesize (a) Attitude MRPs
     \end{minipage}
-    \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \hspace{0.04\linewidth}
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_omega_AttitudeComparison_tf120.0.pdf}\\[2pt]
         \footnotesize (b) Angular velocity
     \end{minipage}
@@ -786,21 +774,24 @@ satisfy $\varepsilon_{\delta_i}<\varepsilon_i$.
     \label{fig:tracking_performance}
 \end{figure}
 
-\begin{figure}[htbp]
+Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$.
+Furthermore, Fig.~\ref{fig:convergence_behavior} shows that all tracking errors remain within the prescribed-accuracy sets over $[0,T_f]$, while Fig.~\ref{fig:constraint_satisfaction} confirms that both the control torque and wheel momentum remain within their respective saturation limits throughout the maneuver.
+
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.68\linewidth]{fig/Case1_Results_ErrorNorms_tf120.0.pdf}
+    \includegraphics[width=0.55\linewidth]{fig/Case1_Results_ErrorNorms_tf120.0.pdf}
     \caption{Case~1: Log-scale error norms and prescribed-accuracy bounds.}
     \label{fig:convergence_behavior}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_ControlTorque_tf120.0.pdf}\\[2pt]
         \footnotesize (a) $ \boldsymbol{\tau} $
     \end{minipage}
-    \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \hspace{0.04\linewidth}
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/Case1_Results_WheelMomentum_tf120.0.pdf}\\[2pt]
         \footnotesize (b) $ \boldsymbol{h}_w $
     \end{minipage}
@@ -808,11 +799,7 @@ satisfy $\varepsilon_{\delta_i}<\varepsilon_i$.
     \label{fig:constraint_satisfaction}
 \end{figure}
 
-Fig.~\ref{fig:tracking_performance} shows that the spacecraft attitude and angular velocity closely track the reference trajectory, which reaches the target state at $t = T_f$.
-As shown in Fig.~\ref{fig:convergence_behavior}, all tracking errors remain within the prescribed-accuracy sets over $[0,T_f]$.
-Fig.~\ref{fig:constraint_satisfaction} confirms that both the control torque and wheel momentum respect their respective saturation limits throughout the maneuver.
-
-In summary, Case~1 validates the nominal tracking performance and dual-saturation compliance of the EPTPAC framework.
+In summary, Case~1 confirms that the EPTPAC framework achieves exact prescribed-time convergence to the target state while satisfying the dual-saturation constraint.
 
 \subsection{Case 2: Prescribed Performance Assessment}
 \label{sec:case2_prescribed_perf}
@@ -821,31 +808,19 @@ This case evaluates the prescribed-time convergence and prescribed-accuracy tuna
 
 \subsubsection{Prescribed-time convergence.}
 The prescribed terminal time is swept over $T_f\in\{110,\,120,\,130,\,140\}~\si{s}$, with $\varepsilon_1=10^{-5}$, $\eta=0.2$, $T_{p2}=\SI{15}{s}$, and $T_{p1}=T_f-\SI{20}{s}$.
-For each $T_f$, the OCP generates a constraint-feasible reference trajectory, and
-the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2$
+For each $T_f$, the inner-loop parameters are synthesized via the balanced rule with $\kappa=1.2$
 following the procedure in Section~\ref{overall_design}.
-
-Fig.~\ref{fig:Case2_qe_xyz} shows that the attitude tracking error converges at the respective prescribed terminal times for all tested values, 
-entering the prescribed accuracy only $0.27$--$0.37~\si{s}$ prior to $T_f$.
+The results are as follows.
 
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}[b]{0.45\linewidth}\centering
-    \includegraphics[width=\linewidth]{fig/qe_x_comparison.png}\\[2pt]
-    \footnotesize (a) $ \sigma_{e1, \mathrm{tar}} $
-  \end{minipage}
-  \hspace{0.05\linewidth}
-  \begin{minipage}[b]{0.45\linewidth}\centering
-    \includegraphics[width=\linewidth]{fig/qe_y_comparison.png}\\[2pt]
-    \footnotesize (b) $ \sigma_{e2, \mathrm{tar}} $
-  \end{minipage}\\[-2pt]
-  \begin{minipage}[b]{0.45\linewidth}\centering
-    \includegraphics[width=\linewidth]{fig/qe_z_comparison.png}\\[2pt]
-    \footnotesize (c) $ \sigma_{e3, \mathrm{tar}} $
-  \end{minipage}
-  \caption{Case~2: MRP error components for different $T_f$}
-  \label{fig:Case2_qe_xyz}
+  \includegraphics[width=0.55\linewidth]{fig/qe_norm_comparison.pdf}
+  \caption{Case~2: MRP error norm for different $T_f$}
+  \label{fig:Case2_qe_norm}
 \end{figure}
+
+Fig.~\ref{fig:Case2_qe_norm} shows that the attitude tracking error converges at the respective prescribed terminal times for all tested values,
+entering the prescribed accuracy only $0.24$--$0.27~\si{s}$ prior to $T_f$.
 
 \subsubsection{Prescribed-accuracy tunability.}
 To evaluate prescribed-accuracy tunability, $\varepsilon_1$ is swept over $\{10^{-4},\,10^{-5},\,10^{-6},\,10^{-7}\}$ with $T_f=\SI{120}{s}$ fixed.
@@ -868,15 +843,16 @@ following Section~\ref{overall_design}.
 \end{figure}
 
 Fig.~\ref{fig:case2_precision_compare} shows that all four settings achieve their prescribed accuracies within $T_f$.
-As the prescribed accuracy tightens, however, the required gains grow substantially: tightening $\varepsilon_1$ from $10^{-4}$ to $10^{-7}$
+However, as the prescribed accuracy tightens, the required gains grow substantially: reducing $\varepsilon_1$ from $10^{-4}$ to $10^{-7}$
 increases $\alpha_1=\alpha_2$ from $4.30$ to $24.78$.
 Thus $\varepsilon_1$ should be matched to the actual sensor resolution, since pursuing accuracy beyond the sensing capability merely escalates control gains without practical benefit.
 
-Case~2 confirms the prescribed-time convergence and prescribed-accuracy tunability of the EPTPAC framework.
+In summary, Case~2 validates the exact prescribed-time convergence and prescribed-accuracy tunability through sweeps of $T_f$ and $\varepsilon_1$, respectively.
 
 \subsection{Case 3: Comparison with Ref.~\cite{xu_distributed_2022}}
 
 To evaluate the advantage of the proposed framework over existing methods, this case compares EPTPAC with Ref.~\cite{xu_distributed_2022}, which addresses torque limits but does not account for momentum constraints.
+For fairness, all physical parameters, external disturbances, and initial conditions are kept identical to those in Table~\ref{tab:sim_setup_all}.
 Two scenarios are considered: Case~3.1 evaluates
 torque saturation only under identical constraint assumptions to provide a fair comparison,
 while Case~3.2 enforces dual saturation to assess how the
@@ -887,15 +863,16 @@ momentum constraint affects controller performance.
 This scenario evaluates prescribed-time convergence under torque-only saturation
 ($\tau_{i,\max}=0.2~\si{N\cdot m}$) with two prescribed terminal times:
 $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
+The comparison results are as follows.
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total400.0_eptpac.pdf}\\[2pt]
         \footnotesize (a) Attitude error
     \end{minipage}
     \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total400.0_eptpac.pdf}\\[2pt]
         \footnotesize (b) Control torque
     \end{minipage}
@@ -903,16 +880,16 @@ $T_f=300~\si{s}$ and $T_f=150~\si{s}$.
     \label{fig:case4_1_tf300}
 \end{figure}
 
-As indicated in Fig.~\ref{fig:case4_1_tf300}, for $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$, exhibiting pronounced conservatism at only 50\% of the prescribed maneuver duration.
+Fig.~\ref{fig:case4_1_tf300} shows that for $T_f=300~\si{s}$, Ref.~\cite{xu_distributed_2022} converges around $150~\si{s}$, exhibiting pronounced conservatism at only 50\% of the prescribed maneuver duration.
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total300.0_eptpac.pdf}\\[2pt]
         \footnotesize (a) Attitude error
     \end{minipage}
     \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total300.0_eptpac.pdf}\\[2pt]
         \footnotesize (b) Control torque
     \end{minipage}
@@ -920,8 +897,8 @@ As indicated in Fig.~\ref{fig:case4_1_tf300}, for $T_f=300~\si{s}$, Ref.~\cite{x
     \label{fig:case4_1_tf150}
 \end{figure}
 
-However, when $T_f$ is reduced to $150~\si{s}$, the prescribed-time property breaks down.
-As illustrated in Fig.~\ref{fig:case4_1_tf150}, the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$.
+However, when $T_f$ is reduced to $150~\si{s}$, the prescribed-time convergence no longer holds.
+Fig.~\ref{fig:case4_1_tf150} shows that the response does not converge at $150~\si{s}$ but is instead delayed to approximately $230~\si{s}$.
 This phenomenon stems from the aggressive escalation of time-varying gains as $T_f$ approaches $T_{f,\min}$, which drives the control torque into saturation and invalidates the theoretical conditions on which convergence depends.
 In contrast, EPTPAC achieves exact convergence at both prescribed terminal times with smooth, feasible control torques.
 
@@ -931,25 +908,26 @@ This scenario examines controller performance under dual-saturation constraints 
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_Attitude__t_total500.0_eptpac.pdf}\\[2pt]
         \footnotesize (a) Attitude error
     \end{minipage}
-    \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \hspace{0.04\linewidth}
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_omega__t_total500.0_eptpac.pdf}\\[2pt]
         \footnotesize (b) Angular velocity error
-    \end{minipage}\\[4pt]
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \end{minipage}\\[1pt]
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_ControlTorque_t_total500.0_eptpac.pdf}\\[2pt]
         \footnotesize (c) Control torque
     \end{minipage}
-    \hspace{0.05\linewidth}
-    \begin{minipage}[b]{0.45\linewidth}\centering
+    \hspace{0.04\linewidth}
+    \begin{minipage}[b]{0.43\linewidth}\centering
         \includegraphics[width=\linewidth]{fig/PTC_compare_WheelMomentum_t_total500.0_eptpac.pdf}\\[2pt]
         \footnotesize (d) Wheel momentum
     \end{minipage}
 
+    \vspace{-4pt}
     \caption{Case 3.2: Performance comparison under dual saturation}
     \label{fig:case4_2_comparison}
 \end{figure}
@@ -957,7 +935,7 @@ This scenario examines controller performance under dual-saturation constraints 
 As shown in Fig.~\ref{fig:case4_2_comparison}, under dual saturation Ref.~\cite{xu_distributed_2022} fails to achieve prescribed-time convergence, with the settling time delayed to approximately $410~\si{s}$. This failure stems from the lack of momentum management: aggressive torque commands rapidly drive the wheels into saturation, leading to loss of control authority and uncontrolled drift.
 In contrast, EPTPAC modulates the control torques to prevent momentum saturation, achieving exact convergence at $t=300~\si{s}$.
 
-In summary, Case~3 demonstrates that dual saturation critically impacts control performance and confirms the advantage of the proposed EPTPAC framework, which eliminates conservatism while ensuring maneuver feasibility under dual-saturation constraints.
+Through comparative simulations, Case~3 demonstrates the advantage of EPTPAC over Ref.~\cite{xu_distributed_2022}. Specifically, EPTPAC eliminates the conservatism inherent in conventional PTC methods and achieves exact prescribed-time convergence. Moreover, it preserves maneuver feasibility under dual-saturation constraints throughout the maneuver.
 
 \newpage
 \section{Conclusion}
