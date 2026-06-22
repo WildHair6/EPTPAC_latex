@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{31}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -35,13 +35,9 @@ Xiao, Y., Yang, Y., Ye, D., and Zhang, J., \enquote{Quantitative Precision Secon
 Hong, Y., and Jiang, Z.-P., \enquote{Finite-{Time} {Stabilization} of {Nonlinear} {Systems} {With} {Parametric} and {Dynamic} {Uncertainties},} \emph{IEEE Transactions on Automatic Control}, Vol.~51, No.~12, 2006, pp. 1950--1956.
 \newblock \doi{10.1109/TAC.2006.886515}, \urlprefix\url{https://ieeexplore.ieee.org/document/4026648/}.
 
-\bibitem[{Zhao et~al.(2018)Zhao, Yu, and Yu}]{zhao_adaptive_2018}
-Zhao, L., Yu, J., and Yu, H., \enquote{Adaptive Finite-Time Attitude Tracking Control for Spacecraft With Disturbances,} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~54, No.~3, 2018, pp. 1412--1421.
-\newblock \doi{10.1109/TAES.2017.2764472}.
-
-\bibitem[{Shi et~al.(2017)Shi, Zhou, and Zhou}]{shi_finite-time_2017}
-Shi, X.-N., Zhou, Z.-G., and Zhou, D., \enquote{Finite-Time Attitude Trajectory Tracking Control of Rigid Spacecraft,} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~53, No.~6, 2017, pp. 2913--2923.
-\newblock \doi{10.1109/TAES.2017.2710398}.
+\bibitem[{Hu et~al.(2017)Hu, Tan, and Akella}]{hu_finite-time_2017}
+Hu, Q., Tan, X., and Akella, M.~R., \enquote{Finite-Time Fault-Tolerant Spacecraft Attitude Control with Torque Saturation,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~40, No.~10, 2017, pp. 2524--2537.
+\newblock \doi{10.2514/1.G002191}.
 
 \bibitem[{Polyakov(2012)}]{polyakov_nonlinear_2012}
 Polyakov, A., \enquote{Nonlinear {Feedback} {Design} for {Fixed}-{Time} {Stabilization} of {Linear} {Control} {Systems},} \emph{IEEE Transactions on Automatic Control}, Vol.~57, No.~8, 2012, pp. 2106--2110.
@@ -50,10 +46,6 @@ Polyakov, A., \enquote{Nonlinear {Feedback} {Design} for {Fixed}-{Time} {Stabili
 \bibitem[{Polyakov et~al.(2015)Polyakov, Efimov, and Perruquetti}]{polyakov_finite-time_2015}
 Polyakov, A., Efimov, D., and Perruquetti, W., \enquote{Finite-time and fixed-time stabilization: {Implicit} {Lyapunov} function approach,} \emph{Automatica}, Vol.~51, 2015, pp. 332--340.
 \newblock \doi{10.1016/j.automatica.2014.10.082}, \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109814004634}.
-
-\bibitem[{del Valle et~al.(2025)del Valle, Urrutxua, and Solano-L\'{o}pez}]{delValleFixtime2025}
-del Valle, S.~C., Urrutxua, H., and Solano-L\'{o}pez, P., \enquote{Generalized Potter–Stern Algorithm for Impulsive Minimum-Fuel Fixed-Time Rendezvous,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~48, No.~12, 2025, pp. 2744--2762.
-\newblock \doi{10.2514/1.G009164}, \urlprefix\url{https://doi.org/10.2514/1.G009164}.
 
 \bibitem[{Sánchez-Torres et~al.(2015)Sánchez-Torres, Sanchez, and Loukianov}]{sanchez-torres_predefined-time_2015}
 Sánchez-Torres, J.~D., Sanchez, E.~N., and Loukianov, A.~G., \enquote{Predefined-time stability of dynamical systems with sliding modes,} \emph{2015 {American} {Control} {Conference} ({ACC})}, 2015, pp. 5842--5846.
@@ -95,18 +87,6 @@ Xu, C., Wu, B., and Wang, D., \enquote{Distributed {Prescribed}-{Time} {Attitude
 Zhao, S., Zheng, J., Yi, F., Wang, X., and Zuo, Z., \enquote{Exponential {Predefined} {Time} {Trajectory} {Tracking} {Control} for {Fixed}-{Wing} {UAV} {With} {Input} {Saturation},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~60, No.~5, 2024, pp. 6406--6419.
 \newblock \doi{10.1109/TAES.2024.3402656}, \urlprefix\url{https://ieeexplore.ieee.org/document/10534850/}.
 
-\bibitem[{Wallsgrove and Akella(2005)}]{wallsgrove_globally_2005}
-Wallsgrove, R.~J., and Akella, M.~R., \enquote{Globally Stabilizing Saturated Attitude Control in the Presence of Bounded Unknown Disturbances,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~28, No.~5, 2005, pp. 957--963.
-\newblock \doi{10.2514/1.9980}.
-
-\bibitem[{Hu et~al.(2017)Hu, Tan, and Akella}]{hu_finite-time_2017}
-Hu, Q., Tan, X., and Akella, M.~R., \enquote{Finite-Time Fault-Tolerant Spacecraft Attitude Control with Torque Saturation,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~40, No.~10, 2017, pp. 2524--2537.
-\newblock \doi{10.2514/1.G002191}.
-
-\bibitem[{Miller and Akella(2024)}]{miller_guidance_2024}
-Miller, A.~J., and Akella, M.~R., \enquote{Guidance Templates for Spacecraft Attitude Maneuver Planning,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~47, No.~7, 2024, pp. 1470--1478.
-\newblock \doi{10.2514/1.G007862}.
-
 \bibitem[{Kobayashi et~al.(2017)Kobayashi, Shoji, and Yamada}]{kobayashi_optimal_2017}
 Kobayashi, H., Shoji, Y., and Yamada, K., \enquote{Optimal {Attitude} {Trajectory} of {Spacecraft} with {Pyramid}-{Type} {CMGs} {Using} a {Pseudo}-{Spectral} {Method},} \emph{AEROSPACE TECHNOLOGY JAPAN, THE JAPAN SOCIETY FOR AERONAUTICAL AND SPACE SCIENCES}, Vol.~16, No.~0, 2017, pp. 55--63.
 \newblock \doi{10.2322/astj.16.55}, \urlprefix\url{https://www.jstage.jst.go.jp/article/astj/16/0/16_JSASS-D-16-00034/_article/-char/ja/}.
@@ -130,6 +110,14 @@ Mammarella, M., Lee, D.~Y., Park, H., Capello, E., and Ghiglino, P., \enquote{At
 \bibitem[{Yang(2023)}]{yang_attitude_2023}
 Yang, Y., \enquote{Attitude Model Predictive Control with Actuator Saturation Using an Arc-Search Interior-Point Method,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~46, No.~5, 2023, pp. 969--978.
 \newblock \doi{10.2514/1.G007179}.
+
+\bibitem[{Biggs and Colley(2016)}]{biggs_geometric_2016}
+Biggs, J.~D., and Colley, L., \enquote{Geometric Attitude Motion Planning for Spacecraft with Pointing and Actuator Constraints,} \emph{Journal of Guidance, Control, and Dynamics}, Vol.~39, No.~7, 2016, pp. 1672--1677.
+\newblock \doi{10.2514/1.G001514}.
+
+\bibitem[{Yue et~al.(2023)Yue, Huo, Lu, Shen, Li, Chen, and Cao}]{yue_systematic_2023}
+Yue, C., Huo, T., Lu, M., Shen, Q., Li, C., Chen, X., and Cao, X., \enquote{A Systematic Method for Constrained Attitude Control Under Input Saturation,} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~59, No.~5, 2023, pp. 6005--6015.
+\newblock \doi{10.1109/TAES.2023.3268607}.
 
 \bibitem[{Xiao et~al.(2025{\natexlab{d}})Xiao, Yang, Ye, and Zhao}]{xiao_scaling-transformation-based_2025}
 Xiao, Y., Yang, Y., Ye, D., and Zhao, Y., \enquote{Scaling-{Transformation}-{Based} {Attitude} {Tracking} {Control} for {Rigid} {Spacecraft} {With} {Prescribed} {Time} and {Prescribed} {Bound},} \emph{IEEE Transactions on Aerospace and Electronic Systems}, Vol.~61, No.~1, 2025{\natexlab{d}}, pp. 433--442.

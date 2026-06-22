@@ -1,4 +1,4 @@
-﻿April 10, 2026
+April 13, 2026
 
 Yan Xiao (Corresponding Author)
 Research Center of Satellite Technology
@@ -20,36 +20,35 @@ Prescribed-Accuracy Control for Spacecraft under Dual Reaction Wheel
 Saturation" for consideration in the Journal of Guidance, Control, and
 Dynamics.
 
-Modern spacecraft missions, such as on-orbit rendezvous, autonomous
-docking, and multi-vehicle formation reconfiguration, impose strict
-requirements on both the convergence time and the pointing accuracy of
-attitude maneuvers. For reaction-wheel-actuated spacecraft, meeting
-these requirements is further complicated by two coupled physical
-constraints that must be respected simultaneously: torque saturation,
-which limits angular acceleration, and angular-momentum saturation,
-which caps the attainable angular velocity. Existing prescribed-time
-controllers either neglect the momentum constraint or converge well
-before the specified deadline, degrading mission efficiency and
-potentially disrupting inter-vehicle coordination. This paper presents
-a two-loop framework in which an outer-loop planner generates a
-reference trajectory that exactly reaches the target attitude at the
-user-specified terminal time while strictly satisfying both saturation
-limits, and an inner-loop nonsingular controller drives the tracking
-error to within a prescribed accuracy bound despite inertia
-uncertainties and external disturbances. A parameter-synthesis
-procedure coordinates the two loops and establishes the minimum
-feasible terminal time. Numerical simulations validate the exact
-terminal-time convergence, prescribed tracking accuracy, and
-dual-saturation compliance.
+Modern multi-spacecraft missions, including on-orbit servicing, autonomous
+docking, and cooperative reconfiguration, demand strict timeline compliance.
+Attitude maneuvers must reach the target state at exactly the prescribed
+terminal time, as failure to do so disrupts mission sequencing and leads to
+mission failure. Yet existing prescribed-time controllers are conservative
+and cannot guarantee exact-time arrival. Additionally, both torque and
+angular-momentum saturation of the reaction wheels must be simultaneously
+satisfied throughout the maneuver. Angular-momentum saturation is largely
+neglected in the literature, and the minimum feasible terminal time under
+dual saturation constraints remains uncharacterized, leaving parameter
+selection arbitrary.
 
-We believe this work may be of interest to the JGCD readership working
-on spacecraft attitude guidance and control.
+To address these gaps, this paper presents a two-loop solution for exact
+prescribed-time prescribed-accuracy control under dual reaction-wheel
+saturation. The outer-loop planner generates a reference that reaches the
+target attitude exactly at the user-specified terminal time while satisfying
+torque and momentum limits, and the inner-loop nonsingular controller
+guarantees prescribed tracking accuracy under uncertainties and disturbances.
+A constructive parameter-synthesis rule determines the minimum feasible
+terminal time. Simulations verify exact-time convergence, prescribed-accuracy
+tracking, and strict dual-saturation compliance.
 
-We confirm that this manuscript is original, is not currently under
-review elsewhere, and has been approved by all authors. There are no
-conflicts of interest to declare.
+We trust this work will be of interest to the JGCD readership in spacecraft
+attitude guidance and control. This manuscript is original, not currently
+under review elsewhere, and has been approved by all co-authors, with no
+conflicts of interest to declare. Should you have any questions, please do
+not hesitate to contact the corresponding author at the e-mail address above.
+We thank the editor for their time and consideration.
 
 Sincerely,
 
-Zaihua Liu, Yan Xiao, Dong Ye, and Zhaowei Sun
-Harbin Institute of Technology
+Zaihua Liu, Yan Xiao, Dong Ye, Haiyue Yang, and Zhaowei Sun

@@ -21,12 +21,12 @@ ang_momentum_max = 4*0.9; % 最大角动量 (kg*m^2/s)
 max_angle_deviation_deg = 0.00000;
 
 t0 = 0; % 初始时间
-tf = 150; % 终止时间
-t_total = 300;
+% tf = 150; % 终止时间
+% t_total = 300;
 % tf = 300; % 终止时间
 % t_total = 400;
-% tf = 300; % 终止时间
-% t_total = 500;
+tf = 300; % 终止时间
+t_total = 500;
 sim_dt = 0.01; % 仿真步长
 eps1 = 1e-4;
 lambda_max_J = max(eig(I_B));

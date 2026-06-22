@@ -81,9 +81,9 @@ fontSize = 14;
 lw       = 1.8;
 
 ref_time = get_ref_time_marker(t_total);
-labelStr = sprintf('$T_f = %.0f\\,\\mathrm{s}$', tf);
+labelStr = sprintf('$T_f=%.0f\\,\\mathrm{s}$', tf);
 if isfinite(ref_time)
-    labelStr2 = sprintf('$t_{\\mathrm{Ref.[19]}} = %.0f\\,\\mathrm{s}$', ref_time);
+    labelStr2 = sprintf('$T_{f,\\mathrm{ref}}=%.0f\\,\\mathrm{s}$', ref_time);
 else
     labelStr2 = '';
 end
@@ -117,6 +117,7 @@ hw_tap = hw_tap(1:N_ref,:);
 %% ================== Figure 1: MRP ref vs actual ==================
 figure('Color','w', 'Units', 'centimeters', 'Position', [5, 5, fig_width_tiled, fig_height_tiled]);
 labels_sigma = {'$\sigma_1$','$\sigma_2$','$\sigma_3$'};
+useRightSideMrpLabels = abs(t_total - 400) < 1e-9;
 
 % 鍒涘缓 tiledlayout锛? 琛?1 鍒?
 tl = tiledlayout(3,1, 'Padding', 'compact', 'TileSpacing', 'compact');
@@ -126,13 +127,19 @@ for i = 1:3
     plot(t, sigma_ref(:,i), 'r-',  'LineWidth', lw); hold on;
     plot(t, sigma_act(:,i), 'b-.', 'LineWidth', lw);
     if i == 1
-        xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
-          'Label', labelStr, ...
-          'LabelVerticalAlignment', 'bottom', ...
-          'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex', ...
-          'FontName', fontName, 'FontSize', fontSize);
-        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
+        if useRightSideMrpLabels
+            xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
+            add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
+        else
+            xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
+              'Label', labelStr, ...
+              'LabelVerticalAlignment', 'middle', ...
+              'LabelHorizontalAlignment', 'left', ...
+              'LabelOrientation', 'horizontal', ...
+              'Interpreter', 'latex', ...
+              'FontName', fontName, 'FontSize', fontSize);
+            add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize, 'middle');
+        end
     else
         xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
         add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
@@ -148,6 +155,10 @@ for i = 1:3
     end
     set(gca,'FontName',fontName,'FontSize',fontSize);
     xlim([t(1), t(end)]);
+    if i == 1 && useRightSideMrpLabels
+        add_time_marker_label_right(gca, tf, labelStr, 0.58, fontName, fontSize);
+        add_time_marker_label_right(gca, ref_time, labelStr2, 0.58, fontName, fontSize);
+    end
 end
 
 % % 娣诲姞鍥句緥鍒板竷灞€搴曢儴锛堜笉鎸ゅ帇瀛愬浘锛?
@@ -186,9 +197,10 @@ for i = 1:3
           'Label', labelStr, ...
           'LabelVerticalAlignment', 'bottom', ...
           'LabelHorizontalAlignment', 'left', ...
+          'LabelOrientation', 'horizontal', ...
           'Interpreter', 'latex', ...
           'FontName', fontName, 'FontSize', fontSize);
-        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
+        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize, 'bottom');
     else
         xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
         add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
@@ -243,13 +255,8 @@ for i = 1:3
     yline(tau_max(i),  'k--', 'LineWidth', 1.0);
     yline(-tau_max(i), 'k--', 'LineWidth', 1.0);
     if i == 1
-        xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
-          'Label', labelStr, ...
-          'LabelVerticalAlignment', 'bottom', ...
-          'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex', ...
-          'FontName', fontName, 'FontSize', fontSize);
-        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
+        xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
+        add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
     else
         xline(tf, 'Color', [0.3 0.3 0.3], 'LineStyle', '--', 'LineWidth', 1.2);
         add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
@@ -265,7 +272,19 @@ for i = 1:3
     end
     set(gca,'FontName',fontName,'FontSize',fontSize);
     xlim([t(1), t(end)]);
-    ylim(1.15 * [-tau_max(i), tau_max(i)]);
+    ylim(1.25 * [-tau_max(i), tau_max(i)]);
+    if i == 1
+        if abs(t_total - 300) < 1e-9
+            add_time_marker_label_side(gca, tf, labelStr, 0.68, 'left', fontName, fontSize);
+            add_time_marker_label_side(gca, ref_time, labelStr2, 0.68, 'left', fontName, fontSize);
+        elseif abs(t_total - 500) < 1e-9
+            add_time_marker_label_side(gca, tf, labelStr, 0.68, 'left', fontName, fontSize);
+            add_time_marker_label_side(gca, ref_time, labelStr2, 0.68, 'left', fontName, fontSize);
+        else
+            add_time_marker_label_side(gca, tf, labelStr, 0.68, 'right', fontName, fontSize);
+            add_time_marker_label_side(gca, ref_time, labelStr2, 0.68, 'right', fontName, fontSize);
+        end
+    end
 end
 
 % 鍥句緥鏀惧湪搴曢儴
@@ -295,13 +314,19 @@ for i = 1:3
     yline(h_max(i),  'k--', 'LineWidth', 1.0);
     yline(-h_max(i), 'k--', 'LineWidth', 1.0);
     if i == 1
-        xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
-          'Label', labelStr, ...
-          'LabelVerticalAlignment', 'bottom', ...
-          'LabelHorizontalAlignment', 'left', ...
-          'Interpreter', 'latex', ...
-          'FontName', fontName, 'FontSize', fontSize);
-        add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize);
+        if abs(t_total - 500) < 1e-9
+            xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
+            add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
+        else
+            xline(tf, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
+              'Label', labelStr, ...
+              'LabelVerticalAlignment', 'bottom', ...
+              'LabelHorizontalAlignment', 'left', ...
+              'LabelOrientation', 'horizontal', ...
+              'Interpreter', 'latex', ...
+              'FontName', fontName, 'FontSize', fontSize);
+            add_ref_time_line(gca, ref_time, labelStr2, true, fontName, fontSize, 'bottom');
+        end
     else
         xline(tf, 'Color', [0.3 0.3 0.3], 'LineStyle', '--', 'LineWidth', 1.2);
         add_ref_time_line(gca, ref_time, labelStr2, false, fontName, fontSize);
@@ -317,6 +342,10 @@ for i = 1:3
     end
     set(gca,'FontName',fontName,'FontSize',fontSize);
     xlim([t(1), t(end)]);
+    if i == 1 && abs(t_total - 500) < 1e-9
+        add_time_marker_label_side(gca, tf, labelStr, 0.68, 'left', fontName, fontSize);
+        add_time_marker_label_side(gca, ref_time, labelStr2, 0.68, 'left', fontName, fontSize);
+    end
 end
 
 % 鍥句緥鏀惧湪搴曢儴
@@ -380,21 +409,71 @@ function ref_time = get_ref_time_marker(t_total)
     end
 end
 
-function add_ref_time_line(ax, ref_time, labelStr, showLabel, fontName, fontSize)
+function add_ref_time_line(ax, ref_time, labelStr, showLabel, fontName, fontSize, labelVerticalAlignment)
     if ~isfinite(ref_time)
         return;
+    end
+    if nargin < 7
+        labelVerticalAlignment = 'bottom';
     end
 
     if showLabel
         xline(ax, ref_time, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2, ...
             'Label', labelStr, ...
-            'LabelVerticalAlignment', 'bottom', ...
+            'LabelVerticalAlignment', labelVerticalAlignment, ...
             'LabelHorizontalAlignment', 'left', ...
+            'LabelOrientation', 'horizontal', ...
             'Interpreter', 'latex', ...
             'FontName', fontName, 'FontSize', fontSize);
     else
         xline(ax, ref_time, '--', 'Color', [0.3 0.3 0.3], 'LineWidth', 1.2);
     end
+end
+
+function add_time_marker_label_side(ax, marker_time, labelStr, yFraction, side, fontName, fontSize)
+    if ~isfinite(marker_time)
+        return;
+    end
+
+    xLimits = xlim(ax);
+    yLimits = ylim(ax);
+    xOffset = 0.012 * (xLimits(2) - xLimits(1));
+    yText = yLimits(1) + yFraction * (yLimits(2) - yLimits(1));
+    if strcmpi(side, 'left')
+        xText = marker_time - xOffset;
+        horizontalAlignment = 'right';
+    else
+        xText = marker_time + xOffset;
+        horizontalAlignment = 'left';
+    end
+
+    text(ax, xText, yText, labelStr, ...
+        'Interpreter', 'latex', ...
+        'FontName', fontName, ...
+        'FontSize', fontSize, ...
+        'Color', [0.3 0.3 0.3], ...
+        'HorizontalAlignment', horizontalAlignment, ...
+        'VerticalAlignment', 'middle', ...
+        'Clipping', 'on');
+end
+
+function add_time_marker_label_right(ax, marker_time, labelStr, yFraction, fontName, fontSize)
+    if ~isfinite(marker_time)
+        return;
+    end
+
+    xLimits = xlim(ax);
+    yLimits = ylim(ax);
+    xText = marker_time + 0.012 * (xLimits(2) - xLimits(1));
+    yText = yLimits(1) + yFraction * (yLimits(2) - yLimits(1));
+    text(ax, xText, yText, labelStr, ...
+        'Interpreter', 'latex', ...
+        'FontName', fontName, ...
+        'FontSize', fontSize, ...
+        'Color', [0.3 0.3 0.3], ...
+        'HorizontalAlignment', 'left', ...
+        'VerticalAlignment', 'middle', ...
+        'Clipping', 'on');
 end
 
 % save(fullfile(data_folder, 't_sim'), 't');
